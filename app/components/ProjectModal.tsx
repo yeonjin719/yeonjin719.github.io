@@ -85,7 +85,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
 
     if (!project) return null;
-    // const youtubeId = project.youtube ? getYoutubeId(project.youtube) : null;
 
     return (
         <div

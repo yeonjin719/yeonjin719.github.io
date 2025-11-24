@@ -24,7 +24,7 @@ export default function Project({
         <article
             key={index}
             onClick={() => setSelectedProject(project)}
-            className="group relative bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-100 hover:shadow-xl hover:border-indigo-100 transition-all duration-500"
+            className="group relative bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-100 hover:shadow-xl hover:border-indigo-100 transition-all duration-500 hover:cursor-pointer"
         >
             <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none" />
 
