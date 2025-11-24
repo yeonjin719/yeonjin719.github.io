@@ -88,7 +88,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md animate-fade-in overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 animate-fade-in overflow-y-auto"
             onClick={handleBackdropClick}
         >
             <div className="bg-white rounded-2xl w-full max-w-4xl my-8 shadow-2xl animate-scale-up relative flex flex-col overflow-hidden max-h-[90vh]">
