@@ -81,7 +81,7 @@ export default function Header() {
                                     {/* 학점 정보 추가 */}
                                     <span className="h-1 w-1 rounded-full bg-slate-300 mx-1"></span>
                                     <span className="text-slate-500 text-sm font-medium">
-                                        GPA 4.0 / 4.5
+                                        GPA 4.19 / 4.5
                                     </span>
                                 </div>
                             </div>
