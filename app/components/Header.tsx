@@ -57,7 +57,7 @@ export default function Header() {
 
                 <div className="mt-10 pt-8 border-t border-slate-200/80">
                     <div className="flex items-start gap-5 group">
-                        <div className="p-3.5 bg-white border border-indigo-100 rounded-2xl text-indigo-600 shadow-sm group-hover:shadow-md group-hover:scale-105 group-hover:border-indigo-200 transition-all duration-300 flex-shrink-0">
+                        <div className="p-3.5 bg-white border border-indigo-100 rounded-2xl text-indigo-600 shadow-sm group-hover:shadow-md group-hover:scale-105 group-hover:border-indigo-200 transition-all duration-300 shrink-0">
                             <GraduationCap size={26} />
                         </div>
                         <div className="space-y-1">

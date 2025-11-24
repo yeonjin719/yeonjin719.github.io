@@ -22,8 +22,8 @@ export const experiences: TExperience[] = [
     },
     {
         id: 6,
-        period: '2025.09 ~ 현재',
-        title: 'UMC 9기 WEB 중앙/교내 파트장',
+        period: '2025.03 ~ 2025.08',
+        title: 'UMC 8기 WEB 중앙/교내 파트장',
         organization: 'University MakeUs Challenge',
         category: 'Activity',
         description:
