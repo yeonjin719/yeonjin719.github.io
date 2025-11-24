@@ -1,4 +1,6 @@
-export const projects = [
+import { TProject } from '../type/type';
+
+export const projects: TProject[] = [
     {
         title: 'Colbrush',
         category: 'Open Source Library',
@@ -13,7 +15,6 @@ export const projects = [
             'NPM',
             'Playwright',
         ],
-        // [추가] 유튜브 링크와 이미지 (실제 PDF 내용 반영)
         youtube: 'https://youtu.be/pmmBx5OxHeM',
         images: [
             'images/colbrush1.png',
