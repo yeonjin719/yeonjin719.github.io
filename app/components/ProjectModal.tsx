@@ -11,12 +11,12 @@ import {
     ChevronRight,
     PlayCircle,
 } from 'lucide-react';
-import type { projects } from '../data';
-import Image from 'next/image';
 
-type Project = (typeof projects)[number] & { detailContent?: string };
+import Image from 'next/image';
+import { TProject } from '../type/type';
+
 interface ProjectModalProps {
-    project: Project;
+    project: TProject;
     onClose: () => void;
 }
 

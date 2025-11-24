@@ -8,8 +8,7 @@ import {
 } from 'lucide-react';
 import ProjectLink from './ProjectLink';
 import Link from 'next/link';
-import { projects } from '../data';
-type TProject = (typeof projects)[number];
+import { TProject } from '../type/type';
 
 export default function Project({
     project,
@@ -92,7 +91,7 @@ export default function Project({
                     </div>
                 </div>
 
-                <div className="flex flex-wrap gap-4 pt-6 border-t border-slate-100 items-center">
+                <div className="flex gap-4 pt-6 border-t border-slate-100 items-center">
                     {project.links.demo && (
                         <ProjectLink
                             href={project.links.demo}
@@ -108,11 +107,12 @@ export default function Project({
                             text="Source Code"
                         />
                     )}
-
+                </div>
+                <div>
                     {project.troubleshooting && (
                         <Link
                             href={project.troubleshooting.url}
-                            className="ml-auto group/link flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700 bg-orange-50 px-4 py-2 rounded-full transition-all hover:bg-orange-100 border border-orange-100 hover:shadow-sm"
+                            className="ml-auto w-fit mt-4 group/link flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700 bg-orange-50 px-4 py-2 rounded-full transition-all hover:bg-orange-100 border border-orange-100 hover:shadow-sm"
                         >
                             <Terminal size={16} />
                             <div>Read Dev Log</div>
