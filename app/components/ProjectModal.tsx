@@ -12,6 +12,7 @@ import {
     PlayCircle,
 } from 'lucide-react';
 import type { projects } from '../data';
+import Image from 'next/image';
 
 type Project = (typeof projects)[number] & { detailContent?: string };
 interface ProjectModalProps {
@@ -115,7 +116,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                     allowFullScreen
                                 ></iframe>
                             ) : (
-                                <img
+                                <Image
+                                    width={100}
+                                    height={100}
                                     src={mediaItems[currentIndex].url}
                                     alt={`Slide ${currentIndex + 1}`}
                                     className="w-full h-full object-contain bg-slate-900"
@@ -172,12 +175,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                 >
                                     {item.type === 'youtube' ? (
                                         <div className="w-full h-full bg-black flex items-center justify-center relative">
-                                            <img
+                                            <Image
                                                 src={`https://img.youtube.com/vi/${getYoutubeId(
                                                     item.url
                                                 )}/mqdefault.jpg`}
                                                 alt="Youtube"
                                                 className="w-full h-full object-cover opacity-80"
+                                                width={100}
+                                                height={75}
                                             />
                                             <div className="absolute inset-0 flex items-center justify-center">
                                                 <PlayCircle
@@ -187,7 +192,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                             </div>
                                         </div>
                                     ) : (
-                                        <img
+                                        <Image
+                                            width={100}
+                                            height={75}
                                             src={item.url}
                                             alt={`Thumb ${idx}`}
                                             className="w-full h-full object-cover bg-white"
