@@ -6,7 +6,7 @@ import Scroll from '@/app/components/header/Scroll';
 import { Info } from '@/app/components/header/Info';
 export default function Header() {
     return (
-        <header className="flex max-w-5xl mx-auto py-24 px-6 md:py-40 relative">
+        <header className="flex max-w-5xl mx-auto py-24 px-6 md:py-30 relative">
             <div className="animate-fade-in-up space-y-8 z-10 sm:justify-start justify-center flex flex-col w-full">
                 <Info />
                 <SocialLinkList profile={profile} />

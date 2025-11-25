@@ -5,7 +5,7 @@ export const experiences: TExperience[] = [
         id: 8,
         period: '2025.11.11',
         title: '오픈소스 개발자대회 동상 수상',
-        organization: '과학기술정보통신부',
+        organization: '한국오픈소스협회',
         category: 'Award',
         description:
             "색각 이상자를 위한 테마 생성 라이브러리 'Colbrush' 개발 및 기여",

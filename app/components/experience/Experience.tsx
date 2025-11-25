@@ -7,7 +7,7 @@ export default function Experience({ exp }: { exp: TExperience }) {
     return (
         <div
             key={exp.id}
-            className="bg-white relative p-6 pb-12 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group"
+            className="bg-white relative p-6 pb-12 h-full rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group"
         >
             <div className="flex justify-between items-start mb-4">
                 <div className={`p-2.5 rounded-xl ${styles.bg} ${styles.text}`}>

@@ -98,11 +98,18 @@ export const projects: TProject[] = [
             url: '/blog/qastudio-logic',
         },
         detailContent: `
-        <h3 class="text-xl font-bold text-slate-900 mb-3">🚀 프로젝트 개요</h3>
-        <p class="text-slate-600 mb-6 leading-relaxed">누구나 쉽게 웹상에서의 클릭만으로 테스트 시나리오를 작성하고 자동화할 수 있는 노코드 QA 서비스입니다.</p>
-        
-        <h3 class="text-xl font-bold text-slate-900 mb-3">🔧 핵심 구현: Selector 알고리즘</h3>
-        <p class="text-slate-600 mb-6 leading-relaxed">동적으로 변하는 클래스명 문제를 해결하기 위해 <strong>우선순위 기반 Selector 추출 알고리즘</strong>(ID > TestID > Unique Class > XPath)을 자체 개발하여 Selenium 코드 변환 정확도를 높였습니다.</p>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🚀 프로젝트 개요</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">QA 리소스가 부족한 소규모 팀을 위해, 누구나 쉽게 웹상에서의 클릭만으로 테스트 시나리오를 작성하고 자동화할 수 있는 <strong>노코드 QA 서비스</strong>입니다.</p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🔐 인증 시스템 및 상태 관리</h3>
+            <p class="text-slate-600 mb-4 leading-relaxed">
+            <strong>JWT + HttpOnly Cookie</strong> 방식을 적용하여 보안을 강화했습니다. 특히 <code>SameSite</code>, <code>Secure</code> 속성 설정으로 크로스 도메인 이슈를 해결하고, Axios Interceptor를 통해 Access Token 만료 시 자동으로 갱신하는 로직을 구현하여 끊김 없는 사용자 경험을 제공했습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">📂 복잡한 데이터 구조 관리 (Redux)</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            프로젝트 > 역할(Character) > 시나리오 > 액션(Action)으로 이어지는 4단계 깊이의 복잡한 데이터 의존성을 관리하기 위해 <strong>Redux Toolkit</strong>을 도입했습니다. 비동기 AI 생성 작업의 로딩/에러 상태를 전역에서 효율적으로 제어했습니다.
+            </p>
     `,
     },
     {
@@ -132,10 +139,22 @@ export const projects: TProject[] = [
             github: 'https://github.com/WithTime12',
         },
         detailContent: `
-        <h3 class="text-xl font-bold text-slate-900 mb-3">💑 서비스 특징</h3>
-        <p class="text-slate-600 mb-6 leading-relaxed">사용자의 취향을 분석하여 AI가 최적의 데이트 코스를 제안하며, 카카오맵 API와 연동하여 동선을 시각화했습니다.</p>
-        <h3 class="text-xl font-bold text-slate-900 mb-3">💾 상태 관리: Zustand</h3>
-        <p class="text-slate-600 mb-6 leading-relaxed">복잡한 폼 데이터를 효율적으로 관리하기 위해 Redux 대신 가볍고 직관적인 <strong>Zustand</strong>를 도입하여 보일러플레이트 코드를 줄였습니다.</p>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">💑 서비스 특징</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">사용자의 예산, 지역, 취향을 분석하여 AI가 최적의 데이트 코스를 제안합니다.</p>
+            
+            <h3 class="text-xl font-bold text-slate-900 mb-3">💾 상태 관리 전략: Zustand Store 분리</h3>
+            <p class="text-slate-600 mb-4 leading-relaxed">복잡한 필터 조건과 생성된 결과 데이터를 효율적으로 관리하기 위해 Store를 물리적으로 분리했습니다.</p>
+            <div class="bg-slate-100 p-4 rounded-lg mb-6">
+                <ul class="list-disc list-inside text-slate-700 space-y-1">
+                <li><strong>Filter Store:</strong> 사용자 입력(Input) 담당. 새로고침 시에도 유지되도록 Persist 미들웨어 적용</li>
+                <li><strong>Result Store:</strong> AI 결과(Output) 담당. 필터 변경 시 독립적으로 초기화 가능하도록 설계</li>
+                </ul>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🤖 협업 효율화: CodeRabbit 도입</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+                4명의 프론트엔드 개발자 간의 코드 리뷰 병목 현상을 해결하기 위해 <strong>AI 리뷰어 CodeRabbit</strong>을 도입했습니다. PR 생성 즉시 스타일 가이드 준수 여부와 잠재적 버그를 리포트해주어, 팀원들은 비즈니스 로직 검토에만 집중할 수 있었습니다.
+            </p>
         `,
         troubleshooting: {
             url: '/blog/withtime-dev-story',
@@ -172,10 +191,18 @@ export const projects: TProject[] = [
             github: 'https://github.com/SMUMC-7th/Team-C-FE',
         },
         detailContent: `
-        <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 기획 의도</h3>
-        <p class="text-slate-600 mb-6 leading-relaxed">수많은 정보 속에서 나에게 맞는 혜택을 놓치는 문제를 해결하기 위해, 사용자 프로필 기반 맞춤 정책 추천 서비스를 개발했습니다.</p>
-        <h3 class="text-xl font-bold text-slate-900 mb-3">🔥 성능 최적화</h3>
-        <p class="text-slate-600 mb-6 leading-relaxed"><strong>Intersection Observer API</strong>와 Firebase의 커서 기반 페이지네이션을 결합하여 무한 스크롤을 구현, 초기 로딩 속도를 획기적으로 개선했습니다.</p>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 기획 의도</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">수많은 정보 속에서 나에게 맞는 혜택을 놓치는 문제를 해결하기 위해, 사용자 프로필(거주지, 소득분위 등) 기반 <strong>맞춤 정책 추천 서비스</strong>를 개발했습니다.</p>
+            
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🔥 성능 최적화: 무한 스크롤</h3>
+            <p class="text-slate-600 mb-4 leading-relaxed">
+            알림 데이터가 쌓이면서 초기 로딩 속도가 저하되는 문제를 해결하기 위해 <strong>Intersection Observer API</strong>와 Firebase의 커서 기반 페이지네이션을 결합하여 무한 스크롤을 구현했습니다. 이를 통해 초기 로딩 시간을 획기적으로 단축했습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">📅 캘린더 시각화</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            <strong>date-fns</strong> 라이브러리를 활용하여 정책의 '신청 시작일'과 '마감일'을 캘린더에 색상별로 구분하여 표시했습니다. 복잡한 날짜 계산 로직을 유틸리티 함수로 분리하여 유지보수성을 높였습니다.
+            </p>
         `,
     },
     {
@@ -195,8 +222,17 @@ export const projects: TProject[] = [
             github: 'https://github.com/yeonjin719/SMUMC-Web',
         },
         detailContent: `
-        <h3 class="text-xl font-bold text-slate-900 mb-3">🎨 디자인 시스템</h3>
-        <p class="text-slate-600 mb-6 leading-relaxed">동아리 브랜딩 강화를 위해 컬러 팔레트와 타이포그래피 시스템을 정의하고, 재사용 가능한 UI 컴포넌트 라이브러리를 구축했습니다.</p>
+        <h3 class="text-xl font-bold text-slate-900 mb-3">🎨 디자인 시스템 및 반응형 구현</h3>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+            동아리 브랜딩 강화를 위해 컬러 팔레트와 타이포그래피 시스템을 정의하고, 재사용 가능한 UI 컴포넌트 라이브러리를 구축했습니다. 
+            모든 디바이스에서 최적의 경험을 제공하기 위해 <strong>Mobile-First</strong> 전략으로 반응형 디자인을 구현했습니다.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mb-3">🌗 다크 모드 구현</h3>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+            <strong>Context API</strong>와 <strong>Styled-components</strong>의 ThemeProvider를 활용하여 전역 테마 관리 시스템을 구축했습니다. 
+            사용자의 시스템 설정을 감지하여 초기 테마를 자동으로 적용하고, 토글 버튼으로 부드러운 테마 전환 경험을 제공합니다.
+        </p>
         `,
     },
 ];
