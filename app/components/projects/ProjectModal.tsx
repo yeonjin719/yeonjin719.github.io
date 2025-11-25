@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 import Image from 'next/image';
-import { TProject } from '../type/type';
+import { TProject } from '@/app/type/type';
 
 interface ProjectModalProps {
     project: TProject;

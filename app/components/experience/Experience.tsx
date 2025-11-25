@@ -1,7 +1,6 @@
-import { Download } from 'lucide-react';
-import { TExperience } from '../type/type';
-import getExperienceStyles from '../utils/getExperienceStyles';
-import DownloadButton from './DownloadButton';
+import { TExperience } from '@/app/type/type';
+import getExperienceStyles from '@/app/utils/getExperienceStyles';
+import DownloadButton from '@/app/components/common/DownloadButton';
 
 export default function Experience({ exp }: { exp: TExperience }) {
     const styles = getExperienceStyles(exp.category);

@@ -44,3 +44,41 @@ export type TSkills = {
     StateManagement: string[];
     Tools: string[];
 };
+
+export type TEducation = {
+    period: string;
+    degree: {
+        name: string;
+        info?: string;
+    }[];
+    graduate: boolean;
+    graduateDate: string;
+    gpa: number;
+};
+
+export type TBlogPost = {
+    slug: string;
+    title: string;
+    desc: string;
+    date: string;
+    tags?: string[];
+};
+
+export interface IRawFrontMatter {
+    date?: string | Date;
+    title?: string;
+    desc?: string;
+    tags?: string[] | string;
+}
+
+export interface IPostMeta {
+    slug: string;
+    date: string;
+    title: string;
+    desc: string;
+    tags: string[];
+}
+
+export interface IPostData extends IPostMeta {
+    content: string;
+}

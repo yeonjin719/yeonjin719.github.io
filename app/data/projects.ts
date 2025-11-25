@@ -1,4 +1,4 @@
-import { TProject } from '../type/type';
+import { TProject } from '@/app/type/type';
 
 export const projects: TProject[] = [
     {
@@ -33,10 +33,35 @@ export const projects: TProject[] = [
         },
         detailContent: `
             <h3 class="text-xl font-bold text-slate-900 mb-3">💡 개발 배경</h3>
-            <p class="text-slate-600 mb-6 leading-relaxed">기존 도구들은 심미성에만 초점을 맞춰 색각 이상자(Color Blindness)를 위한 접근성이 부족했습니다. 이를 해결하기 위해 개발자가 코드 한 줄로 접근성 높은 테마를 생성할 수 있는 라이브러리를 개발했습니다.</p>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+                웹 접근성(A11y)이 중요해지고 있지만, 디자이너와 개발자가 색맹 사용자를 고려한 테마를 별도로 제작하는 것은 많은 리소스가 듭니다. 
+                이를 해결하기 위해 <strong>"기존 코드를 건드리지 않고, CLI 명령어 한 줄로 색맹 대응 테마를 자동 생성"</strong>해주는 라이브러리를 개발했습니다.
+            </p>
             
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🛠 기술적 챌린지: CIE Lab 색공간</h3>
-            <p class="text-slate-600 mb-6 leading-relaxed">RGB 색공간의 한계를 극복하기 위해 <strong>CIE Lab 색공간</strong>을 도입, 명도(L)는 유지하면서 색상 축(a, b)만 회전시키는 알고리즘으로 변환 정확도를 40% 이상 향상시켰습니다.</p>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🛠 핵심 기술: CIE Lab 색공간 알고리즘</h3>
+            <p class="text-slate-600 mb-4 leading-relaxed">
+                초기 RGB 색공간 기반 변환은 인간의 눈이 인지하는 색상 거리와 수학적 거리가 달라 시인성이 떨어지는 문제가 있었습니다.
+            </p>
+            <ul class="list-disc list-inside text-slate-600 mb-6 space-y-2">
+                <li><strong>문제 해결:</strong> <strong>CIE Lab 색공간</strong>을 도입하여 명도(L)는 유지하되 색상 축(a, b)만 회전시키는 알고리즘 구현</li>
+                <li><strong>성과:</strong> 적색맹(Protanopia), 녹색맹(Deuteranopia), 청색맹(Tritanopia) 사용자에게 원본 디자인의 위계(Hierarchy)를 해치지 않는 고대비 테마 제공</li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">⚡️ 트러블 슈팅: Tailwind CSS 충돌 해결</h3>
+            <p class="text-slate-600 mb-4 leading-relaxed">
+                라이브러리 스타일(<code>colbrush/styles.css</code>)을 import 할 때, 사용자 프로젝트의 Tailwind 설정과 충돌하여 미디어 쿼리가 깨지는 현상이 발생했습니다.
+            </p>
+            <div class="bg-slate-100 p-4 rounded-lg mb-6">
+                <p class="text-sm text-slate-700 font-mono mb-2">🔴 원인: 라이브러리 CSS 내부의 중복 @import 'tailwindcss'로 인한 레이어 순서 꼬임</p>
+                <p class="text-sm text-indigo-700 font-mono">🟢 해결: 빌드 단계에서 Tailwind 의존성을 제거하고, 순수 CSS 변수만 추출하여 제공하는 방식으로 아키텍처 변경</p>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">📦 주요 기능 및 기여</h3>
+            <ul class="list-disc list-inside text-slate-600 mb-6 space-y-2">
+                <li><strong>CLI 구현:</strong> <code>npx colbrush --generate</code> 명령어로 프로젝트 내 CSS 변수를 파싱하여 테마 파일 자동 생성</li>
+                <li><strong>Cross-Platform:</strong> Node.js(CLI)와 Browser(React Component) 환경을 분리한 빌드 구성 (tsup 활용)</li>
+                <li><strong>DX 개선:</strong> Chrome DevTools의 시각적 결함 시뮬레이션 기능을 웹상에 구현하여 개발자가 즉시 접근성 테스트 가능</li>
+            </ul>
         `,
         troubleshooting: {
             url: '/blog/colbrush',

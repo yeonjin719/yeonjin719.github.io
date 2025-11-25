@@ -1,8 +1,11 @@
-import React from 'react';
 import { ArrowLeft, Calendar, User, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { getSortedPostsData, getPostData } from '@/lib/posts'; // getPostData 추가
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
+import { extractHeadings } from '@/lib/markdown';
+import { markdownComponents } from '../../components/common/MarkdownComponent';
 // 정적 경로 생성
 export async function generateStaticParams() {
     const posts = getSortedPostsData();
@@ -21,7 +24,7 @@ export default async function BlogPostPage({
 
     // [중요] 목록에서 찾는 게 아니라, 파일 내용을 직접 읽어오는 함수 사용
     const post = await getPostData(slug);
-
+    const headings = extractHeadings(post.content);
     if (!post) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
@@ -34,7 +37,6 @@ export default async function BlogPostPage({
             </div>
         );
     }
-
     return (
         <article className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-500 selection:text-white">
             {/* Top Navigation Bar */}
@@ -91,19 +93,43 @@ export default async function BlogPostPage({
                     </div>
                 </div>
             </header>
-
-            {/* Content Body */}
             <div className="max-w-3xl mx-auto px-6 py-16">
-                {/* [수정] post.desc 대신 post.content를 렌더링합니다.
-                    MDX 라이브러리가 없는 환경이므로, 우선 텍스트가 줄바꿈되어 잘 보이도록 pre-wrap을 적용했습니다.
-                */}
-                <div className="prose prose-lg prose-slate max-w-none text-slate-900">
-                    <div className="whitespace-pre-wrap font-sans text-lg leading-relaxed text-slate-800">
+                {headings.length > 0 && (
+                    <aside className="mb-10 rounded-xl border border-slate-200 bg-slate-50/80 p-4 text-sm">
+                        <p className="mb-3 font-semibold text-slate-700">
+                            On this page
+                        </p>
+                        <ul className="space-y-1">
+                            {headings.map((h) => (
+                                <li
+                                    key={h.id}
+                                    className={
+                                        h.level === 1
+                                            ? ''
+                                            : h.level === 2
+                                            ? 'pl-3'
+                                            : 'pl-6 text-slate-500'
+                                    }
+                                >
+                                    <a
+                                        href={`#${h.id}`}
+                                        className="hover:text-indigo-600"
+                                    >
+                                        {h.text}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </aside>
+                )}
+                <div className="markdown-body">
+                    <ReactMarkdown
+                        rehypePlugins={[rehypeRaw]}
+                        components={markdownComponents}
+                    >
                         {post.content}
-                    </div>
+                    </ReactMarkdown>
                 </div>
-
-                {/* Post Footer */}
                 <div className="mt-16 pt-10 border-t border-slate-200">
                     <div className="mt-10 p-8 bg-slate-50 rounded-2xl border border-slate-100 text-center">
                         <p className="text-slate-600 font-medium mb-4">

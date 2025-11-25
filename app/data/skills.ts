@@ -1,4 +1,6 @@
-export const skills = {
+import { TSkills } from '@/app/type/type';
+
+export const skills: TSkills = {
     Languages: ['JavaScript (ES6)', 'TypeScript', 'Python3', 'HTML5', 'CSS3'],
     Frameworks: ['React', 'Next.js', 'React Native'],
     Styling: ['TailwindCSS', 'Styled-components'],

@@ -1,10 +1,10 @@
 'use client';
 
 import { Award } from 'lucide-react';
-import SectionTitle from './SectionTitle';
-import { projects } from '../data';
-import Project from './Project';
-import { TProject } from '../type/type';
+import SectionTitle from '@/app/components/common/SectionTitle';
+import { projects } from '@/app/data';
+import Project from '@/app/components/projects/Project';
+import { TProject } from '@/app/type/type';
 
 export default function Projects({
     setSelectedProject,

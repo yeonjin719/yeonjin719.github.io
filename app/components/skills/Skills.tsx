@@ -1,6 +1,6 @@
 import { Code2 } from 'lucide-react';
-import getCategoryColor from '../utils/getCategoryColor';
-import SectionTitle from './SectionTitle';
+import getCategoryColor from '@/app/utils/getCategoryColor';
+import SectionTitle from '@/app/components/common/SectionTitle';
 
 export default function Skills({
     skills,

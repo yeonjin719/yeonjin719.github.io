@@ -1,6 +1,6 @@
 import { Linkedin, Github, Mail } from 'lucide-react';
 import FooterSocialLink from './FooterSocialLink';
-import { profile } from '../data';
+import { profile } from '../../data';
 
 export default function Footer() {
     return (

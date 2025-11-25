@@ -3,41 +3,23 @@
 
 import { useEffect, useState } from 'react';
 
-import { skills } from './data';
-import DevLog from './components/DevLog';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import ProjectModal from './components/ProjectModal';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experiences from './components/Experiences';
-import { GitHubCalendar } from 'react-github-calendar';
-import { TProject } from './type/type';
-import selectLastHalfYear from './utils/selectLastHalfYear';
-type BlogPost = {
-    slug: string;
-    title: string;
-    desc: string;
-    date: string;
-    tags?: string[];
-};
+import DevLog from '@/app/components/devLog/DevLog';
+import Footer from '@/app/components/footer/Footer';
+import Header from '@/app/components/header/Header';
+import ProjectModal from '@/app/components/projects/ProjectModal';
+import Skills from '@/app/components/skills/Skills';
+import Projects from '@/app/components/projects/Projects';
+import Experiences from '@/app/components/experience/Experiences';
+import GithubState from '@/app/components/githubState/GithubState';
+import { TBlogPost, TProject } from '@/app/type/type';
+import { skills } from '@/app/data';
 
 export default function PortfolioClient({
     blogPosts,
 }: {
-    blogPosts: BlogPost[];
+    blogPosts: TBlogPost[];
 }) {
     const [isMdOrBelow, setIsMdOrBelow] = useState(false);
-    const calendarTheme = {
-        light: [
-            '#f8fafc', // level 0 - subtle slate to match background
-            '#e0e7ff', // level 1 - soft indigo tint
-            '#c7d2fe', // level 2
-            '#a5b4fc', // level 3
-            '#7c3aed', // level 4 - deep violet accent
-        ],
-    };
-
     const [selectedProject, setSelectedProject] = useState<TProject | null>(
         null
     );
@@ -79,22 +61,10 @@ export default function PortfolioClient({
                 <Experiences />
                 <Skills skills={skills} />
                 <Projects setSelectedProject={setSelectedProject} />
-                <div className="w-full flex justify-center px-10">
-                    {isMounted && (
-                        <GitHubCalendar
-                            username={'yeonjin719'}
-                            labels={{
-                                totalCount: 'Learn how we count contributions',
-                            }}
-                            colorScheme="light"
-                            theme={calendarTheme}
-                            showWeekdayLabels
-                            transformData={
-                                isMdOrBelow ? selectLastHalfYear : undefined
-                            }
-                        ></GitHubCalendar>
-                    )}
-                </div>
+                <GithubState
+                    isMounted={isMounted}
+                    isMdOrBelow={isMdOrBelow}
+                ></GithubState>
                 <DevLog blogPostsData={blogPosts} />
                 <Footer />
             </div>

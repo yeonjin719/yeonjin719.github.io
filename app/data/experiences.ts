@@ -1,4 +1,4 @@
-import { TExperience } from '../type/type';
+import { TExperience } from '@/app/type/type';
 
 export const experiences: TExperience[] = [
     {
@@ -37,7 +37,7 @@ export const experiences: TExperience[] = [
         category: 'Certificate',
         description:
             '글로벌 커뮤니케이션 능력 강화를 위한 TOEIC 시험 응시 및 점수 취득',
-        download: '/토익성적증명서.pdf',
+        download: '/pdf/토익성적증명서.pdf',
     },
     {
         id: 4,
@@ -55,7 +55,7 @@ export const experiences: TExperience[] = [
         organization: '한국데이터산업진흥원',
         category: 'Certificate',
         description: '데이터 분석 역량 강화를 위한 자격증 취득',
-        download: '/ADsP.pdf',
+        download: '/pdf/ADsP.pdf',
     },
     {
         id: 2,
@@ -64,7 +64,7 @@ export const experiences: TExperience[] = [
         organization: '네이버 커넥터재단',
         category: 'Education',
         description: '데이터 사이언스 기초 이론 및 실습 프로젝트 수행',
-        download: '/certificate_A20240215-555313.pdf',
+        download: '/pdf/certificate_A20240215-555313.pdf',
     },
     {
         id: 1,
@@ -74,6 +74,6 @@ export const experiences: TExperience[] = [
         category: 'Award',
         description:
             'Elasticsearch를 활용한 데이터 분석 및 시각화 프로젝트로 본선 진출',
-        download: '/수상실적확인서.pdf',
+        download: '/pdf/수상실적확인서.pdf',
     },
 ];

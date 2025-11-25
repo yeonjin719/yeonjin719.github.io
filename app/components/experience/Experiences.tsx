@@ -1,8 +1,8 @@
 import { Briefcase } from 'lucide-react';
-import SectionTitle from './SectionTitle';
+import SectionTitle from '@/app/components/common/SectionTitle';
 
-import Experience from './Experience';
-import { experiences } from '../data';
+import Experience from '@/app/components/experience/Experience';
+import { experiences } from '@/app/data';
 
 export default function Experiences() {
     return (

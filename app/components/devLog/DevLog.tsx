@@ -1,5 +1,5 @@
 import { ArrowRight, BookOpen } from 'lucide-react';
-import SectionTitle from './SectionTitle';
+import SectionTitle from '@/app/components/common/SectionTitle';
 import Link from 'next/link';
 
 export default function DevLog({

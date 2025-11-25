@@ -1,4 +1,3 @@
-// type
 interface Day {
     date: string;
     count: number;

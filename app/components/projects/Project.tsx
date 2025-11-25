@@ -6,9 +6,9 @@ import {
     Terminal,
     ArrowRight,
 } from 'lucide-react';
-import ProjectLink from './ProjectLink';
+import ProjectLink from '@/app/components/projects/ProjectLink';
 import Link from 'next/link';
-import { TProject } from '../type/type';
+import { TProject } from '@/app/type/type';
 
 export default function Project({
     project,

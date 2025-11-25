@@ -2,31 +2,13 @@ import 'server-only';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { IPostMeta, IRawFrontMatter, IPostData } from '@/app/type/type';
 
 // 마크다운 파일이 저장된 폴더 경로
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-interface RawFrontMatter {
-    date?: string | Date;
-    title?: string;
-    desc?: string;
-    tags?: string[] | string;
-}
-
-export interface PostMeta {
-    slug: string;
-    date: string;
-    title: string;
-    desc: string;
-    tags: string[];
-}
-
-export interface PostData extends PostMeta {
-    content: string;
-}
-
 // frontmatter 정규화 함수 (직렬화 안전하게)
-function normalizeFrontMatter(slug: string, data: RawFrontMatter): PostMeta {
+function normalizeFrontMatter(slug: string, data: IRawFrontMatter): IPostMeta {
     const rawDate = data.date;
     let date = '';
 
@@ -57,7 +39,7 @@ function normalizeFrontMatter(slug: string, data: RawFrontMatter): PostMeta {
     };
 }
 
-export function getSortedPostsData(): PostMeta[] {
+export function getSortedPostsData(): IPostMeta[] {
     // posts 폴더가 없으면 빈 배열 반환 (에러 방지)
     if (!fs.existsSync(postsDirectory)) {
         return [];
@@ -65,7 +47,7 @@ export function getSortedPostsData(): PostMeta[] {
 
     const fileNames = fs.readdirSync(postsDirectory);
 
-    const allPostsData: PostMeta[] = fileNames
+    const allPostsData: IPostMeta[] = fileNames
         .filter(
             (fileName) => fileName.endsWith('.mdx') || fileName.endsWith('.md')
         )
@@ -77,7 +59,7 @@ export function getSortedPostsData(): PostMeta[] {
             const matterResult = matter(fileContents);
             const meta = normalizeFrontMatter(
                 slug,
-                matterResult.data as RawFrontMatter
+                matterResult.data as IRawFrontMatter
             );
 
             return meta;
@@ -87,14 +69,14 @@ export function getSortedPostsData(): PostMeta[] {
     return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getPostData(slug: string): Promise<PostData> {
+export async function getPostData(slug: string): Promise<IPostData> {
     const fullPath = path.join(postsDirectory, `${slug}.mdx`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     const matterResult = matter(fileContents);
     const meta = normalizeFrontMatter(
         slug,
-        matterResult.data as RawFrontMatter
+        matterResult.data as IRawFrontMatter
     );
 
     return {
