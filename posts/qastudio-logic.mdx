@@ -1,27 +1,75 @@
 ---
-title: 'QASTUDIO: 프론트엔드에서 Selenium 코드를 역변환한 방법'
-date: '2025-02-10'
-desc: 'DOM 이벤트를 캡처하여 정확한 Selenium Selector로 매핑하는 과정에서 겪은 문제와 해결책'
-tags: ['Troubleshooting', 'React', 'Logic']
+title: 'QASTUDIO: AI 기반 QA 자동화 서비스의 인증 시스템 및 상태 관리 전략'
+date: '2025-02-21'
+desc: 'JWT와 쿠키를 활용한 보안성 높은 인증 시스템 구축과 Redux를 이용한 복잡한 시나리오 데이터 관리 경험'
+tags: ['React', 'Authentication', 'Redux', 'Security']
+slug: 'qastudio-dev-story'
 ---
 
-1. 문제 상황
+## 1. 프로젝트 개요: QA의 딜레마를 해결하자
 
-QA 자동화 툴을 만들면서 가장 큰 난관은 "사용자의 클릭을 어떻게 코드로 바꿀 것인가?" 였습니다.
-단순히 event.target을 잡으면 <div> 안에 있는 <span>이 잡히거나, 동적으로 생성된 클래스명을 가진 요소가 잡혀서 재사용 불가능한 코드가 생성되었습니다.
+소프트웨어 개발에서 QA(Quality Assurance)는 필수적이지만, 스타트업이나 소규모 프로젝트 팀에게는 막대한 리소스가 드는 작업입니다. "기능 개발하기도 바쁜데, 모든 엣지 케이스를 언제 다 테스트하지?"라는 고민에서 QASTUDIO가 시작되었습니다.
 
-2. 해결 방법: XPath 생성 알고리즘
+QASTUDIO는 AI에게 프로젝트를 학습시켜 역할(Character) 기반의 테스트 시나리오를 자동 생성하고, 이를 Selenium 코드로 변환하여 실행해주는 웹 서비스입니다. 저는 프론트엔드 리더로서 인증 시스템 설계와 핵심 시나리오 관리 기능을 담당했습니다.
 
-이를 해결하기 위해 우선순위 기반 XPath 생성기를 만들었습니다.
+## 2. 핵심 기술 챌린지: 보안을 고려한 인증 시스템
 
-ID가 있는가? -> //\*[@id="login-btn"] (가장 명확)
+이번 프로젝트에서 가장 깊게 고민했던 부분은 사용자 인증(Authentication) 프로세스였습니다. 단순한 로그인이 아니라, 소셜 로그인(OAuth)과 일반 로그인을 통합하고 보안성을 높여야 했습니다.
 
-data-testid가 있는가? -> 개발자가 심어둔 테스트용 ID 활용
+### 쿠키(Cookie) vs 로컬 스토리지(LocalStorage)
 
-Unique ClassName인가? -> 클래스명 활용
+초기에는 구현이 쉬운 로컬 스토리지를 고려했으나, XSS(교차 사이트 스크립팅) 공격에 취약하다는 단점이 있었습니다. 보안을 최우선으로 하기 위해 HttpOnly Cookie 방식을 채택했습니다.
 
-최악의 경우: 부모 요소를 거슬러 올라가며 div[2]/span[1] 형태로 구조적 경로 생성
+### 트러블 슈팅: SameSite와 Secure 이슈
 
-3. 결론
+개발 환경(localhost)과 배포 환경(Domain)이 달라지면서 쿠키가 전송되지 않는 문제가 발생했습니다. 백엔드 개발자와의 긴밀한 협업을 통해 쿠키 속성을 조정했습니다.
 
-이 알고리즘을 통해 복잡한 React 앱에서도 99% 정확도로 Selenium 코드를 역변환하는 데 성공했습니다.
+-   문제: 크롬 브라우저의 정책 강화로 인해 서로 다른 도메인 간 쿠키 전송이 차단됨.
+-   해결: 쿠키 설정에 SameSite=None과 Secure=True 속성을 추가하고, 프론트엔드와 백엔드 모두 HTTPS 환경을 구축하여 해결했습니다.
+
+### Axios Interceptor를 통한 토큰 자동 갱신
+
+사용자 경험을 해치지 않기 위해, Access Token이 만료되었을 때 사용자가 로그아웃되지 않고 자동으로 토큰을 갱신하는 로직을 구현했습니다.
+
+```ts
+// axiosInstance.ts (간소화된 코드)
+instance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+        const originalRequest = error.config;
+
+        // 401 Unauthorized 에러 발생 시
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+
+            try {
+                // Refresh Token으로 Access Token 재발급 요청
+                await reissueTokenAPI();
+                // 원래 요청 재시도
+                return instance(originalRequest);
+            } catch (refreshError) {
+                // 재발급 실패 시 강제 로그아웃
+                store.dispatch(logout());
+                return Promise.reject(refreshError);
+            }
+        }
+        return Promise.reject(error);
+    }
+);
+```
+
+## 3. 복잡한 데이터 흐름 관리: Redux
+
+QASTUDIO의 핵심 기능인 '시나리오 관리'는 데이터 구조가 매우 복잡했습니다. `프로젝트 > 역할(Character) > 시나리오 > 액션(Action)`으로 이어지는 계층 구조를 효율적으로 관리하기 위해 `Redux`를 도입했습니다.
+
+-   전역 상태 관리: 프로젝트 정보와 현재 선택된 시나리오 정보를 전역에서 관리하여, 사용자가 탭을 이동하더라도 작업 중인 내용이 유지되도록 했습니다.
+
+-   비동기 처리: 시나리오 생성은 AI가 처리하므로 시간이 소요됩니다.
+
+## 4. 성능 최적화: 이미지 업로드
+
+사용자 프로필이나 프로젝트 썸네일 등 이미지 업로드 시 서버 부하를 줄이기 위해 Presigned URL 방식을 도입했습니다. 브라우저에서 S3로 직접 파일을 업로드하게 함으로써 백엔드 서버의 리소스를 절약하고 업로드 속도를 개선했습니다.
+
+## 5. 회고
+
+프론트엔드 리더로서 4명의 팀원을 이끌며 디자인 시스템을 구축하고 코드 컨벤션을 정립하는 경험을 했습니다. 기술적으로는 인증/인가 프로세스를 바닥부터 설계하며 보안에 대한 이해도를 높일 수 있었던 값진 프로젝트였습니다.

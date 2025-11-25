@@ -37,5 +37,4 @@ export const markdownComponents: Components = {
             </h3>
         );
     },
-    // 필요하면 h1, h4~h6도 같은 패턴으로 추가
 };

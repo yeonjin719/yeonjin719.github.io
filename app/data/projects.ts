@@ -137,6 +137,9 @@ export const projects: TProject[] = [
         <h3 class="text-xl font-bold text-slate-900 mb-3">💾 상태 관리: Zustand</h3>
         <p class="text-slate-600 mb-6 leading-relaxed">복잡한 폼 데이터를 효율적으로 관리하기 위해 Redux 대신 가볍고 직관적인 <strong>Zustand</strong>를 도입하여 보일러플레이트 코드를 줄였습니다.</p>
         `,
+        troubleshooting: {
+            url: '/blog/withtime-dev-story',
+        },
     },
     {
         title: '청년돋움 (YOUTH-STEP-UP)',

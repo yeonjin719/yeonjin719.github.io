@@ -12,7 +12,7 @@ export default function Projects({
     setSelectedProject: (project: TProject) => void;
 }) {
     return (
-        <section className="bg-slate-50/50 py-24 px-6 border-slate-200/60 relative">
+        <section className="bg-slate-50/50 py-24 px-6  relative border-b border-slate-200/60">
             <div className="max-w-5xl mx-auto">
                 <SectionTitle
                     icon={<Award className="text-white" />}

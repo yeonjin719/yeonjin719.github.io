@@ -8,7 +8,7 @@ export default function Skills({
     skills: { [category: string]: string[] };
 }) {
     return (
-        <section className="py-24 px-6 relative">
+        <section className="py-24 px-6 relative border-y border-slate-200/60">
             <div className="max-w-5xl mx-auto">
                 <SectionTitle
                     icon={<Code2 className="text-white" />}

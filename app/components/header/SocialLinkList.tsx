@@ -4,7 +4,7 @@ import { TProfile } from '@/app/type/type';
 
 export default function SocialLinkList({ profile }: { profile: TProfile }) {
     return (
-        <div className="flex gap-4 pt-4">
+        <div className="flex gap-4 pt-4 sm:justify-start justify-center">
             <SocialLink
                 href={`mailto:${profile.email}`}
                 download={false}

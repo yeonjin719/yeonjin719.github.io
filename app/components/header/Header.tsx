@@ -7,7 +7,7 @@ import { Info } from '@/app/components/header/Info';
 export default function Header() {
     return (
         <header className="flex max-w-5xl mx-auto py-24 px-6 md:py-40 relative">
-            <div className="animate-fade-in-up space-y-8 z-10">
+            <div className="animate-fade-in-up space-y-8 z-10 sm:justify-start justify-center flex flex-col w-full">
                 <Info />
                 <SocialLinkList profile={profile} />
                 <Education />
