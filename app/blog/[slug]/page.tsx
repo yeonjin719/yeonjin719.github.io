@@ -1,11 +1,68 @@
 import { ArrowLeft, Calendar, User, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import Script from 'next/script';
 import { getSortedPostsData, getPostData } from '@/lib/posts'; // getPostData 추가
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
 import { extractHeadings } from '@/lib/markdown';
 import { markdownComponents } from '../../components/common/MarkdownComponent';
+import { projects } from '@/app/data';
+
+const siteUrl = 'https://yeonjin719.github.io';
+
+const createPostDescription = (content: string, fallback = '') => {
+    if (fallback) return fallback;
+    return content
+        .replace(/```[\s\S]*?```/g, ' ')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/[#>*_~-]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .slice(0, 160);
+};
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+    const { slug } = await params;
+    try {
+        const post = await getPostData(slug);
+        const description = createPostDescription(post.content, post.desc);
+        const canonicalUrl = `${siteUrl}/blog/${slug}`;
+
+        return {
+            title: post.title,
+            description,
+            alternates: {
+                canonical: canonicalUrl,
+            },
+            openGraph: {
+                type: 'article',
+                url: canonicalUrl,
+                title: post.title,
+                description,
+                publishedTime: post.date,
+                authors: ['Kim Yeon Jin'],
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: post.title,
+                description,
+            },
+        };
+    } catch (error) {
+        return {
+            title: 'Blog Post | Kim Yeon Jin',
+            description: 'Engineering blog post by Kim Yeon Jin.',
+        };
+    }
+}
 // 정적 경로 생성
 export async function generateStaticParams() {
     const posts = getSortedPostsData();
@@ -19,12 +76,48 @@ export default async function BlogPostPage({
 }: {
     params: Promise<{ slug: string }>; // Promise 타입으로 수정
 }) {
-    // Next.js 15+에서는 params를 await 해야 합니다.
     const { slug } = await params;
 
-    // [중요] 목록에서 찾는 게 아니라, 파일 내용을 직접 읽어오는 함수 사용
     const post = await getPostData(slug);
     const headings = extractHeadings(post.content);
+    const metaDescription = createPostDescription(post.content, post.desc);
+    const postUrl = `${siteUrl}/blog/${slug}`;
+    const targetProject = projects.find((project) => {
+        const troubleshootingSlug = project.troubleshooting?.url
+            ?.split('/')
+            .filter(Boolean)
+            .pop();
+        return troubleshootingSlug === slug;
+    });
+    const targetAnchor =
+        targetProject?.anchorId ??
+        targetProject?.title
+            ?.toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9가-힣-]/g, '') ??
+        '';
+    const exploreHref = targetAnchor ? `/#${targetAnchor}` : '/';
+    const articleJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: metaDescription,
+        url: postUrl,
+        mainEntityOfPage: postUrl,
+        datePublished: post.date,
+        dateModified: post.date,
+        author: {
+            '@type': 'Person',
+            name: 'Kim Yeon Jin',
+            url: siteUrl,
+        },
+        publisher: {
+            '@type': 'Person',
+            name: 'Kim Yeon Jin',
+        },
+        image: `${siteUrl}/images/og-cover.png`,
+    };
+
     if (!post) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
@@ -72,7 +165,10 @@ export default async function BlogPostPage({
                             ))}
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-8 leading-[1.15] tracking-tight animate-fade-in-up delay-100">
+                    <h1
+                        title={post.title}
+                        className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-8 leading-[1.15] tracking-tight animate-fade-in-up delay-100"
+                    >
                         {post.title}
                     </h1>
 
@@ -94,6 +190,14 @@ export default async function BlogPostPage({
                 </div>
             </header>
             <div className="max-w-3xl mx-auto px-6 py-16">
+                <Script
+                    id={`article-schema-${slug}`}
+                    type="application/ld+json"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(articleJsonLd),
+                    }}
+                />
                 {headings.length > 0 && (
                     <aside className="mb-10 rounded-xl border border-slate-200 bg-slate-50/80 p-4 text-sm">
                         <p className="mb-3 font-semibold text-slate-700">
@@ -133,13 +237,14 @@ export default async function BlogPostPage({
                 <div className="mt-16 pt-10 border-t border-slate-200">
                     <div className="mt-10 p-8 bg-slate-50 rounded-2xl border border-slate-100 text-center">
                         <p className="text-slate-600 font-medium mb-4">
-                            Did you find this article helpful?
+                            Enjoyed this article? <br /> Check out more projects
+                            and posts on my portfolio!
                         </p>
                         <Link
-                            href="/"
+                            href={exploreHref}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full shadow-sm text-slate-800 font-bold hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all"
                         >
-                            Explore more projects <ChevronRight size={16} />
+                            Explore this project <ChevronRight size={16} />
                         </Link>
                     </div>
                 </div>

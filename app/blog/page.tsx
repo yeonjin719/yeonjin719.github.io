@@ -8,7 +8,7 @@ export default function BlogPage() {
     return (
         <div className="max-w-4xl mx-auto py-20 px-6 min-h-screen">
             <h1 className="text-4xl font-bold mb-12 text-slate-900">
-                Dev Log & Troubleshooting
+                Troubleshooting
             </h1>
 
             <div className="grid gap-8">
@@ -27,9 +27,9 @@ export default function BlogPage() {
                                     {post.date}
                                 </time>
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-800 group-hover:text-indigo-600 transition mb-2">
+                            <title className="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition mb-2">
                                 {post.title}
-                            </h2>
+                            </title>
                             <p className="text-slate-600 line-clamp-2">
                                 {post.desc}
                             </p>

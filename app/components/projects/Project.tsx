@@ -19,8 +19,16 @@ export default function Project({
     setSelectedProject: (project: TProject) => void;
     index: number;
 }) {
+    const anchorId =
+        project.anchorId ??
+        project.title
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9가-힣-]/g, '');
+
     return (
         <article
+            id={anchorId}
             key={index}
             onClick={() => setSelectedProject(project)}
             className="group relative bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-100 hover:shadow-xl hover:border-indigo-100 transition-all duration-500 hover:cursor-pointer"
@@ -37,7 +45,10 @@ export default function Project({
                             <span className="text-indigo-600 font-bold text-xs tracking-wider uppercase mb-1 block">
                                 {project.category}
                             </span>
-                            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                            <h3
+                                title={project.title}
+                                className="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors"
+                            >
                                 {project.title}
                             </h3>
                         </div>
@@ -112,6 +123,7 @@ export default function Project({
                     {project.troubleshooting && (
                         <Link
                             href={project.troubleshooting.url}
+                            onClick={(event) => event.stopPropagation()}
                             className="ml-auto w-fit mt-4 group/link flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700 bg-orange-50 px-4 py-2 rounded-full transition-all hover:bg-orange-100 border border-orange-100 hover:shadow-sm"
                         >
                             <Terminal size={16} />

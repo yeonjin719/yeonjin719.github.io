@@ -3,8 +3,8 @@ import { TExperience } from '@/app/type/type';
 export const experiences: TExperience[] = [
     {
         id: 8,
-        period: '2025.11.11',
-        title: '오픈소스 개발자대회 동상 수상',
+        period: '2025.12.05',
+        title: '오픈소스 개발자대회 에프에이리눅스(주) 대표상 수상',
         organization: '한국오픈소스협회',
         category: 'Award',
         description:
@@ -12,7 +12,7 @@ export const experiences: TExperience[] = [
     },
     {
         id: 7,
-        period: '2025.09 ~ 현재',
+        period: '2025.09 ~ 2026.02',
         title: 'UMC 9기 WEB 중앙/교내 파트장',
         organization: 'University MakeUs Challenge',
         category: 'Activity',
