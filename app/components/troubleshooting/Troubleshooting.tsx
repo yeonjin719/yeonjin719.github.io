@@ -2,7 +2,7 @@ import { ArrowRight, BookOpen } from 'lucide-react';
 import SectionTitle from '@/app/components/common/SectionTitle';
 import Link from 'next/link';
 
-export default function DevLog({
+export default function Troubleshooting({
     blogPostsData,
 }: {
     blogPostsData: Array<{
@@ -19,7 +19,7 @@ export default function DevLog({
             <div className="max-w-5xl mx-auto">
                 <SectionTitle
                     icon={<BookOpen className="text-white" />}
-                    title="Dev Log & Troubleshooting"
+                    title="Troubleshooting"
                 />
 
                 {/* posts 폴더가 비어있을 경우 안내 메시지 */}

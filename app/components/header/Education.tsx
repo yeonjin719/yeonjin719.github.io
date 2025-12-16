@@ -2,7 +2,7 @@ import { GraduationCap } from 'lucide-react';
 import { educations } from '@/app/data/educations';
 export default function Education() {
     return (
-        <div className="flex sm:self-start self-center w-fit mt-10 pt-8 border-t rounded-lg border-slate-200/80 bg-white/30 p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="flex min-[767px]:self-start self-center w-fit mt-10 pt-8 border-t rounded-lg border-slate-200/80 bg-white/30 p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex items-start gap-5 group sm:justify-start justify-center">
                 <div className="p-3.5 bg-white border border-indigo-100 rounded-2xl text-indigo-600 shadow-sm group-hover:shadow-md group-hover:scale-105 group-hover:border-indigo-200 transition-all duration-300 shrink-0">
                     <GraduationCap size={26} />
@@ -13,10 +13,10 @@ export default function Education() {
                     </h3>
                     <div className="flex flex-col gap-1.5">
                         <div className="flex gap-4 items-center justify-between">
-                            <p className="text-slate-900 font-bold text-lg leading-tight tracking-tight">
+                            <p className="text-slate-900 font-bold text-lg leading-tight tracking-tight whitespace-nowrap">
                                 {educations.degree[0].name}
                             </p>
-                            <p className="text-sm">
+                            <p className="text-sm whitespace-nowrap">
                                 {educations.graduateDate}{' '}
                                 {educations.graduate ? '졸업' : '졸업 예정'}
                             </p>

@@ -10,6 +10,7 @@ export type TExperience = {
 };
 export type TProject = {
     title: string;
+    anchorId?: string;
     category: string;
     period: string;
     description: string;
