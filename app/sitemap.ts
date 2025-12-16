@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { getSortedPostsData } from '@/lib/posts';
 
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 const siteUrl = 'https://yeonjin719.github.io';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
