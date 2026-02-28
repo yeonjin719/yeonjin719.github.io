@@ -8,7 +8,9 @@ export default function FooterSocialLink({
     return (
         <a
             href={href}
-            className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white transition-all duration-300 hover:scale-110"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center w-8 h-8 border border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
         >
             {icon}
         </a>

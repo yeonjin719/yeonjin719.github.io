@@ -14,10 +14,11 @@ export default function ProjectLink({
             href={href}
             target="_blank"
             rel="noreferrer"
-            className={`flex text-nowrap items-center gap-2 px-5 w-fit py-2.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:-translate-y-0.5 ${
+            onClick={(event) => event.stopPropagation()}
+            className={`inline-flex text-nowrap items-center gap-1.5 px-3 py-1.5 text-xs font-medium border transition-colors ${
                 primary
-                    ? 'bg-slate-900 text-white hover:bg-indigo-600 shadow-md hover:shadow-indigo-500/30'
-                    : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-900 hover:text-slate-900 shadow-sm'
+                    ? 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:text-slate-900'
             }`}
         >
             {icon}

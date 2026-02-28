@@ -17,7 +17,7 @@ export const experiences: TExperience[] = [
         organization: 'University MakeUs Challenge',
         category: 'Activity',
         description:
-            '약 30명의 웹 파트 챌린저들을 위한 커리큘럼 기획 및 스터디 리딩, 중앙 워크북 제작',
+            '31개교 웹 파트 챌린저들을 위한 커리큘럼 기획 및 스터디 리딩, 중앙 워크북 제작',
         link: 'https://yeonjin719.notion.site/special-workbook?source=copy_link',
     },
     {
@@ -27,7 +27,7 @@ export const experiences: TExperience[] = [
         organization: 'University MakeUs Challenge',
         category: 'Activity',
         description:
-            '약 30명의 웹 파트 챌린저들을 위한 커리큘럼 기획 및 스터디 리딩, 중앙 워크북 제작',
+            '22개교의 웹 파트 챌린저들을 위한 커리큘럼 기획 및 스터디 리딩, 중앙 워크북 제작',
     },
     {
         id: 5,

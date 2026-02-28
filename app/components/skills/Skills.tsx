@@ -1,5 +1,4 @@
 import { Code2 } from 'lucide-react';
-import getCategoryColor from '@/app/utils/getCategoryColor';
 import SectionTitle from '@/app/components/common/SectionTitle';
 
 export default function Skills({
@@ -8,38 +7,33 @@ export default function Skills({
     skills: { [category: string]: string[] };
 }) {
     return (
-        <section className="py-24 px-6 relative border-y border-slate-200/60">
+        <section className="py-14 md:py-16 px-6 relative border-b border-slate-200 bg-white">
             <div className="max-w-5xl mx-auto">
                 <SectionTitle
-                    icon={<Code2 className="text-white" />}
+                    icon={<Code2 className="text-slate-700" />}
                     title="Technical Skills"
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-white border border-slate-200 px-4 md:px-5">
                     {Object.entries(skills).map(([category, items]) => (
-                        <div
+                        <section
                             key={category}
-                            className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                            className="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-2 md:gap-4 py-4 border-b border-slate-200 last:border-b-0"
                         >
-                            <h3 className="text-sm font-bold text-slate-400 mb-4 uppercase tracking-wider flex items-center gap-2">
-                                <div
-                                    className={`w-2 h-2 rounded-full ${getCategoryColor(
-                                        category
-                                    )}`}
-                                ></div>
+                            <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-[0.1em] md:pt-1">
                                 {category}
                             </h3>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-1.5">
                                 {items.map((skill) => (
                                     <span
                                         key={skill}
-                                        className="px-3 py-1.5 bg-slate-50 text-slate-700 rounded-lg text-sm font-semibold hover:bg-indigo-50 hover:text-indigo-700 transition-colors cursor-default border border-slate-100"
+                                        className="px-2.5 py-1 text-[13px] text-slate-700 bg-slate-100 border border-slate-200"
                                     >
                                         {skill}
                                     </span>
                                 ))}
                             </div>
-                        </div>
+                        </section>
                     ))}
                 </div>
             </div>

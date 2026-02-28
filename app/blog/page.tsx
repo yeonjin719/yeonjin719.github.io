@@ -18,18 +18,18 @@ export default function BlogPage() {
                         key={post.slug}
                         className="block group"
                     >
-                        <article className="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition cursor-pointer">
+                        <article className="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition cursor-pointer hover:border-slate-300">
                             <div className="flex items-center gap-3 mb-2">
-                                <span className="text-sm text-indigo-600 font-bold bg-indigo-50 px-2 py-1 rounded">
+                                <span className="text-sm text-slate-700 font-bold bg-slate-100 px-2 py-1 rounded">
                                     {post.tags[0]}
                                 </span>
                                 <time className="text-sm text-slate-500">
                                     {post.date}
                                 </time>
                             </div>
-                            <title className="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition mb-2">
+                            <h2 className="text-xl font-bold text-slate-800 group-hover:text-slate-900 transition mb-2">
                                 {post.title}
-                            </title>
+                            </h2>
                             <p className="text-slate-600 line-clamp-2">
                                 {post.desc}
                             </p>

@@ -19,7 +19,7 @@ export default function Projects() {
         <section
             id="projects"
             aria-labelledby={headingId}
-            className="bg-slate-50/50 py-24 px-6  relative border-b border-slate-200/60"
+            className="py-14 md:py-16 px-6 relative border-b border-slate-200"
         >
             {selectedProject && (
                 <ProjectModal
@@ -31,11 +31,11 @@ export default function Projects() {
                 <div className="max-w-5xl mx-auto" aria-hidden={isModalOpen}>
                     <SectionTitle
                         headingId={headingId}
-                        icon={<Award className="text-white" />}
+                        icon={<Award className="text-slate-700" />}
                         title="Featured Projects"
                     />
 
-                    <div className="space-y-20">
+                    <div className="space-y-4 md:space-y-5">
                         {projects.map((project, index) => (
                             <Project
                                 key={index}
