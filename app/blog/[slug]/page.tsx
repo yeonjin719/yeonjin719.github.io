@@ -56,7 +56,7 @@ export async function generateMetadata({
                 description,
             },
         };
-    } catch (error) {
+    } catch {
         return {
             title: 'Blog Post | Kim Yeon Jin',
             description: 'Engineering blog post by Kim Yeon Jin.',
@@ -131,15 +131,15 @@ export default async function BlogPostPage({
         );
     }
     return (
-        <article className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-500 selection:text-white">
+        <article className="min-h-screen bg-white text-slate-900 font-sans">
             {/* Top Navigation Bar */}
             <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100">
                 <div className="max-w-3xl mx-auto px-6 h-16 flex items-center">
                     <Link
                         href="/"
-                        className="group flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors"
+                        className="group flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
                     >
-                        <div className="p-1.5 rounded-full bg-slate-100 group-hover:bg-indigo-50 transition-colors">
+                        <div className="p-1.5 rounded-full bg-slate-100 group-hover:bg-slate-200 transition-colors">
                             <ArrowLeft
                                 size={16}
                                 className="group-hover:-translate-x-0.5 transition-transform"
@@ -174,14 +174,14 @@ export default async function BlogPostPage({
 
                     <div className="flex flex-wrap items-center gap-6 text-slate-500 font-medium text-sm animate-fade-in-up delay-200">
                         <div className="flex items-center gap-2">
-                            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-full">
+                            <div className="p-2 bg-slate-100 text-slate-700 rounded-full">
                                 <User size={16} />
                             </div>
                             <span>Kim Yeon Jin</span>
                         </div>
                         <div className="w-1 h-1 bg-slate-300 rounded-full hidden sm:block" />
                         <div className="flex items-center gap-2">
-                            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-full">
+                            <div className="p-2 bg-slate-100 text-slate-700 rounded-full">
                                 <Calendar size={16} />
                             </div>
                             <time>{post.date}</time>
@@ -217,7 +217,7 @@ export default async function BlogPostPage({
                                 >
                                     <a
                                         href={`#${h.id}`}
-                                        className="hover:text-indigo-600"
+                                        className="hover:text-slate-900"
                                     >
                                         {h.text}
                                     </a>

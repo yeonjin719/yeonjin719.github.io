@@ -13,5 +13,5 @@ export const educations: TEducation = {
     ],
     graduate: false,
     graduateDate: '2027.02',
-    gpa: 4.19,
+    gpa: 4.21,
 };

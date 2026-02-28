@@ -25,8 +25,9 @@ export const projects: TProject[] = [
         results: [
             '2025 오픈소스 개발자대회 에프에이리눅스(주) 대표상 수상',
             'NPM 다운로드 수 2,300회 달성 (3개월 간)',
-            'Github Star 42개 달성',
+            'GitHub Star 44개 달성 (2026-02-23 기준)',
             'Github Actions를 활용한 CI/CD 및 자동 배포 파이프라인 구축',
+            '오픈소스 협업으로 3인 코어 컨트리뷰터 체계 운영',
         ],
         links: {
             demo: 'https://www.colbrush.site/',
@@ -36,44 +37,106 @@ export const projects: TProject[] = [
             <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 프로젝트 개요</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
             Colbrush는 색각 이상 사용자를 위한 React 테마 전환 라이브러리로, CSS 변수 기반 팔레트 생성부터 클라이언트 런타임 전환 UI까지 한 패키지에서 제공합니다
-            (<code>README.md:1</code>).
+            .
             </p>
 
             <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 ThemeProvider 전역 상태</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            <strong>ThemeProvider</strong>가 theme·언어·시뮬레이션 모드를 React Context로 묶고, 로컬 스토리지와 <code>&lt;html data-theme&gt;</code> 속성까지 동시에 갱신해
-            전역 일관성을 보장합니다 (<code>src/react/ThemeProvider.tsx:1</code>). 
+            <strong>ThemeProvider</strong>가 theme·언어·시뮬레이션 모드를 React Context로 묶고, 로컬 스토리지와 HTML 데이터 속성까지 함께 갱신해
+            전역 일관성을 보장합니다.
             'getThemeOptions'로 언어별 라벨을 제공하고, 'useTheme' 훅을 통해 어디서든 updateTheme/updateLanguage/setSimulationFilter를 호출할 수 있습니다
-            (<code>src/react/ThemeProvider.tsx:18</code>).
+            .
             </p>
 
             <h3 class="text-xl font-bold text-slate-900 mb-3">🎛 ThemeSwitcher UI</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
             'ThemeSwitcher' 컴포넌트는 포지션별 고정 버튼과 접근성 속성(aria-label/role)을 포함한 모달형 드롭다운으로 구현되어 있으며,
-            테마 선택·언어 전환을 한 UI에서 처리합니다 (<code>src/react/ThemeSwitcher.tsx:1</code>).
+            테마 선택·언어 전환을 한 UI에서 처리합니다.
             옵션을 전달하지 않으면 'getThemeOptions' 결과를 자동으로 사용하고, 버튼/아이콘 상태를 Hover/선택 여부에 따라 다르게 렌더링해 시각적 피드백을 제공합니다
-            (<code>src/react/ThemeSwitcher.tsx:28</code>).
+            .
             </p>
 
             <h3 class="text-xl font-bold text-slate-900 mb-3">👓 SimulationFilter 디버깅 툴</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            'SimulationFilter'는 VisionMode에 맞는 '<feColorMatrix>'를 주입해 전체 앱 렌더에 색각 보정 필터를 입히고, 개발 환경에서만 노출되도록 가드가 걸려 있습니다
-            (<code>src/react/SimulationFilter.tsx:1</code>).
+            'SimulationFilter'는 VisionMode에 맞는 SVG 색상 매트릭스 필터를 적용해 전체 앱 렌더에 색각 보정 효과를 입히고,
+            개발 환경에서만 노출되도록 가드가 걸려 있습니다.
             툴바는 언어별 라벨/ARIA 속성을 갖춘 버튼 그룹으로 구성되며, 각 모드를 누르면 ThemeProvider의 simulationFilter 상태와 로컬 스토리지 키를 함께 갱신해
-            새로고침 후에도 동일한 모드를 유지합니다 (<code>src/react/SimulationFilter.tsx:120</code>).
+            새로고침 후에도 동일한 모드를 유지합니다.
             </p>
 
             <h3 class="text-xl font-bold text-slate-900 mb-3">⚙️ CLI 자동 팔레트 생성</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
             CLI의 'runThemeApply'는 CSS에서 '--color-' 변수를 정규식으로 수집하고, 중립색을 건너뛰며 스케일을 계산한 뒤
-            Protanopia/Deuteranopia/Tritanopia 테마를 순차 생성합니다 (<code>src/cli/runThemeApply.ts:1</code>).
+            Protanopia/Deuteranopia/Tritanopia 테마를 순차 생성합니다.
             실패 시에도 fallback 컬러 매핑을 적용해 CSS에 '@theme' 블록을 추가하고, 처리된 변수 수·테마 상태·실행 시간을 요약 출력해
-            접근성 팔레트 생성 과정을 자동화합니다 (<code>src/cli/runThemeApply.ts:95</code>).
+            접근성 팔레트 생성 과정을 자동화합니다.
             </p>
 
         `,
         troubleshooting: {
             url: '/blog/colbrush',
+        },
+    },
+    {
+        title: 'UMC Product Web',
+        anchorId: 'umc-product-web',
+        category: 'Backoffice Web (Solo)',
+        period: '2025.12 ~ 진행 중',
+        description:
+            'UMC 리크루팅 사이트이자 운영 관리 웹입니다. 지원자 관점의 모집/안내 플로우와 운영진의 권한 기반 관리 화면을 함께 다뤘고, 단일 프론트엔드 메인 기여자로 라우팅/상태/폼/테스트 체계를 설계했습니다.',
+        techStack: [
+            'React 19',
+            'TypeScript',
+            'Vite',
+            'TanStack Router',
+            'TanStack Query',
+            'Zustand',
+            'React Hook Form',
+            'Zod',
+            'Emotion',
+            'Radix UI',
+            'Vitest',
+            'Storybook',
+            'Playwright',
+        ],
+        images: [],
+        results: [
+            '저장소 기여 589 commits(2026-02-23 기준)',
+            '권한(챌린저/파트장/회장단/총괄) 기반 뷰 분리로 운영 효율 개선',
+            'TanStack Router + Query + RHF + Zod 조합으로 데이터/폼 표준화',
+            'Storybook/Chromatic/Vitest/Playwright 기반 품질 검증 파이프라인 운영',
+        ],
+        links: {
+            demo: 'https://dev.umc.it.kr/',
+            github: 'https://github.com/UMC-PRODUCT/umc-product-web',
+        },
+        detailContent: `
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 프로젝트 개요</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            UMC Product Web은 운영팀이 정책·계정·데이터를 통합 관리할 수 있도록 구축한 내부 백오피스입니다.
+            권한(챌린저, 파트장, 회장단, 총괄)에 따라 기능과 화면을 다르게 제공하는 구조로 설계했습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 라우팅/데이터 계층 표준화</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            TanStack Router 기반의 경로 설계와 TanStack Query의 쿼리 키 팩토리 패턴을 결합해, 화면 전환·데이터 갱신·캐시 전략을 일관되게 유지했습니다.
+            백오피스처럼 화면 수가 빠르게 늘어나는 환경에서도 라우트 책임과 API 책임이 섞이지 않도록 분리했습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧩 폼/검증 체계</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            React Hook Form + Zod를 기본 스택으로 두고, 정책/계정 관리 폼의 유효성 검증과 에러 처리 UX를 표준화했습니다.
+            입력 규칙이 복잡한 운영 도메인에서 런타임 오류를 줄이고, 신규 폼 추가 시 개발 속도를 높였습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">✅ 품질 관리 자동화</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            Vitest, Storybook(+Chromatic), Playwright를 통해 컴포넌트/시나리오 단위 검증을 병행하고,
+            ESLint/Prettier/Husky/Commitlint를 결합해 팀 코드 품질 기준을 유지했습니다.
+            </p>
+        `,
+        troubleshooting: {
+            url: '/blog/umc-product-web',
         },
     },
     {
@@ -102,9 +165,10 @@ export const projects: TProject[] = [
             '사용자 행동(Click, Hover)을 Selenium 코드로 변환하는 역변환 로직 구현',
             '시나리오별 성공/실패 비율 시각화 대시보드 개발',
             '이용자는 클릭을 통해 QA 시나리오 제작',
+            '프론트엔드 저장소 기여 429 commits(팀 내 최다, 2026-02-23 기준)',
         ],
         links: {
-            github: 'https://github.com/QASTUDIODEV',
+            github: 'https://github.com/QASTUDIODEV/WEB_QASTUDIO',
         },
         troubleshooting: {
             url: '/blog/qastudio-logic',
@@ -168,9 +232,11 @@ export const projects: TProject[] = [
         results: [
             '회원가입/로그인(소셜) 및 마이페이지 구현',
             'Zustand를 활용한 전역 상태 관리 및 폼 데이터 최적화',
+            '프론트엔드 저장소 기여 256 commits(2026-02-23 기준)',
+            'FCM 기반 웹 푸시 토큰 등록/갱신/정리 플로우 구축',
         ],
         links: {
-            github: 'https://github.com/WithTime12',
+            github: 'https://github.com/WithTime12/WithTimeFE',
         },
         detailContent: `
             <h3 class="text-xl font-bold text-slate-900 mb-3">💑 서비스 비전</h3>
@@ -208,6 +274,7 @@ export const projects: TProject[] = [
             url: '/blog/withtime-dev-story',
         },
     },
+
     {
         title: '청년돋움 (YOUTH-STEP-UP)',
         anchorId: 'youth-step-up',
@@ -268,31 +335,31 @@ export const projects: TProject[] = [
             <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 전역 필터 설계</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
             프로필 입력 폼은 <strong>동적 Form Menu</strong>를 기반으로 구성됩니다.
-            'FORM_MENU'에서 학력·분야·지역·키워드 옵션 및 선택 제한을 선언(<code>src/constants/form_menu.js:1</code>),
-            'SettingForm'이 초기 데이터와 함께 전달해 전역 컨텍스트에 저장(<code>src/components/settingForm/SettingForm.jsx:13</code>),
-            'useForm' 훅이 입력 값과 토글 상태·검증을 통합 관리합니다(<code>src/hooks/useForm.js:3</code>).
+            Form Menu에서 학력·분야·지역·키워드 옵션 및 선택 제한을 선언하고,
+            SettingForm이 초기 데이터와 함께 전달해 전역 컨텍스트에 저장하며,
+            useForm 훅이 입력 값과 토글 상태·검증을 통합 관리합니다.
             이 덕분에 프로필 수정과 신규 가입이 동일 스키마로 동작하며, 추천 정책/캘린더는 항상 최신 필터 상태를 참조합니다.
             </p>
 
             <h3 class="text-xl font-bold text-slate-900 mb-3">🧩 필터 입력 UX</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            'ToggleBtnGroup'이 Form Menu를 순회하며 옵션 버튼을 자동 렌더링하고(<code>src/components/toggleBtnGroup/ToggleBtnGroup.jsx:6</code>),
+            ToggleBtnGroup이 Form Menu를 순회하며 옵션 버튼을 자동 렌더링하고,
             선택 제한을 초과하면 즉시 경고를 띄워 품질을 지킵니다. 선택 결과는 'useForm'의 'getSelectedOptions'로 직렬화되어
-            백엔드 API가 요구하는 'educations/majors/regions/keyword' 구조로 전달됩니다(<code>src/hooks/useForm.js:46</code>).
+            백엔드 API가 요구하는 'educations/majors/regions/keyword' 구조로 전달됩니다.
             이후 정책 추천 무한 스크롤 또한 동일 필터를 바탕으로 데이터를 가져와, 입력→조회까지 일관된 사용성을 만듭니다
-            (<code>src/components/policyList/policyList.jsx:13</code>).
+            .
             </p>
 
             <h3 class="text-xl font-bold text-slate-900 mb-3">🔔 Firebase 웹 푸시 파이프라인</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
             Firebase는 FCM 구성→토큰 발급→서비스 워커→실시간 메시지 수신까지 한 흐름으로 구성했습니다.
-            앱 초기화와 VAPID 기반 토큰 발급은 'remote/firebase'에서 담당하고(<code>src/remote/firebase.js:1</code>),
-            'useDeviceToken' 훅이 브라우저 지원 여부를 검사한 뒤 토큰을 발급·백엔드에 등록합니다(<code>src/apis/deviceToken.js:13</code>).
-            랜딩 단계에서 권한을 선요청하고(<code>src/pages/landing/Landing.jsx:9</code>),
+            앱 초기화와 VAPID 기반 토큰 발급을 담당하고,
+            useDeviceToken 훅이 브라우저 지원 여부를 검사한 뒤 토큰을 발급·백엔드에 등록합니다.
+            랜딩 단계에서 권한을 선요청하고,
             소셜 로그인 완료 시에도 디바이스 토큰을 재발급해 onMessage 리스너를 건 뒤 푸시를 수신합니다
-            (<code>src/pages/OAuth/KakaoOAuthHandler.jsx:25</code>).
+            .
             Foreground 외에도 서비스 워커가 백그라운드 메시지를 받아 클릭 액션으로 라우팅합니다
-            (<code>public/firebase-messaging-sw.js:1</code>).
+            .
             </p>
         `,
     },

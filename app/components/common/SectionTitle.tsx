@@ -10,13 +10,13 @@ export default function SectionTitle({
     headingId?: string;
 }) {
     return (
-        <div className="flex items-center gap-3 mb-12">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/30">
-                {React.cloneElement(icon, { size: 20 })}
+        <div className="mb-6 md:mb-7 flex items-center gap-2.5">
+            <div className="flex items-center justify-center w-6 h-6 rounded-md border border-slate-300 text-slate-600 bg-white">
+                {React.cloneElement(icon, { size: 14 })}
             </div>
             <h2
                 id={headingId}
-                className="text-3xl font-bold text-slate-900 tracking-tight"
+                className="text-[1.45rem] md:text-[1.7rem] font-semibold text-slate-900 tracking-tight leading-tight"
             >
                 {title}
             </h2>

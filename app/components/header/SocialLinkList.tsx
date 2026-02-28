@@ -1,33 +1,33 @@
 import SocialLink from '@/app/components/header/SocialLink';
-import { Github, Mail, Linkedin, File } from 'lucide-react';
+import { Github, Mail, Linkedin, BookText } from 'lucide-react';
 import { TProfile } from '@/app/type/type';
 
 export default function SocialLinkList({ profile }: { profile: TProfile }) {
     return (
-        <div className="flex gap-4 pt-4 min-[767px]:justify-start justify-center">
+        <div className="flex flex-wrap gap-1.5 pt-1">
             <SocialLink
                 href={`mailto:${profile.email}`}
                 download={false}
-                icon={<Mail size={22} />}
+                icon={<Mail size={16} />}
                 label="Email"
             />
             <SocialLink
                 href={profile.github}
-                icon={<Github size={22} />}
+                icon={<Github size={16} />}
                 label="GitHub"
                 download={false}
             />
             <SocialLink
                 href={profile.linkedIn}
-                icon={<Linkedin size={22} />}
+                icon={<Linkedin size={16} />}
                 label="LinkedIn"
                 download={false}
             />
             <SocialLink
-                href={'/YeonjinKim_resume.pdf'}
-                icon={<File size={22} />}
-                label="현재는 제공하지 않아요!"
-                download={true}
+                href={profile.blog}
+                icon={<BookText size={16} />}
+                label="Blog"
+                download={false}
             />
         </div>
     );

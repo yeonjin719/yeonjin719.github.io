@@ -85,23 +85,11 @@ export default async function Page() {
     const structuredData = JSON.stringify(structuredDataObjects);
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500 selection:text-white relative overflow-hidden">
+        <div className="min-h-screen text-slate-900 font-sans bg-slate-50">
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{ __html: structuredData }}
-            />
-            <div
-                aria-hidden="true"
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-linear-to-b from-indigo-100/50 to-transparent -z-10 blur-3xl opacity-60 pointer-events-none"
-            />
-            <div
-                aria-hidden="true"
-                className="absolute top-40 right-0 w-96 h-96 bg-purple-100/40 rounded-full blur-3xl -z-10 pointer-events-none mix-blend-multiply animate-pulse"
-            />
-            <div
-                aria-hidden="true"
-                className="absolute top-20 left-0 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl -z-10 pointer-events-none mix-blend-multiply"
             />
             <main id="main-content" role="main">
                 <Header />

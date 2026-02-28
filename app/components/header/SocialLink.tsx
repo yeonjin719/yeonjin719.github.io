@@ -9,17 +9,19 @@ export default function SocialLink({
     label: string;
     download?: boolean;
 }) {
+    const openInNewTab = !download;
+
     return (
         <a
             href={href}
-            target="_blank"
-            rel="noreferrer"
+            target={openInNewTab ? '_blank' : undefined}
+            rel={openInNewTab ? 'noreferrer' : undefined}
             aria-label={label}
-            className="p-3.5 bg-white rounded-full shadow-sm hover:shadow-md hover:text-indigo-600 hover:-translate-y-1 transition-all duration-300 border border-slate-200 text-slate-600 group relative"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
             download={download}
         >
             {icon}
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            <span className="text-[13px] font-medium">
                 {label}
             </span>
         </a>

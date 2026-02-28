@@ -1,48 +1,48 @@
 import { TExperience } from '@/app/type/type';
-import getExperienceStyles from '@/app/utils/getExperienceStyles';
 import DownloadButton from '@/app/components/common/DownloadButton';
 
-export default function Experience({ exp }: { exp: TExperience }) {
-    const styles = getExperienceStyles(exp.category);
+export default function Experience({
+    exp,
+}: {
+    exp: TExperience;
+}) {
     return (
-        <div
+        <article
             key={exp.id}
-            className="bg-white relative p-6 pb-12 h-full rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group"
+            className="border border-slate-200 bg-slate-50/60 px-3.5 py-3"
         >
-            <div className="flex justify-between items-start mb-4">
-                <div className={`p-2.5 rounded-xl ${styles.bg} ${styles.text}`}>
-                    {styles.icon}
-                </div>
-                <span className="text-xs font-bold text-slate-400 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-100">
+            <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[11px] text-slate-500 font-semibold">
                     {exp.period}
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.08em] text-slate-600 font-semibold border border-slate-300 bg-white px-1.5 py-0.5">
+                    {exp.category}
                 </span>
             </div>
 
-            <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">
+            <h3 className="text-[15px] font-semibold text-slate-900 leading-snug">
                 {exp.title}
             </h3>
-            <p className="text-sm font-semibold text-slate-500 mb-3">
-                {exp.organization}
-            </p>
-
-            <p className="text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-3 mt-3">
+            <p className="text-[13px] text-slate-600 mt-0.5">{exp.organization}</p>
+            <p className="text-[13px] text-slate-700 leading-relaxed mt-2">
                 {exp.description}
             </p>
-            <div className="flex absolute bottom-6 right-6">
-                {exp.download && (
-                    <DownloadButton download={exp.download}></DownloadButton>
-                )}
-                {exp.link && (
-                    <a
-                        href={exp.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-indigo-600 font-semibold text-sm hover:underline ml-4"
-                    >
-                        자세히 보기
-                    </a>
-                )}
-            </div>
-        </div>
+
+            {(exp.download || exp.link) && (
+                <div className="flex items-center gap-2 mt-3 pt-2 border-t border-slate-200">
+                    {exp.download && <DownloadButton download={exp.download} />}
+                    {exp.link && (
+                        <a
+                            href={exp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[11px] font-medium text-slate-700 underline underline-offset-4 hover:text-slate-900"
+                        >
+                            자세히 보기
+                        </a>
+                    )}
+                </div>
+            )}
+        </article>
     );
 }

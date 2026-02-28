@@ -12,24 +12,27 @@ export default function GithubState() {
     const [isMdOrBelow, setIsMdOrBelow] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
+        const rafId = window.requestAnimationFrame(() => setIsMounted(true));
         const mediaQuery = window.matchMedia('(max-width: 768px)');
         const handleChange = (mq: MediaQueryList | MediaQueryListEvent) =>
             setIsMdOrBelow(mq.matches);
         handleChange(mediaQuery);
         mediaQuery.addEventListener('change', handleChange);
-        return () => mediaQuery.removeEventListener('change', handleChange);
+        return () => {
+            window.cancelAnimationFrame(rafId);
+            mediaQuery.removeEventListener('change', handleChange);
+        };
     }, []);
 
     return (
-        <section className="bg-slate-50/50 py-24 px-6 w-full relative border-b border-slate-200/60">
+        <section className="py-14 md:py-16 px-6 w-full relative border-b border-slate-200">
             <div className="max-w-5xl mx-auto">
                 <SectionTitle
-                    icon={<Github className="text-white" />}
+                    icon={<Github className="text-slate-700" />}
                     title="GitHub Contributions"
                 />
 
-                <div className="flex justify-center">
+                <div className="border border-slate-200 bg-white p-3 md:p-5 overflow-x-auto">
                     {isMounted && (
                         <GitHubCalendar
                             username={'yeonjin719'}
