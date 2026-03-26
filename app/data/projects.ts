@@ -7,7 +7,7 @@ export const projects: TProject[] = [
         category: 'Open Source Library',
         period: '2025.06.24 ~ 2025.11.11',
         description:
-            '색각 이상자를 위한 테마 생성 오픈소스 라이브러리입니다. CLI와 React 컴포넌트를 개발하여, 기존 코드를 수정하지 않고도 색맹 대응 테마를 자동 생성, 적용할 수 있습니다.',
+            '색상 접근성 문제를 각 서비스가 반복해서 해결하지 않아도 되도록, CSS 변수 기반 테마를 생성하고 적용할 수 있게 만든 npm 배포형 React 라이브러리입니다.',
         techStack: [
             'React',
             'TypeScript',
@@ -18,9 +18,9 @@ export const projects: TProject[] = [
         ],
         youtube: 'https://youtu.be/g5h2yo46zKc',
         images: [
-            'images/colbrush1.png',
-            'images/colbrush2.png',
-            'images/colbrush3.png',
+            'images/colbrush/colbrush1.png',
+            'images/colbrush/colbrush2.png',
+            'images/colbrush/colbrush3.png',
         ],
         results: [
             '2025 오픈소스 개발자대회 에프에이리눅스(주) 대표상 수상',
@@ -34,42 +34,33 @@ export const projects: TProject[] = [
             github: 'https://github.com/2025-OSDC/colbrush',
         },
         detailContent: `
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 프로젝트 개요</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 왜 라이브러리로 만들었나</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            Colbrush는 색각 이상 사용자를 위한 React 테마 전환 라이브러리로, CSS 변수 기반 팔레트 생성부터 클라이언트 런타임 전환 UI까지 한 패키지에서 제공합니다
-            .
+            색각 이상 사용자는 색상만으로 상태를 구분하는 UI에서 중요한 정보를 놓칠 수 있고,
+            이런 문제는 서비스마다 반복해서 다시 해결되는 경우가 많습니다.
+            Colbrush는 이 부담을 개별 서비스가 매번 떠안지 않도록, 개발 단계에서 바로 적용할 수 있는 재사용 가능한 색상 테마 라이브러리로 설계했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 ThemeProvider 전역 상태</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎨 색상 토큰 파싱과 variation 생성</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            <strong>ThemeProvider</strong>가 theme·언어·시뮬레이션 모드를 React Context로 묶고, 로컬 스토리지와 HTML 데이터 속성까지 함께 갱신해
-            전역 일관성을 보장합니다.
-            'getThemeOptions'로 언어별 라벨을 제공하고, 'useTheme' 훅을 통해 어디서든 updateTheme/updateLanguage/setSimulationFilter를 호출할 수 있습니다
-            .
+            글로벌 스타일 파일을 파싱해 색상 토큰을 추출하고, 기준 색상을 바탕으로 <code>100 ~ 900</code> variation을 생성하는 로직을 구현했습니다.
+            CLI에서는 CSS 입력을 받아 색각 유형별 테마를 만들고, 필요한 경우 fallback 매핑까지 적용해 실제 프로젝트에 바로 넣을 수 있는 결과물을 출력하도록 구성했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🎛 ThemeSwitcher UI</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 ThemeProvider와 ThemeSwitcher</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            'ThemeSwitcher' 컴포넌트는 포지션별 고정 버튼과 접근성 속성(aria-label/role)을 포함한 모달형 드롭다운으로 구현되어 있으며,
-            테마 선택·언어 전환을 한 UI에서 처리합니다.
-            옵션을 전달하지 않으면 'getThemeOptions' 결과를 자동으로 사용하고, 버튼/아이콘 상태를 Hover/선택 여부에 따라 다르게 렌더링해 시각적 피드백을 제공합니다
-            .
+            런타임에서는 <strong>ThemeProvider</strong>가 테마, 언어, 색각 시뮬레이션 상태를 묶어 관리하고,
+            localStorage와 <code>document.documentElement</code>의 데이터 속성을 함께 갱신해 앱 전역에서 일관된 상태를 유지하도록 만들었습니다.
+            <strong>ThemeSwitcher</strong>는 외부 프로젝트에서 바로 붙여 쓸 수 있도록, 테마 선택과 언어 전환을 한 UI 안에서 제공하는 형태로 설계했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">👓 SimulationFilter 디버깅 툴</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🛠 외부 소비 환경 이슈 해결</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            'SimulationFilter'는 VisionMode에 맞는 SVG 색상 매트릭스 필터를 적용해 전체 앱 렌더에 색각 보정 효과를 입히고,
-            개발 환경에서만 노출되도록 가드가 걸려 있습니다.
-            툴바는 언어별 라벨/ARIA 속성을 갖춘 버튼 그룹으로 구성되며, 각 모드를 누르면 ThemeProvider의 simulationFilter 상태와 로컬 스토리지 키를 함께 갱신해
-            새로고침 후에도 동일한 모드를 유지합니다.
-            </p>
-
-            <h3 class="text-xl font-bold text-slate-900 mb-3">⚙️ CLI 자동 팔레트 생성</h3>
-            <p class="text-slate-600 mb-6 leading-relaxed">
-            CLI의 'runThemeApply'는 CSS에서 '--color-' 변수를 정규식으로 수집하고, 중립색을 건너뛰며 스케일을 계산한 뒤
-            Protanopia/Deuteranopia/Tritanopia 테마를 순차 생성합니다.
-            실패 시에도 fallback 컬러 매핑을 적용해 CSS에 '@theme' 블록을 추가하고, 처리된 변수 수·테마 상태·실행 시간을 요약 출력해
-            접근성 팔레트 생성 과정을 자동화합니다.
+            라이브러리 형태로 배포하다 보니 구현보다 더 어려웠던 것은 외부 환경에서 안정적으로 동작하게 만드는 일이었습니다.
+            SVG 아이콘 변환 문제는 <code>@svgr/cli</code> 기반 사전 변환으로 정리했고,
+            Tailwind 미디어쿼리 충돌은 중복 <code>@import</code> 제거로 해결했습니다.
+            또 <code>tsup</code> CJS 번들 결과와 외부 라이브러리 래핑 충돌까지 디버깅하며,
+            라이브러리 개발에서는 번들 포맷과 소비 환경까지 고려해야 진짜 사용 가능한 오픈소스가 된다는 점을 배웠습니다.
             </p>
 
         `,
@@ -78,12 +69,75 @@ export const projects: TProject[] = [
         },
     },
     {
+        title: 'eHelper',
+        anchorId: 'ehelper',
+        category: 'Chrome Extension (Solo)',
+        period: '2026.03.02 ~',
+        description:
+            '상명대학교 eCampus에서 과목별 과제, 퀴즈, 온라인 강의 진행 여부와 마감일을 한 번에 확인할 수 있도록 만든 Chrome Extension으로, Python 자동화 스크립트를 일반 학생도 쓸 수 있는 제품 형태로 확장한 프로젝트입니다.',
+        techStack: [
+            'React 18',
+            'TypeScript',
+            'Vite',
+            'Tailwind CSS',
+            'Chrome Extension (Manifest V3)',
+        ],
+        images: ['images/eHelper/eHelper.png'],
+        results: [
+            '과목별 페이지를 반복 탐색하던 eCampus 확인 동선을 대시보드 한 화면으로 축약',
+            'Popup, Content Script, Background Service Worker를 분리한 Manifest V3 구조 설계',
+            '마감 상태·과목·자료 유형·미완료 퀵 필터로 실제 탐색 흐름까지 고려한 UI 구현',
+            'Chrome Web Store 배포를 위해 권한 설정, 정책 문서 작성, 빌드·업로드 테스트 경험',
+        ],
+        links: {
+            github: 'https://github.com/yeonjin719/eHelper',
+            demo: 'https://chromewebstore.google.com/detail/ehelper/cfdbiojeleeahgmofkjpkapoffjejhof?hl=ko&utm_source=ext_sidebar',
+        },
+        troubleshooting: {
+            url: '/blog/ehelper-extension-story',
+        },
+        detailContent: `
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 문제 정의</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            eCampus에서는 과제 제출 여부를 확인하려면 과목별 페이지와 하위 과제 페이지를 반복해서 들어가야 했고,
+            퀴즈·온라인 강의·마감일도 각각 따로 확인해야 했습니다.
+            직접 겪은 이 비효율을 줄이기 위해, 여러 학습 항목을 한 화면에 모아 보여주는 도구를 만들었습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 스크립트에서 제품으로 전환</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            출발점은 Python + Selenium 기반 개인용 자동화 스크립트였지만, 터미널 출력 방식은 비개발자에게 진입 장벽이 컸습니다.
+            이후 더 많은 학생이 쉽게 설치하고 쓸 수 있도록, 익스텐션 설치만으로 바로 활용할 수 있는 Chrome Extension 형태로 다시 설계했습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧩 확장 프로그램 구조 설계</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            Manifest V3 기반으로 popup, content script, background service worker를 분리해 구성했고,
+            필요한 권한과 host permission을 명시해 eCampus 페이지에서 데이터를 수집하도록 설계했습니다.
+            다운로드 기능은 background에서 메시지를 받아 Chrome downloads API로 처리해, 자료 확인뿐 아니라 실제 학습 흐름까지 확장했습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🔎 대시보드 중심 탐색 UX</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            과목별 과제, 퀴즈, 온라인 강의의 진행 여부와 마감 정보를 대시보드 한 화면에서 확인할 수 있도록 구성했습니다.
+            마감 상태, 과목, 자료 유형 필터와 미완료 퀵 필터를 제공해 단순 정보 수집이 아니라 실제 탐색 동선을 줄이는 데 집중했습니다.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-3">⚙️ 배운 점과 다음 개선 방향</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            여러 페이지의 HTML을 직접 가져와 파싱하는 방식은 빠르게 구현할 수 있었지만, 로딩 시간이 길어지는 한계도 분명했습니다.
+            이 경험을 통해 개인용 자동화와 실사용 제품은 설계 기준이 다르다는 점,
+            그리고 프론트엔드 구현 외에도 권한, 정책, 배포 흐름까지 함께 이해해야 한다는 점을 배웠습니다.
+            </p>
+        `,
+    },
+    {
         title: 'UMC Product Web',
         anchorId: 'umc-product-web',
         category: 'Backoffice Web (Solo)',
         period: '2025.12 ~ 진행 중',
         description:
-            'UMC 리크루팅 사이트이자 운영 관리 웹입니다. 지원자 관점의 모집/안내 플로우와 운영진의 권한 기반 관리 화면을 함께 다뤘고, 단일 프론트엔드 메인 기여자로 라우팅/상태/폼/테스트 체계를 설계했습니다.',
+            '학교별로 분산되던 UMC 리크루팅을 하나로 통합하기 위해 만든 운영 서비스로, 지원자 플로우와 운영진 백오피스를 한 제품 안에서 연결한 단독 프론트엔드 개발 프로젝트입니다.',
         techStack: [
             'React 19',
             'TypeScript',
@@ -99,7 +153,20 @@ export const projects: TProject[] = [
             'Storybook',
             'Playwright',
         ],
-        images: [],
+        images: [
+            'images/umcProduct/thumbnail.jpg',
+            'images/umcProduct/challenger1.jpg',
+            'images/umcProduct/challenger2.jpg',
+            'images/umcProduct/challenger3.jpg',
+            'images/umcProduct/school1.jpg',
+            'images/umcProduct/school2.jpg',
+            'images/umcProduct/school3.jpg',
+            'images/umcProduct/school4.jpg',
+            'images/umcProduct/school5.jpg',
+            'images/umcProduct/school6.jpg',
+            'images/umcProduct/admin1.jpg',
+            'images/umcProduct/admin2.jpg',
+        ],
         results: [
             '저장소 기여 589 commits(2026-02-23 기준)',
             '권한(챌린저/파트장/회장단/총괄) 기반 뷰 분리로 운영 효율 개선',
@@ -107,32 +174,38 @@ export const projects: TProject[] = [
             'Storybook/Chromatic/Vitest/Playwright 기반 품질 검증 파이프라인 운영',
         ],
         links: {
-            demo: 'https://dev.umc.it.kr/',
+            demo: 'https://prod.umc.it.kr/',
             github: 'https://github.com/UMC-PRODUCT/umc-product-web',
         },
+        youtube: 'https://youtu.be/2ZK6PzG5uU4',
         detailContent: `
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 프로젝트 개요</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 통합 리크루팅 서비스 설계</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            UMC Product Web은 운영팀이 정책·계정·데이터를 통합 관리할 수 있도록 구축한 내부 백오피스입니다.
-            권한(챌린저, 파트장, 회장단, 총괄)에 따라 기능과 화면을 다르게 제공하는 구조로 설계했습니다.
+            기존 UMC 리크루팅은 학교별 Google Form 중심으로 분산 운영되어 전체 지원 현황을 중앙에서 파악하기 어려웠습니다.
+            이 프로젝트는 지원 단계부터 운영 단계까지 하나의 흐름으로 연결하기 위해,
+            지원자용 리크루팅 화면과 운영진용 권한 기반 백오피스를 함께 다루는 통합 서비스로 설계했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 라우팅/데이터 계층 표준화</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 단독 개발 기준 수립</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            TanStack Router 기반의 경로 설계와 TanStack Query의 쿼리 키 팩토리 패턴을 결합해, 화면 전환·데이터 갱신·캐시 전략을 일관되게 유지했습니다.
-            백오피스처럼 화면 수가 빠르게 늘어나는 환경에서도 라우트 책임과 API 책임이 섞이지 않도록 분리했습니다.
+            단독 개발이었기 때문에 기술 선택과 개발 기준을 처음부터 직접 정해야 했습니다.
+            <strong>TanStack Router/Query, React Hook Form, Zod, Emotion</strong> 조합을 중심으로 구조를 잡았고,
+            AI 리뷰어, Storybook, Playwright, Vitest까지 함께 도입해 혼자서도 품질 관리와 리뷰 체계를 유지할 수 있는 기반을 만들었습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🧩 폼/검증 체계</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧩 의존성 높은 지원 흐름 설계</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            React Hook Form + Zod를 기본 스택으로 두고, 정책/계정 관리 폼의 유효성 검증과 에러 처리 UX를 표준화했습니다.
-            입력 규칙이 복잡한 운영 도메인에서 런타임 오류를 줄이고, 신규 폼 추가 시 개발 속도를 높였습니다.
+            이 서비스는 단순 폼 입력이 아니라 생성, 수정, 재지원, 자동저장, 질문 정렬, 파트 변경에 따른 하위 응답 초기화처럼
+            화면과 상태가 강하게 연결된 흐름이 많았습니다.
+            그래서 단순 화면 구현보다 예외 케이스와 데이터 의존성을 더 먼저 설계했고,
+            실제 코드에서도 파트 변경 가드와 응답 초기화 같은 로직을 훅으로 분리해 관리했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">✅ 품질 관리 자동화</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">✅ QA 환경과 인수인계 구조</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            Vitest, Storybook(+Chromatic), Playwright를 통해 컴포넌트/시나리오 단위 검증을 병행하고,
-            ESLint/Prettier/Husky/Commitlint를 결합해 팀 코드 품질 기준을 유지했습니다.
+            실제 운영 서비스 특성상 테스트 환경과 운영 환경을 분리하는 것이 중요해 <code>develop</code>과 <code>main</code> 브랜치를 나눠 관리했습니다.
+            Storybook은 UI 문서화뿐 아니라 PM, 디자이너, 후임 개발자가 같은 기준으로 화면을 확인할 수 있는 협업 도구로 활용했고,
+            AWS Amplify와 GitHub Actions를 함께 구성해 배포 상태와 검증 흐름도 명확히 관리했습니다.
             </p>
         `,
         troubleshooting: {
@@ -145,7 +218,7 @@ export const projects: TProject[] = [
         category: 'Web Service (Team Leader)',
         period: '2024.11.30 ~ 2025.02.21',
         description:
-            'AI를 활용한 시나리오 기반 QA 자동화 서비스입니다. 프론트엔드 팀장(4명)을 맡아 복잡한 대시보드와 시나리오 로직을 구현했습니다.',
+            '시나리오 작성과 반복 검증 부담을 줄이기 위한 AI 기반 QA 자동화 서비스로, 인증 흐름과 시나리오 조회 상태 관리를 중심으로 구현한 프로젝트입니다.',
         techStack: [
             'React',
             'TypeScript',
@@ -156,10 +229,11 @@ export const projects: TProject[] = [
         ],
         youtube: 'https://youtu.be/5oE0DmY3el0',
         images: [
-            'images/qa2.png',
-            'images/qa3.png',
-            'images/qa4.png',
-            'images/qa5.png',
+            'images/qastudio/qa1.png',
+            'images/qastudio/qa2.png',
+            'images/qastudio/qa3.png',
+            'images/qastudio/qa4.png',
+            'images/qastudio/qa5.png',
         ],
         results: [
             '사용자 행동(Click, Hover)을 Selenium 코드로 변환하는 역변환 로직 구현',
@@ -174,31 +248,32 @@ export const projects: TProject[] = [
             url: '/blog/qastudio-logic',
         },
         detailContent: `
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 QA 대시보드</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 QA 자동화 도메인 이해</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            로그인 즉시 프로젝트별 QA 성과를 카드형 위젯으로 보여주어 성공/실패율, 총 테스트 수, 참여자 수를 한눈에 파악할 수 있습니다.
-            React Query로 지표를 실시간 요청하고, 성공 여부를 퍼센트 라벨과 아이콘으로 시각화해 팀 리더가 주간 성과를 빠르게 판단하도록 설계했습니다.
+            QASTUDIO는 QA 시나리오 작성과 반복 검증의 수작업 부담을 줄이기 위해,
+            AI 기반 시나리오 생성과 자동화 흐름을 연결하려던 프로젝트였습니다.
+            저는 로그인, 회원가입, 소셜 로그인, 사용자 프로필 흐름과 시나리오 조회 상태 관리를 중심으로 프론트엔드를 구현했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">📊 테스트 로그 & 필터링</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🔐 쿠키 기반 인증과 HTTPS 개발 환경</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            TanStack Table을 활용해 테스트 로그를 서버 페이지네이션으로 불러오며, 상태·페이지·테스트명·날짜를 동시에 필터링할 수 있습니다.
-            URL 파라미터와 Redux 캘린더 상태를 연동해 필터가 브라우저 새로고침이나 공유에도 유지되고,
-            검색어는 디바운스되어 API 부하를 줄입니다. 각 행에는 “Run Scenario / Check the error” 액션 버튼이 있어 성공 테스트는 즉시 재실행,
-            실패 테스트는 에러 모달로 재현 로그를 확인할 수 있습니다.
+            보안 측면을 고려해 쿠키 기반 인증을 선택했고, 브라우저 환경에서 이를 제대로 검증하기 위해 로컬 인증서를 사용하는 HTTPS 개발 환경을 별도로 구성했습니다.
+            인증 도메인은 회원가입, 이메일 인증, 로그인, 토큰 재발급, 로그아웃, 비밀번호 변경, 프로필 설정 API로 분리해 관리했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🔄 시나리오/등장인물 관리</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 OAuth URI 충돌과 로그인 후 분기 설계</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            시나리오 페이지는 프로젝트에 속한 캐릭터와 시나리오를 페이지 단위로 불러오고, Redux Slice로 선택/편집 상태를 전역 관리합니다.
-            캐릭터 단위 일괄 선택·삭제, 페이지 이동, 선택 상태 초기화 등이 즉시 반영되어 대규모 시나리오 세트를 다루기 편합니다.
-            React Hook Form + Zod 기반 2단계 모달을 통해 캐릭터 역할 선택→최종 확인을 분리하고, API 요청 중에는 로딩 오버레이를 띄워 중복 제출을 막습니다.
+            가장 어려웠던 문제는 일반 로그인의 CORS 이슈와 소셜 로그인 쿠키 미반영 현상이었습니다.
+            원인을 추적해 보니 Spring Security OAuth2 기본 URI와 팀 서버의 로그인 처리 URI가 충돌하고 있었고,
+            이를 <code>/oauth2/authorization/{provider}</code> 형태로 정리한 뒤 <code>/login/success</code>에서 사용자 정보를 조회해
+            닉네임 유무에 따라 온보딩과 메인 화면으로 분기하도록 흐름을 다시 설계했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">⚙️ 안정적인 데이터 흐름</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">⚙️ 다수 API 연동과 Redux 상태 관리</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            공통 React Query 래퍼로 모든 API가 캐싱/에러 핸들링 정책을 공유하며, 페이지 전환 시 <code>keepPreviousData</code> 옵션을 사용해 로딩 점프를 최소화했습니다.
-            필터 상태는 검색 파라미터, Redux, 커스텀 훅이 역할을 나눠 담당하여 로직은 전역에서 재사용되고, UI는 각 페이지에 맞게 조합할 수 있습니다.
+            시나리오 조회 페이지에는 <strong>Redux</strong>를 적용해 인증, 사용자, 프로젝트, 역할, 시나리오 관련 상태를 역할별로 나눠 관리했습니다.
+            프로젝트 목록, 역할 리스트, 시나리오 생성·수정·삭제, 사용자 정보, 팀원 정보, S3 Presigned URL 등 여러 API를 연결하면서,
+            인증 이후 흐름을 단순 리다이렉트가 아니라 실제 사용자 상태 기반 화면 전환으로 설계한 것이 핵심이었습니다.
             </p>
     `,
     },
@@ -208,7 +283,7 @@ export const projects: TProject[] = [
         category: 'Web Service (Team Leader)',
         period: '2025.06.22 ~ 2025.08.22',
         description:
-            'AI 기반 데이트 코스 추천 서비스입니다. 데이트 코스 생성/조회 및 Firebase 알림 기능을 전담했습니다.',
+            '데이트 코스를 정하는 반복적인 고민을 줄이기 위해 만든 AI 추천 서비스로, FE 리드로서 협업 규칙과 상태 구조를 잡고 코스 생성·필터·인증 흐름을 구현한 프로젝트입니다.',
         techStack: [
             'React',
             'TypeScript',
@@ -219,15 +294,15 @@ export const projects: TProject[] = [
         ],
         youtube: 'https://youtu.be/dBL7jFrnfyU',
         images: [
-            'images/withtime.png',
-            'images/withtime1.png',
-            'images/withtime2.png',
-            'images/withtime3.png',
-            'images/withtime4.png',
-            'images/withtime5.png',
-            'images/withtime6.png',
-            'images/withtime7.png',
-            'images/withtime8.png',
+            'images/withtime/withtime.png',
+            'images/withtime/withtime1.png',
+            'images/withtime/withtime2.png',
+            'images/withtime/withtime3.png',
+            'images/withtime/withtime4.png',
+            'images/withtime/withtime5.png',
+            'images/withtime/withtime6.png',
+            'images/withtime/withtime7.png',
+            'images/withtime/withtime8.png',
         ],
         results: [
             '회원가입/로그인(소셜) 및 마이페이지 구현',
@@ -239,35 +314,32 @@ export const projects: TProject[] = [
             github: 'https://github.com/WithTime12/WithTimeFE',
         },
         detailContent: `
-            <h3 class="text-xl font-bold text-slate-900 mb-3">💑 서비스 비전</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">💑 사용자 문제에서 출발한 서비스</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            WithTime은 사용자의 예산·지역·관심 키워드를 조합해 AI가 최적의 데이트 코스를 추천하는 서비스입니다.
-            원하는 조건으로 코스를 생성·탐색·북마크하며, 한 번 설정한 필터는 전체 여정에서 일관되게 재사용됩니다.
+            데이트를 할 때마다 어디를 갈지 반복적으로 고민해야 하는 불편을 줄이기 위해,
+            예산·지역·관심 키워드를 기반으로 AI가 코스를 추천하는 서비스를 만들었습니다.
+            팀의 목표는 아이디어 수준이 아니라 실제로 시연 가능한 데모데이 결과물을 완성하는 것이었습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 전역 필터 상태 관리</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 FE 리드로서 협업 기준 정리</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            데이트 코스 필터는 <strong>Zustand + persist</strong>로 전역 관리하여 모달·페이지 간 이동 시에도 값이 유지됩니다.
-            코스 생성/탐색/즐겨찾기 영역을 <strong>RouteScope</strong>로 구분하고, 범위가 바뀌면 자동 초기화하여
-            다른 플로우의 필터 잔존값이 섞이지 않도록 했습니다.
+            팀원 다수가 첫 프로젝트 경험이었기 때문에, 익숙한 라이브러리를 중심으로 스택을 정하고 협업 규칙과 코드 구조를 먼저 만들었습니다.
+            저는 자연스럽게 FE 리드 역할을 맡아 데이트 코스 생성, 필터 검색, 로그인/회원가입과 소셜 로그인 흐름을 담당했고,
+            메인 페이지 구현이 막힌 팀원을 도와 전체 완성도도 함께 끌어올렸습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🔍 필터 UX & 검증</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🔍 상태 흐름과 인증 연결</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            <strong>검색 필터 모달</strong>은 질문 정의를 기반으로 예산·위치·식사·키워드 등 7단계 옵션을 노출하고,
-            Validation 유틸로 예산-시간, 키워드-식사 조합 등을 즉시 검증합니다.
-            모든 페이지에서 공통 모달을 호출해 동일한 UX와 데이터를 공유하며, 자동 계산된 결과 개수를 즉시 보여줍니다.
+            데이트 코스 추천은 전역 상태가 중요한 서비스였기 때문에, 필터와 사용자 상태 흐름을 많이 신경 써서 설계했습니다.
+            <strong>Zustand persist</strong>로 추천 조건을 유지했고, 소셜 로그인 이후에는 최초 가입 여부에 따라 온보딩과 홈 화면을 분기해
+            인증이 추천 서비스 초기 상태와 자연스럽게 이어지도록 구현했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">⚡ Firebase 웹 푸시 운영</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">⚡ 배포와 협업 문서화</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            <strong>Firebase Cloud Messaging</strong>을 초기화하고 Service Worker를 등록해 브라우저 푸시를 수신합니다.
-            DeviceTokenProvider가 권한 요청→토큰 발급→백엔드 등록→전역 onMessage 리스너까지 캡슐화하여
-            토큰 재발급과 로그아웃 시 정리(deleteToken)까지 한 흐름으로 관리합니다.
-            </p>
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🤖 협업 효율화: CodeRabbit 도입</h3>
-            <p class="text-slate-600 mb-6 leading-relaxed">
-                4명의 프론트엔드 개발자 간의 코드 리뷰 병목 현상을 해결하기 위해 <strong>AI 리뷰어 CodeRabbit</strong>을 도입했습니다. PR 생성 즉시 스타일 가이드 준수 여부와 잠재적 버그를 리포트해주어, 팀원들은 비즈니스 로직 검토에만 집중할 수 있었습니다.
+            배포는 처음으로 <strong>AWS S3, Route53, CloudFront</strong> 조합을 사용해 진행했고,
+            팀원들도 같은 방식으로 재현할 수 있도록 배포 과정을 문서화해 공유했습니다.
+            이 경험을 통해 리드의 역할은 구현량보다도, 팀의 숙련도에 맞는 기술 선택과 재현 가능한 협업 구조를 만드는 데 있다는 점을 배웠습니다.
             </p>
         `,
         troubleshooting: {
@@ -281,7 +353,7 @@ export const projects: TProject[] = [
         category: 'Web Service (Team Leader)',
         period: '2024.09.30 ~ 2024.12.16',
         description:
-            '청년 정책 맞춤 추천 웹앱 서비스입니다. 프론트엔드 팀장(3명)을 맡아 정책 추천, 캘린더 일정 관리, 커뮤니티 기능을 구현했습니다.',
+            '흩어진 청년 정책 정보를 탐색하고 북마크, 캘린더, 알림으로 이어지게 만든 서비스로, 첫 팀 프로젝트 리드 경험이자 핵심 사용자 접점을 구현한 프로젝트입니다.',
         techStack: [
             'React',
             'JavaScript',
@@ -292,11 +364,11 @@ export const projects: TProject[] = [
             'slick slider',
         ],
         images: [
-            'images/youth1.png',
-            'images/youth5.png',
-            'images/youth3.png',
-            'images/youth2.png',
-            'images/youth4.png',
+            'images/youthStepUp/youth1.png',
+            'images/youthStepUp/youth5.png',
+            'images/youthStepUp/youth3.png',
+            'images/youthStepUp/youth2.png',
+            'images/youthStepUp/youth4.png',
         ],
         results: [
             'Firebase Web Push를 활용한 실시간 알림 기능 및 무한 스크롤 구현',
@@ -307,59 +379,91 @@ export const projects: TProject[] = [
             github: 'https://github.com/SMUMC-7th/Team-C-FE',
         },
         detailContent: `
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 기획 의도</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 정책 탐색과 일정 관리를 한 흐름으로 연결</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            수많은 정책 정보 속에서 나에게 맞는 혜택을 놓치지 않도록, 사용자 프로필(거주지·소득분위 등)을 기반으로 필터링하는
-            <strong>맞춤 정책 추천 서비스</strong>를 설계했습니다.
+            청년 정책은 정보가 흩어져 있어 한 번에 모아보기 어렵고,
+            관심 정책을 저장하더라도 이후 일정처럼 다시 확인하고 관리하기가 번거롭습니다.
+            그래서 정책 탐색, 추천, 북마크, 캘린더 등록을 한 서비스 안에서 이어지는 경험으로 묶는 것을 목표로 했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🔥 성능 최적화: 무한 스크롤</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🔥 첫 팀 프로젝트 리드와 메인 화면 구현</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            알림/정책 데이터가 누적되며 발생한 초기 로딩 지연을 해결하기 위해 <strong>Intersection Observer API</strong>와
-            Firebase Firestore의 <strong>커서 기반 페이지네이션</strong>을 결합해 무한 스크롤을 구현했습니다.
-            필요한 데이터만 단계적으로 불러오며 초기 렌더 시간을 획기적으로 줄였습니다.
+            첫 프로젝트였기 때문에 전체 진행을 챙기면서, 홈 메인 화면의 정책 목록과 배너, 캘린더 같은 핵심 사용자 접점을 직접 맡았습니다.
+            메인 화면에서는 무한 스크롤 정책 목록과 <code>slick-slider</code> 배너를 구현했고,
+            비로그인 사용자가 북마크를 누르거나 과도한 조회를 시도할 때는 로그인 유도 모달을 띄워 흐름을 제어했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">⚡ Firebase 인프라</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">📅 date-fns 기반 캘린더 직접 구현</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            실시간 동기화와 안정적인 확장성을 확보하기 위해 <strong>Firebase Firestore</strong>를 백엔드로 채택했습니다.
-            커서 기반 쿼리로 대량 데이터에서도 일관된 응답 속도를 유지하고, 인증/보안 규칙으로 사용자별 맞춤 정책 데이터를 안전하게 제공합니다.
+            캘린더는 <strong>date-fns</strong>를 활용해 직접 구현했고,
+            정책의 시작일과 마감일을 월별로 보여주며 특정 날짜를 선택하면 해당 정책 목록과 완료 상태를 함께 확인할 수 있도록 만들었습니다.
+            단순 조회 화면이 아니라, 정책 정보를 개인 일정처럼 다시 관리할 수 있게 만드는 데 초점을 맞췄습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">📅 캘린더 시각화</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🔔 FCM 알림과 완성도 있는 사용자 흐름</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            <strong>date-fns</strong> 라이브러리와 커스텀 유틸리티 함수를 활용해 정책의 ‘신청 시작일’과 ‘마감일’을 계산하고
-            색상별로 구분된 캘린더 UI에 표기했습니다. 복잡한 날짜 계산 로직을 유틸 단위로 분리하여 유지보수성과 재사용성을 높였습니다.
+            알림 페이지에서는 <strong>FCM</strong> 기반 웹 푸시를 붙여 댓글과 대댓글 발생 시 알림이 오도록 구현했고,
+            로딩 바, 스켈레톤 UI, 안내 모달까지 넣어 첫 프로젝트지만 사용자에게 보이는 완성도를 끝까지 챙기려 했습니다.
+            이 경험을 통해 기능을 붙이는 것과 실제 서비스처럼 동작하게 만드는 것은 다르다는 점을 강하게 배웠습니다.
+            </p>
+        `,
+    },
+    {
+        title: 'Calio',
+        anchorId: 'calio',
+        category: 'Graduation Project',
+        period: '2025 ~ 2026',
+        description:
+            '사용자 기록을 바탕으로 AI가 먼저 제안을 건네는 선제적 캘린더 서비스를 목표로 한 졸업 프로젝트로, 캘린더와 투두 화면의 사용성과 상호작용 설계를 맡고 있습니다.',
+        techStack: [
+            'React',
+            'TypeScript',
+            'Emotion',
+            'TanStack Query',
+            'Zustand',
+            'React Hook Form',
+            'Yup',
+            'react-big-calendar',
+            'react-day-picker',
+            'Vitest',
+        ],
+        images: [],
+        results: [
+            'react-big-calendar 기반 드래그앤드롭 캘린더와 반복 일정 편집 흐름 구현',
+            '일정 상세 조회 404를 별도 처리하는 retry 정책으로 네트워크 예외 대응',
+            '선택 날짜 기반 이벤트 카드와 주간 Todo 진행률이 연결된 화면 흐름 설계',
+            'GitHub Project, Wiki, 스프린트 운영으로 협업 구조 정리',
+        ],
+        links: {
+            github: 'https://github.com/2026-Capstone-Project/FrontEnd',
+        },
+        detailContent: `
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 기록 기반 선제 제안형 캘린더</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+            기존 일정 관리 서비스는 사용자가 직접 기록하고 계속 확인해야 하는 부담이 컸습니다.
+            Calio는 사용자가 남긴 기록을 바탕으로 AI가 먼저 제안을 건네는 방향을 목표로 하며,
+            저는 그중 캘린더와 투두 화면을 맡아 반복 사용 서비스에 맞는 인터랙션을 설계하고 있습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 전역 필터 설계</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🗓 캘린더와 투두의 사용성 설계</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            프로필 입력 폼은 <strong>동적 Form Menu</strong>를 기반으로 구성됩니다.
-            Form Menu에서 학력·분야·지역·키워드 옵션 및 선택 제한을 선언하고,
-            SettingForm이 초기 데이터와 함께 전달해 전역 컨텍스트에 저장하며,
-            useForm 훅이 입력 값과 토글 상태·검증을 통합 관리합니다.
-            이 덕분에 프로필 수정과 신규 가입이 동일 스키마로 동작하며, 추천 정책/캘린더는 항상 최신 필터 상태를 참조합니다.
+            이 프로젝트에서 가장 중요했던 것은 기능 추가보다 사용자가 자연스럽다고 느끼는 상호작용을 만드는 일이었습니다.
+            드래그앤드롭, 모바일 사용성, 반복 일정 편집처럼 캘린더와 투두에서 자주 마주치는 액션을 중심으로
+            “동작하게 만드는 것”보다 “불편하지 않게 느껴지게 하는 것”에 더 많은 시간을 썼습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🧩 필터 입력 UX</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">⚙️ 복잡한 일정 편집과 네트워크 예외 처리</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            ToggleBtnGroup이 Form Menu를 순회하며 옵션 버튼을 자동 렌더링하고,
-            선택 제한을 초과하면 즉시 경고를 띄워 품질을 지킵니다. 선택 결과는 'useForm'의 'getSelectedOptions'로 직렬화되어
-            백엔드 API가 요구하는 'educations/majors/regions/keyword' 구조로 전달됩니다.
-            이후 정책 추천 무한 스크롤 또한 동일 필터를 바탕으로 데이터를 가져와, 입력→조회까지 일관된 사용성을 만듭니다
-            .
+            <code>react-big-calendar</code>의 드래그앤드롭 기능을 바탕으로 일정 조회 범위 계산, 반복 일정 수정 범위, 삭제 확인, 반응형 뷰 전환까지 다루고 있습니다.
+            또 상세 일정 조회 시 404를 별도로 처리하는 retry 정책을 두어,
+            수정과 삭제가 잦은 화면에서 발생하는 네트워크 예외를 더 안정적으로 다룰 수 있게 했습니다.
             </p>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-3">🔔 Firebase 웹 푸시 파이프라인</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">🧭 스프린트 기반 협업 경험</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
-            Firebase는 FCM 구성→토큰 발급→서비스 워커→실시간 메시지 수신까지 한 흐름으로 구성했습니다.
-            앱 초기화와 VAPID 기반 토큰 발급을 담당하고,
-            useDeviceToken 훅이 브라우저 지원 여부를 검사한 뒤 토큰을 발급·백엔드에 등록합니다.
-            랜딩 단계에서 권한을 선요청하고,
-            소셜 로그인 완료 시에도 디바이스 토큰을 재발급해 onMessage 리스너를 건 뒤 푸시를 수신합니다
-            .
-            Foreground 외에도 서비스 워커가 백그라운드 메시지를 받아 클릭 액션으로 라우팅합니다
-            .
+            프로젝트는 아직 진행 중이지만, GitHub Project와 Wiki를 운영하고 스프린트 방식으로 작업 흐름을 관리하며
+            개발 외적인 구조도 결과물의 일부라는 점을 배우고 있습니다.
+            반복 사용 서비스일수록 기능 수보다 입력 편의성과 인터랙션의 자연스러움이 더 중요하다는 점도 이 프로젝트에서 크게 체감하고 있습니다.
             </p>
         `,
     },
@@ -378,7 +482,7 @@ export const projects: TProject[] = [
             'Vite',
         ],
         youtube: 'https://youtu.be/PeUM7m_KCMs',
-        images: ['images/smumc1.png'],
+        images: ['images/smumc/smumc1.png'],
         results: [
             'Context API를 활용한 라이트/다크 모드 구현',
             '반응형 디자인 및 스크롤 애니메이션 최적화',

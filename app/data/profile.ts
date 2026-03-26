@@ -3,7 +3,8 @@ import { TProfile } from '@/app/type/type';
 export const profile: TProfile = {
     name: 'Kim Yeon Jin',
     role: 'Frontend Developer',
-    slogan: '사용자 경험(UX)과 개발자 경험(DX)을 모두 고민하는 개발자',
+    slogan:
+        '실제 사용자의 불편을 발견해 제품 형태의 해결책으로 바꾸는 프론트엔드 개발자',
     email: 'kyj0719@gmail.com',
     github: 'https://github.com/yeonjin719',
     linkedIn: 'https://linkedin.com/in/yeonjinkimcotton',

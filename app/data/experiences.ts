@@ -2,6 +2,16 @@ import { TExperience } from '@/app/type/type';
 
 export const experiences: TExperience[] = [
     {
+        id: 9,
+        period: '2026',
+        title: 'eHelper Chrome Extension 출시',
+        organization: '개인 프로젝트',
+        category: 'Activity',
+        description:
+            'eCampus 과제 확인의 비효율을 해결하기 위해 Python 자동화 스크립트를 Chrome Extension 제품으로 재설계',
+        link: 'https://github.com/yeonjin719/eHelper',
+    },
+    {
         id: 8,
         period: '2025.12.05',
         title: '오픈소스 개발자대회 에프에이리눅스(주) 대표상 수상',
@@ -17,7 +27,7 @@ export const experiences: TExperience[] = [
         organization: 'University MakeUs Challenge',
         category: 'Activity',
         description:
-            '31개교 웹 파트 챌린저들을 위한 커리큘럼 기획 및 스터디 리딩, 중앙 워크북 제작',
+            '31개교 웹 파트 챌린저 대상 단독 워크북, 프로젝트형 미션, 스터디 운영을 맡아 개념 설명과 구조 제안까지 담당',
         link: 'https://yeonjin719.notion.site/special-workbook?source=copy_link',
     },
     {
@@ -27,7 +37,7 @@ export const experiences: TExperience[] = [
         organization: 'University MakeUs Challenge',
         category: 'Activity',
         description:
-            '22개교의 웹 파트 챌린저들을 위한 커리큘럼 기획 및 스터디 리딩, 중앙 워크북 제작',
+            '22개교 웹 파트 챌린저 대상 주차별 미션, 역설계 세션, 스페셜 워크북을 설계하며 교내 스터디를 리딩',
     },
     {
         id: 5,
@@ -46,7 +56,7 @@ export const experiences: TExperience[] = [
         organization: 'University MakeUs Challenge',
         category: 'Activity',
         description:
-            "웹 개발 스터디 참여 및 '청년돋움' 프로젝트 프론트엔드 리드 개발자로 활동",
+            "웹 개발 스터디 참여 및 '청년돋움', 'QASTUDIO' 프로젝트 프론트엔드 개발",
     },
     {
         id: 3,
