@@ -85,19 +85,23 @@ export default async function Page() {
     const structuredData = JSON.stringify(structuredDataObjects);
 
     return (
-        <div className="min-h-screen text-slate-900 font-sans bg-slate-50">
+        <div className="min-h-screen bg-background text-foreground font-sans">
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{ __html: structuredData }}
             />
-            <main id="main-content" role="main">
-                <Header />
-                <Experiences />
-                <Skills skills={skills} />
-                <Projects />
-                <GithubState />
-                <DevLog blogPostsData={blogPosts} />
+            <main id="main-content" role="main" className="relative">
+                <div className="site-shell">
+                    <Header />
+                    <div className="mt-4 space-y-4">
+                        <Experiences />
+                        <Skills skills={skills} />
+                        <Projects />
+                        <GithubState />
+                        <DevLog blogPostsData={blogPosts} />
+                    </div>
+                </div>
             </main>
             <Footer />
         </div>

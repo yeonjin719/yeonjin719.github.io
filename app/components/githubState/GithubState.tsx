@@ -25,14 +25,14 @@ export default function GithubState() {
     }, []);
 
     return (
-        <section className="py-14 md:py-16 px-6 w-full relative border-b border-slate-200">
-            <div className="max-w-5xl mx-auto">
+        <section className="section-shell w-full">
+            <div className="px-5 py-5 md:px-6 md:py-6">
                 <SectionTitle
                     icon={<Github className="text-slate-700" />}
                     title="GitHub Contributions"
                 />
 
-                <div className="border border-slate-200 bg-white p-3 md:p-5 overflow-x-auto">
+                <div className="panel-card flex justify-center overflow-x-auto px-3 py-3 md:px-4 md:py-4">
                     {isMounted && (
                         <GitHubCalendar
                             username={'yeonjin719'}
@@ -45,7 +45,7 @@ export default function GithubState() {
                             transformData={
                                 isMdOrBelow ? selectLastHalfYear : undefined
                             }
-                        ></GitHubCalendar>
+                        />
                     )}
                 </div>
             </div>

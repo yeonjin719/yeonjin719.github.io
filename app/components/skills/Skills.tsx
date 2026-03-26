@@ -7,27 +7,27 @@ export default function Skills({
     skills: { [category: string]: string[] };
 }) {
     return (
-        <section className="py-14 md:py-16 px-6 relative border-b border-slate-200 bg-white">
-            <div className="max-w-5xl mx-auto">
+        <section className="section-shell">
+            <div className="px-5 py-5 md:px-6 md:py-6">
                 <SectionTitle
                     icon={<Code2 className="text-slate-700" />}
                     title="Technical Skills"
                 />
 
-                <div className="bg-white border border-slate-200 px-4 md:px-5">
+                <div className="grid gap-2.5">
                     {Object.entries(skills).map(([category, items]) => (
                         <section
                             key={category}
-                            className="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-2 md:gap-4 py-4 border-b border-slate-200 last:border-b-0"
+                            className="panel-card grid grid-cols-1 gap-2.5 px-4 py-3.5 md:grid-cols-[150px_1fr] md:items-center md:gap-3 "
                         >
-                            <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-[0.1em] md:pt-1">
+                            <h3 className="pt-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#5e7592]">
                                 {category}
                             </h3>
-                            <div className="flex flex-wrap gap-1.5">
+                            <div className="flex flex-wrap gap-2">
                                 {items.map((skill) => (
                                     <span
                                         key={skill}
-                                        className="px-2.5 py-1 text-[13px] text-slate-700 bg-slate-100 border border-slate-200"
+                                        className="whitespace-nowrap rounded-full border border-[rgba(45,106,227,0.14)] bg-[rgba(241,247,255,0.96)] px-3 py-1.5 text-[13px] font-medium text-[#102030]"
                                     >
                                         {skill}
                                     </span>

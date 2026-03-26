@@ -1,34 +1,30 @@
 import { profile } from '@/app/data';
-import Image from 'next/image';
 import SocialLinkList from '@/app/components/header/SocialLinkList';
 import Education from '@/app/components/header/Education';
 import { Info } from '@/app/components/header/Info';
+
 export default function Header() {
     return (
-        <header className="max-w-5xl mx-auto px-6 md:px-8 pt-16 pb-12 border-b border-slate-200">
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_220px] gap-10 items-start animate-fade-in-up">
-                <div className="space-y-6">
+        <header className="section-shell animate-fade-in-up">
+            <div className="px-5 py-5 md:px-6 md:py-6 xl:px-7 xl:py-7">
+                <div>
                     <Info />
-                    <SocialLinkList profile={profile} />
-                    <Education />
                 </div>
 
-                <figure className="hidden md:flex flex-col items-start gap-3">
-                    <div className="w-full border border-slate-200 bg-white p-2.5">
-                        <Image
-                            width={460}
-                            height={560}
-                            src="/images/profile_clean.png"
-                            alt="Kim Yeonjin Profile Image"
-                            className="w-full h-auto object-cover grayscale-[6%]"
-                        />
+                <div className="mt-4 flex max-w-[80%] flex-col gap-3 md:max-w-full lg:grid lg:grid-cols-[1.06fr_0.94fr] lg:items-start">
+                    <div className="panel-card">
+                        <div className="px-4 py-4">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#5e7592]">
+                                Reach Out
+                            </p>
+                            <div className="mt-3">
+                                <SocialLinkList profile={profile} />
+                            </div>
+                        </div>
                     </div>
-                    <figcaption className="text-[11px] text-slate-500 leading-relaxed">
-                        Seoul based
-                        <br />
-                        Open to frontend roles
-                    </figcaption>
-                </figure>
+
+                    <Education />
+                </div>
             </div>
         </header>
     );

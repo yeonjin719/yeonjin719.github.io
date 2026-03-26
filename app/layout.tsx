@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_KR, JetBrains_Mono } from 'next/font/google';
+import {
+    Noto_Sans_KR,
+    JetBrains_Mono,
+    Cormorant_Garamond,
+} from 'next/font/google';
 import './globals.css';
 
 const notoSansKr = Noto_Sans_KR({
@@ -10,6 +14,12 @@ const notoSansKr = Noto_Sans_KR({
 const jetBrainsMono = JetBrains_Mono({
     variable: '--font-jetbrains-mono',
     subsets: ['latin'],
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+    variable: '--font-cormorant-garamond',
+    subsets: ['latin'],
+    weight: ['500', '600', '700'],
 });
 
 const siteUrl = 'https://yeonjin719.github.io';
@@ -83,7 +93,7 @@ export default function RootLayout({
     return (
         <html lang="ko">
             <body
-                className={`${notoSansKr.variable} ${jetBrainsMono.variable} antialiased`}
+                className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${cormorantGaramond.variable} antialiased`}
             >
                 {children}
             </body>

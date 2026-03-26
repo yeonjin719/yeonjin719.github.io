@@ -10,16 +10,20 @@ export default function SectionTitle({
     headingId?: string;
 }) {
     return (
-        <div className="mb-6 md:mb-7 flex items-center gap-2.5">
-            <div className="flex items-center justify-center w-6 h-6 rounded-md border border-slate-300 text-slate-600 bg-white">
-                {React.cloneElement(icon, { size: 14 })}
+        <div className="mb-4 flex min-w-0 flex-wrap items-center gap-3">
+            <div className="flex min-w-0 items-center gap-3">
+                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[#2f63d6] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]">
+                    {React.cloneElement(icon, { size: 17 })}
+                </div>
+                <div className="min-w-0">
+                    <h2
+                        id={headingId}
+                        className="max-w-full text-[1.28rem] font-semibold leading-tight tracking-[-0.04em] text-[#102030] md:text-[1.45rem]"
+                    >
+                        {title}
+                    </h2>
+                </div>
             </div>
-            <h2
-                id={headingId}
-                className="text-[1.45rem] md:text-[1.7rem] font-semibold text-slate-900 tracking-tight leading-tight"
-            >
-                {title}
-            </h2>
         </div>
     );
 }

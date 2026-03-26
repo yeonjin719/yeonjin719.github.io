@@ -120,132 +120,130 @@ export default async function BlogPostPage({
 
     if (!post) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+            <div className="min-h-screen flex items-center justify-center bg-background">
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-slate-300 mb-2">
+                    <h1 className="mb-2 text-3xl font-bold text-[#c9d6e9]">
                         404
                     </h1>
-                    <p className="text-slate-500">Post not found</p>
+                    <p className="text-[#5e7592]">Post not found</p>
                 </div>
             </div>
         );
     }
     return (
-        <article className="min-h-screen bg-white text-slate-900 font-sans">
-            {/* Top Navigation Bar */}
-            <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100">
-                <div className="max-w-3xl mx-auto px-6 h-16 flex items-center">
-                    <Link
-                        href="/"
-                        className="group flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
-                    >
-                        <div className="p-1.5 rounded-full bg-slate-100 group-hover:bg-slate-200 transition-colors">
-                            <ArrowLeft
-                                size={16}
-                                className="group-hover:-translate-x-0.5 transition-transform"
-                            />
-                        </div>
-                        Back to Portfolio
-                    </Link>
-                </div>
-            </nav>
-
-            {/* Hero Header */}
-            <header className="py-20 px-6 bg-slate-50 border-b border-slate-100">
-                <div className="max-w-3xl mx-auto">
-                    <div className="flex flex-wrap gap-2 mb-6 animate-fade-in-up">
-                        {post.tags &&
-                            post.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className="px-3 py-1 bg-white border border-slate-200 text-slate-700 text-xs font-bold rounded-full uppercase tracking-wider shadow-sm"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                    </div>
-
-                    <h1
-                        title={post.title}
-                        className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-8 leading-[1.15] tracking-tight animate-fade-in-up delay-100"
-                    >
-                        {post.title}
-                    </h1>
-
-                    <div className="flex flex-wrap items-center gap-6 text-slate-500 font-medium text-sm animate-fade-in-up delay-200">
-                        <div className="flex items-center gap-2">
-                            <div className="p-2 bg-slate-100 text-slate-700 rounded-full">
-                                <User size={16} />
-                            </div>
-                            <span>Kim Yeon Jin</span>
-                        </div>
-                        <div className="w-1 h-1 bg-slate-300 rounded-full hidden sm:block" />
-                        <div className="flex items-center gap-2">
-                            <div className="p-2 bg-slate-100 text-slate-700 rounded-full">
-                                <Calendar size={16} />
-                            </div>
-                            <time>{post.date}</time>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <div className="max-w-3xl mx-auto px-6 py-16">
-                <Script
-                    id={`article-schema-${slug}`}
-                    type="application/ld+json"
-                    strategy="afterInteractive"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(articleJsonLd),
-                    }}
-                />
-                {headings.length > 0 && (
-                    <aside className="mb-10 rounded-xl border border-slate-200 bg-slate-50/80 p-4 text-sm">
-                        <p className="mb-3 font-semibold text-slate-700">
-                            On this page
-                        </p>
-                        <ul className="space-y-1">
-                            {headings.map((h) => (
-                                <li
-                                    key={h.id}
-                                    className={
-                                        h.level === 1
-                                            ? ''
-                                            : h.level === 2
-                                            ? 'pl-3'
-                                            : 'pl-6 text-slate-500'
-                                    }
-                                >
-                                    <a
-                                        href={`#${h.id}`}
-                                        className="hover:text-slate-900"
-                                    >
-                                        {h.text}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </aside>
-                )}
-                <div className="markdown-body">
-                    <ReactMarkdown
-                        rehypePlugins={[rehypeRaw]}
-                        components={markdownComponents}
-                    >
-                        {post.content}
-                    </ReactMarkdown>
-                </div>
-                <div className="mt-16 pt-10 border-t border-slate-200">
-                    <div className="mt-10 p-8 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                        <p className="text-slate-600 font-medium mb-4">
-                            Enjoyed this article? <br /> Check out more projects
-                            and posts on my portfolio!
-                        </p>
+        <article className="min-h-screen bg-background font-sans text-foreground">
+            <div className="site-shell">
+                <div className="mx-auto max-w-[1280px]">
+                    <nav className="mb-5">
                         <Link
-                            href={exploreHref}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full shadow-sm text-slate-800 font-bold hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all"
+                            href="/"
+                            className="blog-utility flex items-center gap-2 hover:border-[#2f63d6] hover:text-[#2f63d6]"
                         >
-                            Explore this project <ChevronRight size={16} />
+                            <ArrowLeft size={16} />
+                            Back to Portfolio
                         </Link>
+                    </nav>
+
+                    <header className="blog-shell px-6 py-7 md:px-8 md:py-8">
+                        <div className="flex flex-wrap gap-2 mb-6 animate-fade-in-up">
+                            {post.tags &&
+                                post.tags.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="inline-flex items-center rounded-[10px] border border-[rgba(16,32,48,0.08)] bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#31567e]"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                        </div>
+
+                        <h1
+                            title={post.title}
+                            className="animate-fade-in-up delay-100 text-[2rem] font-semibold leading-tight tracking-[-0.04em] text-[#102030] md:text-[2.5rem]"
+                        >
+                            {post.title}
+                        </h1>
+
+                        <div className="mt-7 flex flex-wrap items-center gap-6 text-sm font-medium text-[#5e7592] animate-fade-in-up delay-200">
+                            <div className="flex items-center gap-2">
+                                <div className="rounded-[10px] border border-black/10 bg-white/80 p-2 text-[#2f63d6]">
+                                    <User size={16} />
+                                </div>
+                                <span>Kim Yeon Jin</span>
+                            </div>
+                            <div className="hidden h-1 w-1 rounded-full bg-[#a9bfdc] sm:block" />
+                            <div className="flex items-center gap-2">
+                                <div className="rounded-[10px] border border-black/10 bg-white/80 p-2 text-[#2f63d6]">
+                                    <Calendar size={16} />
+                                </div>
+                                <time>{post.date}</time>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1fr)_280px]">
+                        <div className="blog-shell px-6 py-2 md:px-8 bg-white/80 rounded-md max-w-[100%]">
+                            <Script
+                                id={`article-schema-${slug}`}
+                                type="application/ld+json"
+                                strategy="afterInteractive"
+                                dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify(articleJsonLd),
+                                }}
+                            />
+                            <div className="markdown-body">
+                                <ReactMarkdown
+                                    rehypePlugins={[rehypeRaw]}
+                                    components={markdownComponents}
+                                >
+                                    {post.content}
+                                </ReactMarkdown>
+                            </div>
+                            <div className="mt-14 border-t border-black/10 pt-8">
+                                <div className="rounded-[18px] border border-[rgba(16,32,48,0.08)] bg-white/70 p-6 text-left">
+                                    <p className="mb-4 text-[15px] font-medium leading-7 text-[#314458]">
+                                        Enjoyed this article? Check out more
+                                        projects and posts on my portfolio.
+                                    </p>
+                                    <Link
+                                        href={exploreHref}
+                                        className="inline-flex items-center gap-2 rounded-[10px] border border-[#102030] bg-[#102030] px-4 py-2.5 text-sm font-semibold text-white hover:border-[#2f63d6] hover:bg-[#2f63d6]"
+                                    >
+                                        Explore this project
+                                        <ChevronRight size={16} />
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        {headings.length > 0 && (
+                            <aside className="blog-shell self-start px-5 py-5 xl:sticky xl:top-8">
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5e7592]">
+                                    On This Page
+                                </p>
+                                <ul className="mt-4 space-y-2 text-sm">
+                                    {headings.map((h) => (
+                                        <li
+                                            key={h.id}
+                                            className={
+                                                h.level === 1
+                                                    ? ''
+                                                    : h.level === 2
+                                                      ? 'pl-3'
+                                                      : 'pl-6 text-[#5e7592]'
+                                            }
+                                        >
+                                            <a
+                                                href={`#${h.id}`}
+                                                className="text-[#102030] hover:text-[#2f63d6]"
+                                            >
+                                                {h.text}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </aside>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,3 +1,3 @@
 export const calendarTheme = {
-    light: ['#f8fafc', '#e0e7ff', '#c7d2fe', '#a5b4fc', '#7c3aed'],
+    light: ['#eef4fb', '#dbe7f7', '#bdd1f0', '#7aa3e7', '#2f63d6'],
 };

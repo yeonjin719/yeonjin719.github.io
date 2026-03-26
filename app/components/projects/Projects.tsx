@@ -19,23 +19,27 @@ export default function Projects() {
         <section
             id="projects"
             aria-labelledby={headingId}
-            className="py-14 md:py-16 px-6 relative border-b border-slate-200"
+            className="section-shell"
         >
             {selectedProject && (
                 <ProjectModal
+                    key={selectedProject.anchorId ?? selectedProject.title}
                     project={selectedProject}
                     onClose={() => setSelectedProject(null)}
                 />
             )}
             <div className={isModalOpen ? 'pointer-events-none' : ''}>
-                <div className="max-w-5xl mx-auto" aria-hidden={isModalOpen}>
+                <div
+                    className="px-5 py-5 md:px-6 md:py-6"
+                    aria-hidden={isModalOpen}
+                >
                     <SectionTitle
                         headingId={headingId}
                         icon={<Award className="text-slate-700" />}
                         title="Featured Projects"
                     />
 
-                    <div className="space-y-4 md:space-y-5">
+                    <div className="grid gap-4 lg:grid-cols-2">
                         {projects.map((project, index) => (
                             <Project
                                 key={index}

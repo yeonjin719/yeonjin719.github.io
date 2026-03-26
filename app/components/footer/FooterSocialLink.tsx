@@ -10,7 +10,7 @@ export default function FooterSocialLink({
             href={href}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center w-8 h-8 border border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[#102030] hover:-translate-y-0.5 hover:border-[#2f63d6] hover:text-[#2f63d6]"
         >
             {icon}
         </a>

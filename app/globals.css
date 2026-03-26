@@ -3,39 +3,178 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --surface: #ffffff;
-  --surface-muted: #f1f5f9;
-  --line: #dce3ec;
-  --accent: #0f172a;
-  --accent-strong: #0f172a;
-  --accent-soft: #e2e8f0;
+  --background: #edf5ff;
+  --background-alt: #d3e4ff;
+  --foreground: #102030;
+  --surface: rgba(245, 250, 255, 0.96);
+  --surface-muted: rgba(236, 244, 255, 0.94);
+  --surface-strong: #ffffff;
+  --line: rgba(47, 99, 214, 0.16);
+  --line-strong: rgba(47, 99, 214, 0.24);
+  --accent: #2d6ae3;
+  --accent-strong: #1e4ea9;
+  --accent-soft: rgba(45, 106, 227, 0.16);
+  --muted: #5e7592;
+  --shadow-soft: 0 18px 42px rgba(45, 106, 227, 0.09);
+  --shadow-strong: 0 24px 70px rgba(45, 106, 227, 0.14);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Pretendard Variable", "Pretendard", var(--font-noto-sans-kr);
+  --font-display: var(--font-cormorant-garamond);
   --font-mono: var(--font-jetbrains-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
+  position: relative;
+  min-height: 100vh;
+  background: #edf5ff;
   color: var(--foreground);
   font-family: "Pretendard Variable", "Pretendard", var(--font-noto-sans-kr), "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   line-height: 1.65;
+  isolation: isolate;
+}
+
+body::before,
+body::after {
+  display: none;
 }
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: #fffaf4;
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.site-shell {
+  position: relative;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 16px 14px 56px;
+}
+
+.section-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(247, 251, 255, 0.98);
+  box-shadow: var(--shadow-soft);
+}
+
+.section-shell::before {
+  display: none;
+}
+
+.section-shell > * {
+  position: relative;
+}
+
+.panel-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(245, 250, 255, 0.94);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.blog-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(16, 32, 48, 0.1);
+  border-radius: 20px;
+  background: rgba(250, 252, 255, 0.96);
+  box-shadow: none;
+}
+
+.blog-shell > * {
+  position: relative;
+}
+
+.blog-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(16, 32, 48, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #31567e;
+}
+
+.blog-utility {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(16, 32, 48, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #102030;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 9999px;
+  background: rgba(237, 245, 255, 0.96);
+  padding: 0.55rem 0.9rem;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 9999px;
+  background: var(--accent);
+}
+
+@media (min-width: 640px) {
+  .site-shell {
+    padding-inline: 20px;
+    padding-top: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-shell {
+    padding-inline: 24px;
+    padding-top: 24px;
+    padding-bottom: 72px;
+  }
 }
 
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -83,33 +222,40 @@ body {
   animation-delay: 0.2s;
 }
 
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
 /* Markdown renderer styles */
 .markdown-body {
   max-width: none;
-  color: #0f172a;
-  line-height: 1.75;
-  font-size: 1.05rem;
+  color: #203750;
+  line-height: 1.82;
+  font-size: 1.08rem;
 }
 
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4 {
-  font-weight: 800;
-  line-height: 1.25;
+  font-family: "Pretendard Variable", "Pretendard", var(--font-noto-sans-kr), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.22;
   margin: 1.6rem 0 0.9rem;
 }
 
 .markdown-body h2 {
-  font-size: 1.8rem;
+  font-size: 1.72rem;
 }
 
 .markdown-body h3 {
-  font-size: 1.35rem;
+  font-size: 1.34rem;
 }
 
 .markdown-body p {
   margin: 0 0 1.1rem;
+  color: #243445;
 }
 
 .markdown-body ul,
@@ -123,20 +269,23 @@ body {
 }
 
 .markdown-body code {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.4rem;
+  background: rgba(47, 99, 214, 0.08);
+  border: 1px solid rgba(47, 99, 214, 0.14);
+  border-radius: 0.5rem;
   padding: 0.15rem 0.4rem;
   font-size: 0.95em;
+  color: var(--accent-strong);
 }
 
 .markdown-body pre {
-  background: #0f172a;
-  color: #e2e8f0;
-  padding: 1rem 1.1rem;
-  border-radius: 0.75rem;
+  background: #102030;
+  color: #eef4fb;
+  padding: 1.1rem 1.2rem;
+  border-radius: 1.2rem;
   overflow-x: auto;
   margin: 0 0 1.25rem;
+  border: 1px solid rgba(111, 167, 255, 0.18);
+  box-shadow: var(--shadow-soft);
 }
 
 .markdown-body pre code {
@@ -147,23 +296,24 @@ body {
 }
 
 .markdown-body blockquote {
-  border-left: 4px solid #cbd5e1;
-  padding-left: 1rem;
+  border-left: 4px solid var(--accent);
+  padding-left: 1.1rem;
   margin: 1.4rem 0;
-  color: #475569;
-  font-style: italic;
+  color: #48627d;
+  font-style: normal;
 }
 
 .markdown-body hr {
   border: none;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid rgba(45, 106, 227, 0.14);
   margin: 2rem 0;
 }
 
 .markdown-body a {
-  color: var(--accent-strong);
+  color: var(--accent);
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 }
 
 .markdown-body ul {
