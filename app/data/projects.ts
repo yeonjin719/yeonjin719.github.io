@@ -177,7 +177,7 @@ export const projects: TProject[] = [
             demo: 'https://prod.umc.it.kr/',
             github: 'https://github.com/UMC-PRODUCT/umc-product-web',
         },
-        youtube: 'https://youtu.be/2ZK6PzG5uU4',
+        youtube: 'https://youtu.be/w7N1-0zE99w',
         detailContent: `
             <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 통합 리크루팅 서비스 설계</h3>
             <p class="text-slate-600 mb-6 leading-relaxed">
