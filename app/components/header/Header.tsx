@@ -10,7 +10,7 @@ export default function Header() {
                 <Info />
 
                 {/* Refined Contact & Education Dashboard below Info */}
-                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left">
+                <div className="mt-16 grid w-full min-w-0 grid-cols-1 gap-6 text-left md:grid-cols-2">
                     <Connect />
                     <Education />
                 </div>

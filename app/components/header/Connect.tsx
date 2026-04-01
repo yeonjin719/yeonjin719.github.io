@@ -4,7 +4,7 @@ import { Link } from 'lucide-react';
 
 export default function Connect() {
     return (
-        <div className="group relative flex flex-col justify-between h-full bg-(--surface) border border-(--line) p-7 rounded-4xl backdrop-blur-xl shadow-(--shadow-soft) hover:border-(--accent-strong) hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+        <div className="group relative flex h-full min-w-0 flex-col justify-between overflow-hidden rounded-4xl border border-(--line) bg-(--surface) p-7 shadow-(--shadow-soft) backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-(--accent-strong)">
             {/* Ambient Background Glow */}
             <div className="absolute -inset-10 z-0 bg-(--accent)/10 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 

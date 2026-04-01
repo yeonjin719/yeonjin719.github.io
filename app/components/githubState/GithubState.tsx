@@ -63,8 +63,8 @@ export default function GithubState() {
                         </div>
 
                         {/* Calendar Container */}
-                        <div className="relative z-10 w-full flex justify-center overflow-x-auto pb-2 scrollbar-hide">
-                            <div className="min-w-max">
+                        <div className="relative z-10 w-full overflow-hidden pb-2">
+                            <div className="flex justify-center">
                                 {isMounted ? (
                                     <GitHubCalendar
                                         username={'yeonjin719'}
@@ -74,7 +74,10 @@ export default function GithubState() {
                                         }}
                                         colorScheme="dark"
                                         theme={calendarTheme}
-                                        showWeekdayLabels
+                                        blockSize={isMdOrBelow ? 8 : 11}
+                                        blockMargin={isMdOrBelow ? 3 : 4}
+                                        fontSize={isMdOrBelow ? 10 : 14}
+                                        showWeekdayLabels={!isMdOrBelow}
                                         transformData={
                                             isMdOrBelow
                                                 ? selectLastHalfYear
@@ -86,7 +89,7 @@ export default function GithubState() {
                                         }}
                                     />
                                 ) : (
-                                    <div className="h-[150px] w-[800px] max-w-full animate-pulse rounded-xl bg-(--line) opacity-20" />
+                                    <div className="h-[150px] w-full max-w-[800px] animate-pulse rounded-xl bg-(--line) opacity-20" />
                                 )}
                             </div>
                         </div>

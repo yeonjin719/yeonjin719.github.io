@@ -6,7 +6,7 @@ export default function Education() {
     const gpaPercentage = (educations.gpa / 4.5) * 100;
 
     return (
-        <div className="group relative flex flex-col justify-between h-full bg-(--surface) border border-(--line) p-7 rounded-4xl backdrop-blur-xl shadow-(--shadow-soft) hover:border-[#64d4ff]/40 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+        <div className="group relative flex h-full min-w-0 flex-col justify-between overflow-hidden rounded-4xl border border-(--line) bg-(--surface) p-7 shadow-(--shadow-soft) backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#64d4ff]/40">
             {/* Ambient Background Glow & Decorative Elements */}
             <div className="absolute -inset-10 z-0 bg-[#64d4ff]/10 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
@@ -16,8 +16,8 @@ export default function Education() {
             <div className="absolute -right-12 -top-12 w-40 h-40 border border-[#64d4ff]/5 rounded-full group-hover:scale-150 transition-transform duration-1000 delay-75 pointer-events-none"></div>
 
             <div className="relative z-10 w-full flex-1">
-                <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center gap-4">
+                <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex min-w-0 items-center gap-4">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-(--surface-hover) border border-(--line-strong) text-[#64d4ff] group-hover:bg-[#64d4ff]/10 group-hover:border-[#64d4ff]/30 group-hover:shadow-[0_0_15px_rgba(100,212,255,0.2)] transition-all duration-500 relative">
                             <GraduationCap
                                 size={18}
@@ -33,7 +33,7 @@ export default function Education() {
                         </p>
                     </div>
                     {/* Status Badge */}
-                    <div className="inline-flex items-center gap-2 rounded-full border border-[#64d4ff]/20 bg-[#64d4ff]/5 px-3 py-1.5 backdrop-blur-sm">
+                    <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#64d4ff]/20 bg-[#64d4ff]/5 px-3 py-1.5 backdrop-blur-sm">
                         <span className="relative flex h-2 w-2">
                             {!educations.graduate && (
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#64d4ff] opacity-75"></span>
@@ -62,7 +62,7 @@ export default function Education() {
                                     <Award size={12} />
                                 )}
                             </div>
-                            <div>
+                            <div className="min-w-0">
                                 <h3 className="text-[15px] sm:text-[17px] font-bold tracking-tight text-white group-hover/item:text-[#64d4ff] transition-colors duration-300">
                                     {deg.name}
                                 </h3>
@@ -79,7 +79,7 @@ export default function Education() {
 
             {/* Bottom Section (Date & GPA Progress) */}
             <div className="relative z-10 flex flex-col gap-4 mt-8 pt-6 border-t border-(--line-strong) group-hover:border-[#64d4ff]/20 transition-colors duration-500">
-                <div className="w-full flex items-center justify-between text-[13px] font-semibold text-[#afbdd5]">
+                <div className="flex w-full flex-wrap items-center justify-between gap-2 text-[13px] font-semibold text-[#afbdd5]">
                     <span className="flex items-center gap-1.5 bg-white/5 border border-(--line-strong) px-2.5 py-1 rounded-lg">
                         <span className="opacity-60 text-[11px] uppercase tracking-wider">
                             졸업 예정:

@@ -104,7 +104,7 @@ export default function Projects() {
                             return (
                                 <div
                                     key={`${project.title}-${idx}`}
-                                    className="absolute left-1/2 top-1/2 w-[280px] -translate-x-1/2 -translate-y-1/2 transition-all duration-700 sm:w-[380px] md:w-[480px]"
+                                    className="absolute left-1/2 top-1/2 w-[min(280px,calc(100vw-4rem))] -translate-x-1/2 -translate-y-1/2 transition-all duration-700 sm:w-[380px] md:w-[480px]"
                                     style={{
                                         transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                                         backfaceVisibility: 'hidden',

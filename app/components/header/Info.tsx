@@ -24,7 +24,7 @@ const focusCards = [
 
 export function Info() {
     return (
-        <div className="relative w-full flex flex-col items-center justify-center text-center tracking-tight text-foreground py-12 md:py-24">
+        <div className="relative flex w-full flex-col items-center justify-center py-12 text-center tracking-tight text-foreground md:py-24">
             {/* Background DarkVeil */}
             <div className="absolute inset-0 z-0 overflow-hidden rounded-4xl">
                 <DarkVeil
@@ -39,9 +39,9 @@ export function Info() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,var(--background)_80%)]"></div>
             </div>
 
-            <div className="relative z-10 flex flex-col items-center justify-center w-full">
+            <div className="relative z-10 flex w-full min-w-0 flex-col items-center justify-center">
                 {/* Minimalist Top Badge */}
-                <div className="inline-flex items-center gap-2 rounded-full border border-(--line-strong) bg-white/5 py-1.5 px-4 mb-8 text-xs font-semibold backdrop-blur-sm text-(--muted)">
+                <div className="mb-8 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-(--line-strong) bg-white/5 px-4 py-1.5 text-xs font-semibold text-(--muted) backdrop-blur-sm">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-(--accent) opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-(--accent)"></span>
@@ -64,7 +64,7 @@ export function Info() {
                 </p>
 
                 {/* 3 Key Focus Badges */}
-                <div className="mt-12 flex flex-wrap justify-center gap-3">
+                <div className="mt-12 flex w-full flex-wrap justify-center gap-3">
                     {focusCards.map((item, idx) => (
                         <div
                             key={idx}
