@@ -4,33 +4,35 @@ import { profile } from '../../data';
 
 export default function Footer() {
     return (
-        <footer className="px-5 pb-8 md:px-6 lg:px-7">
-            <div className="mx-auto max-w-[1480px]">
-                <div className="section-shell px-5 py-5 md:px-6">
-                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                        <div>
-                            <p className="text-sm font-medium text-[#17161d]">
+        <footer className="mt-20 border-t border-(--line) py-12 md:max-w-5xl mx-auto relative z-10 w-full px-5">
+            <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 px-6">
+                {/* Left Side: Copyright & Info */}
+                <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1 md:gap-2">
+                    <p className="font-outfit text-[#8ea0bd] text-sm md:text-base font-semibold tracking-wide">
                         © {new Date().getFullYear()} {profile.name}
-                            </p>
-                            <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#6f665f]">
-                                Built with Next.js and TypeScript
-                            </p>
-                        </div>
-                        <div className="flex gap-2">
-                            <FooterSocialLink
-                                href={profile.github}
-                                icon={<Github size={16} />}
-                            />
-                            <FooterSocialLink
-                                href={profile.linkedIn}
-                                icon={<Linkedin size={16} />}
-                            />
-                            <FooterSocialLink
-                                href={`mailto:${profile.email}`}
-                                icon={<Mail size={16} />}
-                            />
-                        </div>
-                    </div>
+                    </p>
+                    <p className="font-mono text-[10px] md:text-xs text-[#5e7592] uppercase tracking-[0.15em]">
+                        Built with Next.js & Tailwind CSS
+                    </p>
+                </div>
+
+                {/* Right Side: Social Links */}
+                <div className="flex items-center gap-4">
+                    <FooterSocialLink
+                        href={profile.github}
+                        icon={<Github size={18} />}
+                        label="GitHub"
+                    />
+                    <FooterSocialLink
+                        href={profile.linkedIn}
+                        icon={<Linkedin size={18} />}
+                        label="LinkedIn"
+                    />
+                    <FooterSocialLink
+                        href={`mailto:${profile.email}`}
+                        icon={<Mail size={18} />}
+                        label="Email"
+                    />
                 </div>
             </div>
         </footer>

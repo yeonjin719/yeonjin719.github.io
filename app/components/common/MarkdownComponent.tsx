@@ -10,7 +10,7 @@ export const markdownComponents: Components = {
         if (!lang) {
             return (
                 <code
-                    className="px-1 py-0.5 rounded bg-slate-100 font-mono text-[0.9em]"
+                    className="px-1.5 py-0.5 mx-0.5 rounded-md bg-(--surface-strong) border border-(--line) font-mono text-[0.85em] text-(--accent)"
                     {...props}
                 >
                     {children}

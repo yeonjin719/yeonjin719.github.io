@@ -17,11 +17,15 @@ export default function SocialLink({
             target={openInNewTab ? '_blank' : undefined}
             rel={openInNewTab ? 'noreferrer' : undefined}
             aria-label={label}
-            className="inline-flex items-center gap-2.5 rounded-full border border-black/10 bg-white/80 px-4 py-2 text-[#102030] backdrop-blur hover:-translate-y-0.5 hover:border-[#2f63d6] hover:text-[#2f63d6] hover:shadow-[0_14px_34px_rgba(47,99,214,0.12)]"
+            className="group/link flex items-center justify-center gap-2.5 rounded-xl border border-(--line-strong) bg-(--surface-hover) px-4 py-3 text-[#afbdd5] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-(--accent)/50 hover:bg-(--accent)/10 hover:text-(--accent) hover:shadow-[0_8px_20px_rgba(0,229,255,0.15)] focus:ring-2 focus:ring-(--accent)/50 focus:outline-none"
             download={download}
         >
-            {icon}
-            <span className="text-[13px] font-medium">{label}</span>
+            <span className="transition-transform duration-300 group-hover/link:scale-110 group-hover/link:rotate-[5deg]">
+                {icon}
+            </span>
+            <span className="text-[13px] font-semibold tracking-wide">
+                {label}
+            </span>
         </a>
     );
 }

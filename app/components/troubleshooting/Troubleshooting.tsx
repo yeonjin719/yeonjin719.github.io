@@ -1,6 +1,8 @@
-import { ArrowRight, BookOpen } from 'lucide-react';
-import SectionTitle from '@/app/components/common/SectionTitle';
+'use client';
+
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import RevealOnScroll from '@/app/components/common/RevealOnScroll';
 
 export default function Troubleshooting({
     blogPostsData,
@@ -14,62 +16,57 @@ export default function Troubleshooting({
     }>;
 }) {
     return (
-        <section className="section-shell">
-            <div className="px-5 py-5 md:px-6 md:py-6">
-                <SectionTitle
-                    icon={<BookOpen className="text-slate-700" />}
-                    title="Troubleshooting"
-                />
+        <section id="writing" className="relative mt-2 md:mt-4">
+            <div className="mx-auto max-w-5xl">
+                <div className="relative flex flex-col w-full">
+                    {!blogPostsData || blogPostsData.length === 0 ? (
+                        <div className="py-12 text-center text-[#5e7592] border-t border-dashed border-(--line)">
+                            <p className="text-base leading-relaxed font-medium">
+                                아직 작성된 글이 없습니다.
+                            </p>
+                        </div>
+                    ) : (
+                        blogPostsData.map((post, index) => (
+                            <RevealOnScroll key={index}>
+                                <Link
+                                    href={`/blog/${post.slug}`}
+                                    className="block group"
+                                >
+                                    <article
+                                        className={`relative flex flex-col md:flex-row items-start gap-4 md:gap-8 py-6 md:py-8 border-b border-(--line) transition-all duration-300 hover:bg-(--surface-hover) sm:-mx-6 sm:px-6 rounded-2xl w-full ${index === 0 ? 'pt-2 md:pt-4' : ''}`}
+                                    >
+                                        {/* Left Side: Date and Tag */}
+                                        <div className="w-full md:w-36 shrink-0 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 mt-1 md:mt-0">
+                                            <span className="font-mono text-sm font-semibold tracking-wider text-[#8ea0bd]/80 group-hover:text-white transition-colors">
+                                                {post.date}
+                                            </span>
+                                            <span className="rounded-sm border border-(--accent)/10 bg-(--accent)/5 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-(--accent) shadow-sm">
+                                                {post.tags && post.tags[0]
+                                                    ? post.tags[0]
+                                                    : 'Blog'}
+                                            </span>
+                                        </div>
 
-                {!blogPostsData || blogPostsData.length === 0 ? (
-                    <div className="panel-card border-dashed py-12 text-center">
-                        <p className="text-base leading-relaxed text-[#5e7592]">
-                            아직 작성된 글이 없습니다.
-                            <br />
-                            <code>posts</code> 폴더에 <code>.mdx</code> 파일을
-                            추가해보세요!
-                        </p>
-                    </div>
-                ) : (
-                    <div className="space-y-2.5">
-                        {blogPostsData.map((post, index) => (
-                            <Link
-                                key={index}
-                                href={`/blog/${post.slug}`}
-                                className="block group"
-                            >
-                                <article className="panel-card px-4 py-4 hover:-translate-y-0.5 hover:border-[#2f63d6]/25">
-                                    <div className="mb-2.5 flex items-center gap-2">
-                                        <span className="rounded-full border border-black/10 bg-white/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2f63d6]">
-                                            {post.tags && post.tags[0]
-                                                ? post.tags[0]
-                                                : 'Blog'}
-                                        </span>
-                                        <span className="text-[11px] text-[#5e7592]">
-                                            {post.date}
-                                        </span>
-                                    </div>
+                                        {/* Right Side: Content */}
+                                        <div className="flex flex-col gap-2 flex-1 w-full">
+                                            <h3 className="font-display text-lg md:text-xl font-bold leading-tight text-white group-hover:text-(--accent) transition-colors flex justify-between items-start">
+                                                <span>{post.title}</span>
+                                                <ArrowUpRight
+                                                    size={20}
+                                                    className="shrink-0 ml-4 opacity-0 transition-all duration-300 group-hover:opacity-100"
+                                                />
+                                            </h3>
 
-                                    <h3 className="mb-1.5 text-[1.25rem] font-semibold leading-tight tracking-[-0.03em] text-[#102030] md:text-[1.4rem]">
-                                        {post.title}
-                                    </h3>
-
-                                    <p className="mb-3 line-clamp-2 text-[14px] leading-6 text-[#3d3840]">
-                                        {post.desc}
-                                    </p>
-
-                                    <div className="mt-auto flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#6f665f] group-hover:text-[#2f63d6]">
-                                        Read Article
-                                        <ArrowRight
-                                            size={13}
-                                            className="ml-1 group-hover:translate-x-0.5"
-                                        />
-                                    </div>
-                                </article>
-                            </Link>
-                        ))}
-                    </div>
-                )}
+                                            <p className="mt-1 text-[14px] leading-relaxed text-[#afbdd5] break-keep font-medium w-full sm:w-[90%]">
+                                                {post.desc}
+                                            </p>
+                                        </div>
+                                    </article>
+                                </Link>
+                            </RevealOnScroll>
+                        ))
+                    )}
+                </div>
             </div>
         </section>
     );

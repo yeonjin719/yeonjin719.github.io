@@ -1,9 +1,5 @@
 import type { Metadata } from 'next';
-import {
-    Noto_Sans_KR,
-    JetBrains_Mono,
-    Cormorant_Garamond,
-} from 'next/font/google';
+import { Noto_Sans_KR, JetBrains_Mono, Outfit } from 'next/font/google';
 import './globals.css';
 
 const notoSansKr = Noto_Sans_KR({
@@ -16,10 +12,10 @@ const jetBrainsMono = JetBrains_Mono({
     subsets: ['latin'],
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-    variable: '--font-cormorant-garamond',
+const outfit = Outfit({
+    variable: '--font-outfit',
     subsets: ['latin'],
-    weight: ['500', '600', '700'],
+    weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 const siteUrl = 'https://yeonjin719.github.io';
@@ -91,9 +87,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ko">
+        <html lang="ko" className="scroll-smooth">
             <body
-                className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${cormorantGaramond.variable} antialiased`}
+                className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${outfit.variable} antialiased font-sans`}
             >
                 {children}
             </body>

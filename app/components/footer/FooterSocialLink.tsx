@@ -1,18 +1,23 @@
 export default function FooterSocialLink({
     href,
     icon,
+    label,
 }: {
     href: string;
     icon: React.ReactNode;
+    label?: string;
 }) {
     return (
         <a
             href={href}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[#102030] hover:-translate-y-0.5 hover:border-[#2f63d6] hover:text-[#2f63d6]"
+            aria-label={label}
+            className="group relative flex h-10 w-10 items-center justify-center rounded-full bg-(--surface-hover) text-[#8ea0bd] transition-all duration-300 hover:bg-(--accent) hover:text-[#0a1128]"
         >
-            {icon}
+            <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+                {icon}
+            </span>
         </a>
     );
 }

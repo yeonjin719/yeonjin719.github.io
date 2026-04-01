@@ -1,110 +1,68 @@
 import { TExperience } from '@/app/type/type';
 import DownloadButton from '@/app/components/common/DownloadButton';
+import RevealOnScroll from '@/app/components/common/RevealOnScroll';
+import { ExternalLink } from 'lucide-react';
 
 export default function Experience({
     exp,
-    variant = 'timeline',
+    index,
 }: {
     exp: TExperience;
-    variant?: 'timeline' | 'recognition';
+    index: number;
 }) {
-    const isRecognition = variant === 'recognition';
-    const categoryTone = {
-        Activity:
-            'border-[rgba(45,106,227,0.16)] bg-[rgba(237,244,255,0.96)] text-[#2f63d6]',
-        Education:
-            'border-[rgba(40,126,116,0.16)] bg-[rgba(236,250,246,0.96)] text-[#1d7869]',
-        Award:
-            'border-[rgba(224,169,51,0.18)] bg-[rgba(255,247,224,0.98)] text-[#9a6510]',
-        Certificate:
-            'border-[rgba(89,129,189,0.16)] bg-[rgba(238,246,255,0.98)] text-[#355f91]',
-    }[exp.category];
-
     return (
-        <article key={exp.id} className={isRecognition ? '' : 'relative md:pl-8'}>
-            {!isRecognition && (
-                <span className="absolute left-[8px] top-5 hidden h-3 w-3 -translate-x-1/2 rounded-full border border-white bg-[#2f63d6] shadow-[0_0_0_5px_rgba(237,245,255,1)] md:block" />
-            )}
-            <div
-                className={
-                    isRecognition
-                        ? 'rounded-[22px] border border-[rgba(45,106,227,0.12)] bg-[rgba(255,255,255,0.62)] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-sm'
-                        : 'rounded-[22px] border border-[rgba(45,106,227,0.14)] bg-[rgba(244,249,255,0.92)] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]'
-                }
+        <RevealOnScroll>
+            {/* Sleek Row Design */}
+            <article
+                className={`group relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 pb-8 border-b border-(--line) transition-all duration-300 hover:bg-(--surface-hover) sm:-mx-6 sm:px-6 rounded-2xl w-full ${index === 0 ? 'pt-2 md:pt-4' : 'pt-8'}`}
             >
-                <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                        <p
-                            className={
-                                isRecognition
-                                    ? 'text-[11px] font-semibold text-[#6d84a3]'
-                                    : 'text-[11px] font-semibold text-[#5e7592]'
-                            }
-                        >
-                            {exp.period}
-                        </p>
-                        <h3
-                            className={
-                                isRecognition
-                                    ? 'mt-2 text-[1.02rem] font-semibold leading-snug text-[#102030]'
-                                    : 'mt-2 text-[1.02rem] font-semibold leading-snug text-[#102030]'
-                            }
-                        >
-                            {exp.title}
-                        </h3>
-                    </div>
-                    <span
-                        className={`shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${categoryTone}`}
-                    >
+                {/* Left side: Period & Category Badge */}
+                <div className="w-full md:w-36 shrink-0 flex flex-row md:flex-col items-center md:items-start self-start justify-between md:justify-start gap-3 mt-1 md:mt-0">
+                    <span className="font-mono text-sm font-semibold tracking-wider text-[#8ea0bd]/80 group-hover:text-white transition-colors">
+                        {exp.period}
+                    </span>
+                    <span className="rounded-sm border border-(--accent)/10 bg-(--accent)/5 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-(--accent) shadow-sm">
                         {exp.category}
                     </span>
                 </div>
 
-                <p
-                    className={
-                        isRecognition
-                            ? 'mt-1.5 text-[13px] text-[#5e7592]'
-                            : 'mt-1.5 text-[13px] text-[#5e7592]'
-                    }
-                >
-                    {exp.organization}
-                </p>
-                <p
-                    className={
-                        isRecognition
-                            ? 'mt-2.5 text-[14px] leading-6 text-[#31465f]'
-                            : 'mt-2.5 text-[14px] leading-6 text-[#243445]'
-                    }
-                >
-                    {exp.description}
-                </p>
+                {/* Right side: Core Content */}
+                <div className="flex flex-col gap-2 flex-1 w-full">
+                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                        <h3 className="font-display text-lg md:text-xl font-bold leading-tight text-white group-hover:text-(--accent) transition-colors">
+                            {exp.title}
+                        </h3>
+                        <div className="hidden md:block h-3 w-px bg-white/10" />
+                        <span className="text-sm font-medium text-[#8ea0bd]">
+                            {exp.organization}
+                        </span>
+                    </div>
 
+                    <p className="mt-2 text-[14px] leading-relaxed text-[#afbdd5] break-keep font-medium opacity-90 w-full sm:w-[90%]">
+                        {exp.description}
+                    </p>
+                </div>
                 {(exp.download || exp.link) && (
-                    <div
-                        className={
-                            isRecognition
-                                ? 'mt-3.5 flex flex-wrap items-center gap-2'
-                                : 'mt-3.5 flex flex-wrap items-center gap-2 border-t border-black/10 pt-3'
-                        }
-                    >
-                        {exp.download && <DownloadButton download={exp.download} />}
+                    <div className="flex items-center gap-3 mt-3">
                         {exp.link && (
                             <a
                                 href={exp.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={
-                                    isRecognition
-                                        ? 'text-[11px] font-medium text-[#355f91] underline underline-offset-4 hover:text-[#2f63d6]'
-                                        : 'text-[11px] font-medium text-[#244a9f] underline underline-offset-4 hover:text-[#2f63d6]'
-                                }
+                                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8ea0bd] hover:text-(--accent) transition-colors"
                             >
-                                자세히 보기
+                                <ExternalLink size={14} />
+                                <span>Link</span>
                             </a>
+                        )}
+                        {exp.download && (
+                            <div className="scale-90 origin-left">
+                                <DownloadButton download={exp.download} />
+                            </div>
                         )}
                     </div>
                 )}
-            </div>
-        </article>
+            </article>
+        </RevealOnScroll>
     );
 }
