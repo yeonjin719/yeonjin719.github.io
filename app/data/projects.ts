@@ -82,7 +82,7 @@ export const projects: TProject[] = [
             'Tailwind CSS',
             'Chrome Extension (Manifest V3)',
         ],
-        images: ['images/eHelper/eHelper.png'],
+        images: ['images/eHelper/eHelper.png', 'images/eHelper/eHelper1.png'],
         results: [
             '과목별 페이지를 반복 탐색하던 eCampus 확인 동선을 대시보드 한 화면으로 축약',
             'Popup, Content Script, Background Service Worker를 분리한 Manifest V3 구조 설계',
@@ -91,7 +91,7 @@ export const projects: TProject[] = [
         ],
         links: {
             github: 'https://github.com/yeonjin719/eHelper',
-            demo: 'https://chromewebstore.google.com/detail/ehelper/cfdbiojeleeahgmofkjpkapoffjejhof?hl=ko&utm_source=ext_sidebar',
+            demo: 'https://ehelper.vercel.app/',
         },
         troubleshooting: {
             url: '/blog/ehelper-extension-story',
