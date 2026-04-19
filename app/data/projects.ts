@@ -72,7 +72,7 @@ export const projects: TProject[] = [
         title: 'eHelper',
         anchorId: 'ehelper',
         category: 'Chrome Extension (Solo)',
-        period: '2026.03.02 ~',
+        period: '2026.03.02 ~ 진행 중',
         description:
             '상명대학교 eCampus에서 과목별 과제, 퀴즈, 온라인 강의 진행 여부와 마감일을 한 번에 확인할 수 있도록 만든 Chrome Extension으로, Python 자동화 스크립트를 일반 학생도 쓸 수 있는 제품 형태로 확장한 프로젝트입니다.',
         techStack: [
@@ -135,7 +135,7 @@ export const projects: TProject[] = [
         title: 'UMC Product Web',
         anchorId: 'umc-product-web',
         category: 'Backoffice Web (Solo)',
-        period: '2025.12 ~ 진행 중',
+        period: '2025.12 ~ 2026.03',
         description:
             '학교별로 분산되던 UMC 리크루팅을 하나로 통합하기 위해 만든 운영 서비스로, 지원자 플로우와 운영진 백오피스를 한 제품 안에서 연결한 단독 프론트엔드 개발 프로젝트입니다.',
         techStack: [
