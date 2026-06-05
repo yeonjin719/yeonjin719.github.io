@@ -24,15 +24,22 @@ type MediaItem = { type: 'youtube' | 'image'; url: string };
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [npmDownloads, setNpmDownloads] = useState<number | null>(null);
+    const [isLoadingNpmDownloads, setIsLoadingNpmDownloads] = useState(false);
     const dialogRef = useRef<HTMLDivElement>(null);
     const modalId =
         project.anchorId ??
-        project.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9가-힣-]/g, '');
+        project.title
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9가-힣-]/g, '');
     const titleId = `project-modal-title-${modalId}`;
     const descriptionId = `project-modal-description-${modalId}`;
 
     const mediaItems: MediaItem[] = [
-        ...(project.youtube ? [{ type: 'youtube' as const, url: project.youtube }] : []),
+        ...(project.youtube
+            ? [{ type: 'youtube' as const, url: project.youtube }]
+            : []),
         ...project.images.map((url: string) => ({
             type: 'image' as const,
             url,
@@ -51,12 +58,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             if (mediaItems.length <= 1) return;
             if (e.key === 'ArrowLeft') {
                 setCurrentIndex((prev) =>
-                    prev === 0 ? mediaItems.length - 1 : prev - 1
+                    prev === 0 ? mediaItems.length - 1 : prev - 1,
                 );
             }
             if (e.key === 'ArrowRight') {
                 setCurrentIndex((prev) =>
-                    prev === mediaItems.length - 1 ? 0 : prev + 1
+                    prev === mediaItems.length - 1 ? 0 : prev + 1,
                 );
             }
         };
@@ -72,6 +79,53 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         };
     }, [onClose, mediaItems.length]);
 
+    useEffect(() => {
+        if (!project.npmPackageName) {
+            setNpmDownloads(null);
+            setIsLoadingNpmDownloads(false);
+            return;
+        }
+
+        const controller = new AbortController();
+
+        const loadDownloads = async () => {
+            setIsLoadingNpmDownloads(true);
+
+            try {
+                const endDate = new Date().toISOString().slice(0, 10);
+                const response = await fetch(
+                    `https://api.npmjs.org/downloads/point/2010-01-01:${endDate}/${project.npmPackageName}`,
+                    {
+                        signal: controller.signal,
+                    },
+                );
+
+                if (!response.ok) {
+                    throw new Error('Failed to load npm downloads');
+                }
+
+                const data: { downloads?: number } = await response.json();
+                setNpmDownloads(
+                    typeof data.downloads === 'number' ? data.downloads : null,
+                );
+            } catch {
+                if (!controller.signal.aborted) {
+                    setNpmDownloads(null);
+                }
+            } finally {
+                if (!controller.signal.aborted) {
+                    setIsLoadingNpmDownloads(false);
+                }
+            }
+        };
+
+        void loadDownloads();
+
+        return () => {
+            controller.abort();
+        };
+    }, [project.npmPackageName]);
+
     const getYoutubeId = (url: string) => {
         const regExp =
             /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -83,11 +137,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         if (mediaItems.length <= 1) return;
         if (direction === 'prev') {
             setCurrentIndex((prev) =>
-                prev === 0 ? mediaItems.length - 1 : prev - 1
+                prev === 0 ? mediaItems.length - 1 : prev - 1,
             );
         } else {
             setCurrentIndex((prev) =>
-                prev === mediaItems.length - 1 ? 0 : prev + 1
+                prev === mediaItems.length - 1 ? 0 : prev + 1,
             );
         }
     };
@@ -98,7 +152,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
     return createPortal(
         <div
-            className="fixed inset-0 z-[120] overflow-y-auto bg-black/70 backdrop-blur-xl animate-fade-in"
+            className="fixed inset-0 z-120 overflow-y-auto bg-black/70 backdrop-blur-xl animate-fade-in"
             onClick={handleBackdropClick}
             role="presentation"
         >
@@ -110,7 +164,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     aria-modal="true"
                     aria-labelledby={titleId}
                     aria-describedby={descriptionId}
-                    className="w-full max-w-5xl overflow-hidden rounded-[32px] border border-white/10 bg-[rgba(10,14,28,0.85)] shadow-[0_40px_120px_rgba(0,0,0,0.6)] outline-none animate-scale-up backdrop-blur-2xl"
+                    className="w-full max-w-5xl overflow-hidden rounded-4xl border border-white/10 bg-[rgba(10,14,28,0.85)] shadow-[0_40px_120px_rgba(0,0,0,0.6)] outline-none animate-scale-up backdrop-blur-2xl"
                 >
                     <div className="max-h-[calc(100dvh-2rem)] overflow-y-auto lg:max-h-[min(900px,calc(100dvh-5rem))] custom-scrollbar">
                         <div className="sticky top-0 z-20 border-b border-white/10 bg-[rgba(10,14,28,0.9)] px-6 py-5 backdrop-blur-xl md:px-8">
@@ -146,11 +200,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         {mediaItems.length > 0 && (
                             <div className="border-b border-white/10">
                                 <div className="relative aspect-video bg-black/40">
-                                    {mediaItems[currentIndex].type === 'youtube' ? (
+                                    {mediaItems[currentIndex].type ===
+                                    'youtube' ? (
                                         <iframe
                                             className="h-full w-full"
                                             src={`https://www.youtube.com/embed/${getYoutubeId(
-                                                mediaItems[currentIndex].url
+                                                mediaItems[currentIndex].url,
                                             )}`}
                                             title="YouTube video player"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -189,7 +244,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                 <ChevronRight size={20} />
                                             </button>
                                             <div className="absolute bottom-4 right-4 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-[12px] font-bold text-white backdrop-blur-md">
-                                                {currentIndex + 1} / {mediaItems.length}
+                                                {currentIndex + 1} /{' '}
+                                                {mediaItems.length}
                                             </div>
                                         </>
                                     )}
@@ -200,7 +256,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         {mediaItems.map((item, idx) => (
                                             <button
                                                 key={idx}
-                                                onClick={() => setCurrentIndex(idx)}
+                                                onClick={() =>
+                                                    setCurrentIndex(idx)
+                                                }
                                                 className={`h-16 w-24 shrink-0 overflow-hidden rounded-xl border transition-all ${
                                                     idx === currentIndex
                                                         ? 'border-[#7ffbf8] ring-2 ring-[#7ffbf8]/20'
@@ -212,7 +270,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                     <div className="relative flex h-full w-full items-center justify-center bg-black">
                                                         <Image
                                                             src={`https://img.youtube.com/vi/${getYoutubeId(
-                                                                item.url
+                                                                item.url,
                                                             )}/mqdefault.jpg`}
                                                             alt="Youtube thumbnail"
                                                             className="h-full w-full object-cover opacity-60"
@@ -230,7 +288,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                         height={64}
                                                         src={item.url}
                                                         alt={`Thumbnail ${idx + 1}`}
-                                                        className="h-full w-full object-cover grayscale-[20%] hover:grayscale-0"
+                                                        className="h-full w-full object-cover grayscale-20 hover:grayscale-0"
                                                     />
                                                 )}
                                             </button>
@@ -258,40 +316,63 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             <div className="mt-12 grid grid-cols-1 gap-6 border-t border-white/10 pt-10 md:grid-cols-2">
                                 <section className="rounded-3xl border border-white/8 bg-white/4 p-6 glass-shimmer">
                                     <div className="flex items-center gap-2 mb-5">
-                                        <Trophy size={16} className="text-[#7ffbf8]" />
+                                        <Trophy
+                                            size={16}
+                                            className="text-[#7ffbf8]"
+                                        />
                                         <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#7ffbf8]">
                                             Key Achievements
                                         </h4>
                                     </div>
                                     <ul className="space-y-4">
-                                        {project.results.map((result: string, i: number) => (
-                                            <li
-                                                key={i}
-                                                className="text-[14px] leading-relaxed text-[#d1d9e2] font-medium flex gap-3"
-                                            >
-                                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#7ffbf8]/40" />
-                                                {result}
-                                            </li>
-                                        ))}
+                                        {project.results.map(
+                                            (result: string, i: number) => (
+                                                <li
+                                                    key={i}
+                                                    className="text-[14px] leading-relaxed text-[#d1d9e2] font-medium flex gap-3"
+                                                >
+                                                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#7ffbf8]/40" />
+                                                    {result ===
+                                                        'NPM 다운로드 수' &&
+                                                    project.npmPackageName ? (
+                                                        <span>
+                                                            {isLoadingNpmDownloads
+                                                                ? 'NPM 다운로드 수 불러오는 중...'
+                                                                : npmDownloads !==
+                                                                    null
+                                                                  ? `NPM 다운로드 수 ${new Intl.NumberFormat('ko-KR').format(npmDownloads)}회 달성`
+                                                                  : 'NPM 다운로드 수 확인 실패'}
+                                                        </span>
+                                                    ) : (
+                                                        result
+                                                    )}
+                                                </li>
+                                            ),
+                                        )}
                                     </ul>
                                 </section>
 
                                 <section className="rounded-3xl border border-white/8 bg-white/4 p-6 glass-shimmer">
                                     <div className="flex items-center gap-2 mb-5">
-                                        <Cpu size={16} className="text-[#64d4ff]" />
+                                        <Cpu
+                                            size={16}
+                                            className="text-[#64d4ff]"
+                                        />
                                         <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#64d4ff]">
                                             Tech Stack
                                         </h4>
                                     </div>
                                     <div className="flex flex-wrap gap-2.5">
-                                        {project.techStack.map((tech: string) => (
-                                            <span
-                                                key={tech}
-                                                className="rounded-lg border border-white/10 bg-white/5 px-3.5 py-2 text-[13px] font-bold text-white transition-colors hover:bg-white/10"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
+                                        {project.techStack.map(
+                                            (tech: string) => (
+                                                <span
+                                                    key={tech}
+                                                    className="rounded-lg border border-white/10 bg-white/5 px-3.5 py-2 text-[13px] font-bold text-white transition-colors hover:bg-white/10"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ),
+                                        )}
                                     </div>
                                 </section>
                             </div>
@@ -325,6 +406,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 </div>
             </div>
         </div>,
-        document.body
+        document.body,
     );
 }

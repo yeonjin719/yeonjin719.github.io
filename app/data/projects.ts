@@ -4,6 +4,7 @@ export const projects: TProject[] = [
     {
         title: 'Colbrush',
         anchorId: 'colbrush',
+        npmPackageName: 'colbrush',
         category: 'Open Source Library',
         period: '2025.06.24 ~ 2025.11.11',
         description:
@@ -24,8 +25,8 @@ export const projects: TProject[] = [
         ],
         results: [
             '2025 오픈소스 개발자대회 에프에이리눅스(주) 대표상 수상',
-            'NPM 다운로드 수 2,300회 달성 (3개월 간)',
-            'GitHub Star 44개 달성 (2026-02-23 기준)',
+            'NPM 다운로드 수',
+            'GitHub Star 40개',
             'Github Actions를 활용한 CI/CD 및 자동 배포 파이프라인 구축',
             '오픈소스 협업으로 3인 코어 컨트리뷰터 체계 운영',
         ],

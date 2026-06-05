@@ -5,7 +5,7 @@ import { experiences } from '@/app/data';
 
 export default function Experiences() {
     return (
-        <div className="relative mt-2 md:mt-4">
+        <div className="relative mt-2 lg:mt-4">
             <div className="mx-auto max-w-5xl">
                 {/* Sleek List Container */}
                 <div className="relative flex flex-col w-full">
