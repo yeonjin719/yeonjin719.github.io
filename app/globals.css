@@ -263,17 +263,26 @@ button {
 
 .scene-stack {
   display: grid;
-  gap: 5rem;
+  width: 100%;
+  min-width: 0;
+  gap: clamp(3.5rem, 8vw, 5rem);
 }
 
 .scene-panel,
 .scene-panel-intro {
+  width: 100%;
+  min-width: 0;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .scene-shell {
   position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   border: none;
   border-radius: 0;
@@ -313,11 +322,15 @@ button {
 
 .scene-content {
   display: grid;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   gap: 0;
 }
 
 .section-group {
   display: grid;
+  min-width: 0;
   gap: 0;
 }
 
@@ -711,9 +724,10 @@ button {
   
   .scene-panel,
   .scene-panel-intro {
-    min-height: calc(100vh - 5rem);
     display: grid;
     align-content: start;
+    min-height: auto;
+    max-width: 100%;
   }
 }
 

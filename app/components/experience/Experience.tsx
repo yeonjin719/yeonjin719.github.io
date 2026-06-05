@@ -14,10 +14,10 @@ export default function Experience({
         <RevealOnScroll>
             {/* Sleek Row Design */}
             <article
-                className={`group relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 pb-8 border-b border-(--line) transition-all duration-300 hover:bg-(--surface-hover) sm:-mx-6 sm:px-6 rounded-2xl w-full ${index === 0 ? 'pt-2 md:pt-4' : 'pt-8'}`}
+                className={`group relative flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-8 pb-8 border-b border-(--line) transition-all duration-300 hover:bg-(--surface-hover) lg:-mx-6 lg:px-6 rounded-2xl w-full ${index === 0 ? 'pt-2 lg:pt-4' : 'pt-8'}`}
             >
                 {/* Left side: Period & Category Badge */}
-                <div className="w-full md:w-36 shrink-0 flex flex-row md:flex-col items-center md:items-start self-start justify-between md:justify-start gap-3 mt-1 md:mt-0">
+                <div className="w-full lg:w-36 shrink-0 flex flex-row lg:flex-col items-center lg:items-start self-start justify-between lg:justify-start gap-3 mt-1 lg:mt-0">
                     <span className="font-mono text-sm font-semibold tracking-wider text-[#8ea0bd]/80 group-hover:text-white transition-colors">
                         {exp.period}
                     </span>
@@ -28,11 +28,11 @@ export default function Experience({
 
                 {/* Right side: Core Content */}
                 <div className="flex flex-col gap-2 flex-1 w-full">
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                        <h3 className="font-display text-lg md:text-xl font-bold leading-tight text-white group-hover:text-(--accent) transition-colors">
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
+                        <h3 className="font-display text-lg lg:text-xl font-bold leading-tight text-white group-hover:text-(--accent) transition-colors">
                             {exp.title}
                         </h3>
-                        <div className="hidden md:block h-3 w-px bg-white/10" />
+                        <div className="hidden lg:block h-3 w-px bg-white/10" />
                         <span className="text-sm font-medium text-[#8ea0bd]">
                             {exp.organization}
                         </span>

@@ -28,7 +28,7 @@ export default function Skills({
                         return (
                             <RevealOnScroll key={category}>
                                 <article
-                                    className={`group relative flex flex-col md:flex-row items-start md:items-center py-6 md:py-8 border-b border-(--line) transition-all duration-300 hover:bg-(--surface-hover) sm:-mx-6 sm:px-6 rounded-2xl w-full ${index === 0 ? 'pt-2 md:pt-4' : ''}`}
+                                    className={`group relative flex flex-col md:flex-row items-start md:items-center py-6 md:py-8 border-b border-(--line) transition-all duration-300 hover:bg-(--surface-hover) lg:-mx-6 lg:px-6 rounded-2xl w-full ${index === 0 ? 'pt-2 md:pt-4' : ''}`}
                                 >
                                     {/* Left side: Category Icon & Title */}
                                     <div className="w-full md:w-80 lg:w-80 shrink-0 flex items-center md:items-start gap-4 mb-4 md:mb-0">

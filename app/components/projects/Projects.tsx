@@ -20,13 +20,13 @@ export default function Projects() {
     const angleStep = 360 / count;
 
     // Adjust radius based on screen size
-    const [radius, setRadius] = useState(450);
+    const [radius, setRadius] = useState(520);
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 640) setRadius(300);
-            else if (window.innerWidth < 1024) setRadius(400);
-            else setRadius(550);
+            if (window.innerWidth < 640) setRadius(380);
+            else if (window.innerWidth < 1024) setRadius(500);
+            else setRadius(620);
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -81,7 +81,7 @@ export default function Projects() {
             >
                 {/* 3D Carousel Container */}
                 <div
-                    className="relative flex h-[500px] items-center justify-center perspective-[2000px] md:h-[600px]"
+                    className="relative flex h-[500px] items-center justify-center perspective-[2000px] lg:h-[600px]"
                     onMouseEnter={() => setIsAutoPlay(false)}
                     onMouseLeave={() => setIsAutoPlay(true)}
                 >
@@ -104,9 +104,9 @@ export default function Projects() {
                             return (
                                 <div
                                     key={`${project.title}-${idx}`}
-                                    className="absolute left-1/2 top-1/2 w-[min(280px,calc(100vw-4rem))] -translate-x-1/2 -translate-y-1/2 transition-all duration-700 sm:w-[380px] md:w-[480px]"
+                                    className="absolute left-1/2 top-1/2 w-[min(280px,calc(100vw-4rem))] transition-all duration-700 sm:w-[380px] lg:w-[480px]"
                                     style={{
-                                        transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                                        transform: `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${radius}px)`,
                                         backfaceVisibility: 'hidden',
                                         opacity: isActive ? 1 : 0.6,
                                         filter: isActive
@@ -134,7 +134,7 @@ export default function Projects() {
                     </div>
 
                     {/* Navigation Overlay */}
-                    <div className="absolute inset-y-0 left-2 right-2 md:left-6 md:right-6 z-50 flex items-center justify-between pointer-events-none">
+                    <div className="absolute inset-y-0 left-2 right-2 lg:left-6 lg:right-6 z-50 flex items-center justify-between pointer-events-none">
                         <button
                             onClick={prevProject}
                             className="flex h-14 w-14 items-center justify-center rounded-full border border-(--line-strong) bg-(--surface) text-foreground shadow-xl backdrop-blur-md transition-all duration-300 hover:border-(--accent-strong) hover:bg-(--surface-strong) hover:text-(--accent) hover:-translate-x-2 group pointer-events-auto"
