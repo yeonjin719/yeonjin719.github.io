@@ -347,7 +347,6 @@ export const projects: TProject[] = [
             url: '/blog/withtime-dev-story',
         },
     },
-
     {
         title: '청년돋움 (YOUTH-STEP-UP)',
         anchorId: 'youth-step-up',
@@ -468,42 +467,42 @@ export const projects: TProject[] = [
             </p>
         `,
     },
-    {
-        title: 'SMUMC Web',
-        anchorId: 'smumc-web',
-        category: 'Club Website (Solo)',
-        period: '2024.09.30 ~ 2024.12.16',
-        description:
-            '상명대학교 UMC 동아리 공식 웹사이트입니다. 기획부터 디자인, 개발까지 1인 프로젝트로 진행했습니다.',
-        techStack: [
-            'React',
-            'TypeScript',
-            'Styled-components',
-            'React-slick',
-            'Vite',
-        ],
-        youtube: 'https://youtu.be/PeUM7m_KCMs',
-        images: ['images/smumc/smumc1.png'],
-        results: [
-            'Context API를 활용한 라이트/다크 모드 구현',
-            '반응형 디자인 및 스크롤 애니메이션 최적화',
-        ],
-        links: {
-            demo: 'https://smumc-web.vercel.app/',
-            github: 'https://github.com/yeonjin719/SMUMC-Web',
-        },
-        detailContent: `
-        <h3 class="text-xl font-bold text-slate-900 mb-3">🎨 디자인 시스템 및 반응형 구현</h3>
-        <p class="text-slate-300 mb-6 leading-relaxed">
-            동아리 브랜딩 강화를 위해 컬러 팔레트와 타이포그래피 시스템을 정의하고, 재사용 가능한 UI 컴포넌트 라이브러리를 구축했습니다. 
-            모든 디바이스에서 최적의 경험을 제공하기 위해 <strong>Mobile-First</strong> 전략으로 반응형 디자인을 구현했습니다.
-        </p>
+    // {
+    //     title: 'SMUMC Web',
+    //     anchorId: 'smumc-web',
+    //     category: 'Club Website (Solo)',
+    //     period: '2024.09.30 ~ 2024.12.16',
+    //     description:
+    //         '상명대학교 UMC 동아리 공식 웹사이트입니다. 기획부터 디자인, 개발까지 1인 프로젝트로 진행했습니다.',
+    //     techStack: [
+    //         'React',
+    //         'TypeScript',
+    //         'Styled-components',
+    //         'React-slick',
+    //         'Vite',
+    //     ],
+    //     youtube: 'https://youtu.be/PeUM7m_KCMs',
+    //     images: ['images/smumc/smumc1.png'],
+    //     results: [
+    //         'Context API를 활용한 라이트/다크 모드 구현',
+    //         '반응형 디자인 및 스크롤 애니메이션 최적화',
+    //     ],
+    //     links: {
+    //         demo: 'https://smumc-web.vercel.app/',
+    //         github: 'https://github.com/yeonjin719/SMUMC-Web',
+    //     },
+    //     detailContent: `
+    //     <h3 class="text-xl font-bold text-slate-900 mb-3">🎨 디자인 시스템 및 반응형 구현</h3>
+    //     <p class="text-slate-300 mb-6 leading-relaxed">
+    //         동아리 브랜딩 강화를 위해 컬러 팔레트와 타이포그래피 시스템을 정의하고, 재사용 가능한 UI 컴포넌트 라이브러리를 구축했습니다.
+    //         모든 디바이스에서 최적의 경험을 제공하기 위해 <strong>Mobile-First</strong> 전략으로 반응형 디자인을 구현했습니다.
+    //     </p>
 
-        <h3 class="text-xl font-bold text-slate-900 mb-3">🌗 다크 모드 구현</h3>
-        <p class="text-slate-300 mb-6 leading-relaxed">
-            <strong>Context API</strong>와 <strong>Styled-components</strong>의 ThemeProvider를 활용하여 전역 테마 관리 시스템을 구축했습니다. 
-            사용자의 시스템 설정을 감지하여 초기 테마를 자동으로 적용하고, 토글 버튼으로 부드러운 테마 전환 경험을 제공합니다.
-        </p>
-        `,
-    },
+    //     <h3 class="text-xl font-bold text-slate-900 mb-3">🌗 다크 모드 구현</h3>
+    //     <p class="text-slate-300 mb-6 leading-relaxed">
+    //         <strong>Context API</strong>와 <strong>Styled-components</strong>의 ThemeProvider를 활용하여 전역 테마 관리 시스템을 구축했습니다.
+    //         사용자의 시스템 설정을 감지하여 초기 테마를 자동으로 적용하고, 토글 버튼으로 부드러운 테마 전환 경험을 제공합니다.
+    //     </p>
+    //     `,
+    // },
 ];
