@@ -427,7 +427,7 @@ export const projects: TProject[] = [
             'react-day-picker',
             'Vitest',
         ],
-        images: [],
+        images: ['images/calio/calio.png'],
         results: [
             'react-big-calendar 기반 드래그앤드롭 캘린더와 반복 일정 편집 흐름 구현',
             '일정 상세 조회 404를 별도 처리하는 retry 정책으로 네트워크 예외 대응',
@@ -436,6 +436,7 @@ export const projects: TProject[] = [
         ],
         links: {
             github: 'https://github.com/2026-Capstone-Project/FrontEnd',
+            demo: 'https://calio.co.kr',
         },
         detailContent: `
             <h3 class="text-xl font-bold text-slate-900 mb-3">🎯 기록 기반 선제 제안형 캘린더</h3>

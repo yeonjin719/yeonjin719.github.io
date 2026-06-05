@@ -11,6 +11,7 @@ import {
     PlayCircle,
     Trophy,
     Cpu,
+    NotebookText,
 } from 'lucide-react';
 import Image from 'next/image';
 import { TProject } from '@/app/type/type';
@@ -378,6 +379,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             </div>
 
                             <div className="mt-10 flex flex-wrap gap-4">
+                                {project.troubleshooting?.url && (
+                                    <a
+                                        href={project.troubleshooting.url}
+                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-[#7ffbf8]/30 bg-[#7ffbf8]/10 px-8 py-4 text-sm font-bold text-[#cffffd] transition-all hover:border-[#7ffbf8]/60 hover:bg-[#7ffbf8]/18"
+                                    >
+                                        <NotebookText size={18} />
+                                        <span>Read Blog Post</span>
+                                    </a>
+                                )}
                                 {project.links.demo && (
                                     <a
                                         href={project.links.demo}
