@@ -9,20 +9,24 @@ import RevealOnScroll from '@/app/components/common/RevealOnScroll';
 
 export default function GithubState() {
     const [isMounted, setIsMounted] = useState(false);
-    const [isMdOrBelow, setIsMdOrBelow] = useState(false);
+    const [viewportWidth, setViewportWidth] = useState(1024);
 
     useEffect(() => {
         const rafId = window.requestAnimationFrame(() => setIsMounted(true));
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
-        const handleChange = (mq: MediaQueryList | MediaQueryListEvent) =>
-            setIsMdOrBelow(mq.matches);
-        handleChange(mediaQuery);
-        mediaQuery.addEventListener('change', handleChange);
+        const handleResize = () => setViewportWidth(window.innerWidth);
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
         return () => {
             window.cancelAnimationFrame(rafId);
-            mediaQuery.removeEventListener('change', handleChange);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const isMobile = viewportWidth < 640;
+    const isMidSize = viewportWidth >= 640 && viewportWidth < 840;
+    const isTablet = viewportWidth >= 840 && viewportWidth < 1024;
+    const shouldShowHalfYear = isMobile || isMidSize;
 
     return (
         <section id="github" className="relative mt-2 md:mt-4">
@@ -51,7 +55,7 @@ export default function GithubState() {
                                 href="https://github.com/yeonjin719"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 rounded-full border border-(--line) bg-white/5 px-4 py-2 text-sm font-semibold text-[#afbdd5] transition-all duration-300 hover:bg-(--accent)/10 hover:text-(--accent) hover:border-(--accent)/30"
+                                className="inline-flex w-fit items-center gap-1.5 rounded-full border border-(--line) bg-white/5 px-4 py-2 text-sm font-semibold text-[#afbdd5] transition-all duration-300 hover:bg-(--accent)/10 hover:text-(--accent) hover:border-(--accent)/30"
                             >
                                 <Github size={16} />
                                 <span>@yeonjin719</span>
@@ -63,8 +67,8 @@ export default function GithubState() {
                         </div>
 
                         {/* Calendar Container */}
-                        <div className="relative z-10 w-full overflow-hidden pb-2">
-                            <div className="flex justify-center">
+                        <div className="relative z-10 w-full min-w-0 overflow-hidden pb-2">
+                            <div className="flex min-w-0 justify-center">
                                 {isMounted ? (
                                     <GitHubCalendar
                                         username={'yeonjin719'}
@@ -74,12 +78,26 @@ export default function GithubState() {
                                         }}
                                         colorScheme="dark"
                                         theme={calendarTheme}
-                                        blockSize={isMdOrBelow ? 8 : 11}
-                                        blockMargin={isMdOrBelow ? 3 : 4}
-                                        fontSize={isMdOrBelow ? 10 : 14}
-                                        showWeekdayLabels={!isMdOrBelow}
+                                        blockSize={
+                                            isMobile
+                                                ? 8
+                                                : isMidSize
+                                                  ? 10
+                                                  : isTablet
+                                                    ? 9
+                                                    : 11
+                                        }
+                                        blockMargin={isMobile ? 3 : 4}
+                                        fontSize={
+                                            isMobile
+                                                ? 10
+                                                : isMidSize || isTablet
+                                                  ? 12
+                                                  : 14
+                                        }
+                                        showWeekdayLabels={!isMobile}
                                         transformData={
-                                            isMdOrBelow
+                                            shouldShowHalfYear
                                                 ? selectLastHalfYear
                                                 : undefined
                                         }
