@@ -175,7 +175,7 @@ export const projects: TProject[] = [
             'Storybook/Chromatic/Vitest/Playwright 기반 품질 검증 파이프라인 운영',
         ],
         links: {
-            demo: 'https://prod.umc.it.kr/',
+            // demo: 'https://prod.umc.it.kr/',
             github: 'https://github.com/UMC-PRODUCT/umc-product-web',
         },
         youtube: 'https://youtu.be/w7N1-0zE99w',
