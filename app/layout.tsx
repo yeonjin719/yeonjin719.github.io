@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Noto_Sans_KR, JetBrains_Mono, Outfit } from 'next/font/google';
+import GoogleAnalytics from './components/common/GoogleAnalytics';
 import './globals.css';
 
 const notoSansKr = Noto_Sans_KR({
@@ -91,6 +92,7 @@ export default function RootLayout({
             <body
                 className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${outfit.variable} antialiased font-sans`}
             >
+                <GoogleAnalytics />
                 {children}
             </body>
         </html>
