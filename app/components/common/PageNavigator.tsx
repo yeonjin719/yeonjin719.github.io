@@ -82,7 +82,7 @@ export default function PageNavigator() {
             aria-label="Page sections"
             className="fixed top-6 left-1/2 z-100 -translate-x-1/2 hidden lg:block"
         >
-            <div className="flex items-center gap-1 border border-white/10 rounded-full bg-[#040610]/60 p-1.5 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]">
+            <div className="flex items-center gap-1 border border-white/10 rounded-full bg-[var(--ink)]/60 p-1.5 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]">
                 {sections.map((section, index) => {
                     const isActive = activeId === section.id;
                     return (
@@ -92,15 +92,15 @@ export default function PageNavigator() {
                             onClick={(e) => handleClick(e, section.id)}
                             className={`group relative flex items-center gap-2.5 rounded-full px-4 py-2 transition-all duration-500 ${
                                 isActive
-                                    ? 'bg-white text-[#040610] shadow-[0_10px_20px_rgba(255,255,255,0.15)]'
-                                    : 'text-[#8ea0bd] hover:text-white hover:bg-white/5'
+                                    ? 'bg-white text-[var(--ink)] shadow-[0_10px_20px_rgba(255,255,255,0.15)]'
+                                    : 'text-[var(--muted)] hover:text-white hover:bg-white/5'
                             }`}
                         >
                             <span
                                 className={`font-mono text-[10px] font-extrabold tracking-tighter transition-colors ${
                                     isActive
-                                        ? 'text-[#040610]/60'
-                                        : 'text-[#7ffbf8]/60 group-hover:text-[#7ffbf8]'
+                                        ? 'text-[var(--ink)]/60'
+                                        : 'text-[var(--accent-mint)]/60 group-hover:text-[var(--accent-mint)]'
                                 }`}
                             >
                                 {String(index).padStart(2, '0')}

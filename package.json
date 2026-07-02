@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "link-previews": "node scripts/update-link-previews.mjs",
+    "predev": "npm run link-previews",
     "dev": "next dev",
+    "prebuild": "npm run link-previews",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -11,6 +14,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "border-beam": "^1.0.1",
+    "colbrush": "^1.23.0",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.554.0",

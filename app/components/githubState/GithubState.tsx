@@ -39,14 +39,14 @@ export default function GithubState() {
                         {/* Top Header */}
                         <div className="relative z-10 w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
                             <div className="flex items-center gap-4">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-black/20 border border-(--line-strong) text-[#8ea0bd] group-hover:text-(--accent) group-hover:border-(--accent)/30 group-hover:bg-(--accent)/5 transition-all duration-300">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-black/20 border border-(--line-strong) text-[var(--muted)] group-hover:text-(--accent) group-hover:border-(--accent)/30 group-hover:bg-(--accent)/5 transition-all duration-300">
                                     <Activity size={24} />
                                 </div>
                                 <div>
                                     <h3 className="font-display text-xl md:text-2xl font-bold tracking-wide text-white group-hover:text-(--accent) transition-colors">
                                         GitHub Contributions
                                     </h3>
-                                    <p className="text-sm font-medium text-[#8ea0bd] mt-1">
+                                    <p className="text-sm font-medium text-[var(--muted)] mt-1">
                                         오픈소스 활동 및 꾸준한 커밋 기록
                                     </p>
                                 </div>
@@ -55,7 +55,7 @@ export default function GithubState() {
                                 href="https://github.com/yeonjin719"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex w-fit items-center gap-1.5 rounded-full border border-(--line) bg-white/5 px-4 py-2 text-sm font-semibold text-[#afbdd5] transition-all duration-300 hover:bg-(--accent)/10 hover:text-(--accent) hover:border-(--accent)/30"
+                                className="inline-flex w-fit items-center gap-1.5 rounded-full border border-(--line) bg-white/5 px-4 py-2 text-sm font-semibold text-[var(--muted-strong)] transition-all duration-300 hover:bg-(--accent)/10 hover:text-(--accent) hover:border-(--accent)/30"
                             >
                                 <Github size={16} />
                                 <span>@yeonjin719</span>
@@ -102,7 +102,7 @@ export default function GithubState() {
                                                 : undefined
                                         }
                                         style={{
-                                            color: '#8ea0bd', // matches our sub-text color
+                                            color: 'var(--muted)', // matches our sub-text color
                                             fontWeight: 500,
                                         }}
                                     />

@@ -18,7 +18,7 @@ export default function Experience({
             >
                 {/* Left side: Period & Category Badge */}
                 <div className="w-full lg:w-36 shrink-0 flex flex-row lg:flex-col items-center lg:items-start self-start justify-between lg:justify-start gap-3 mt-1 lg:mt-0">
-                    <span className="font-mono text-sm font-semibold tracking-wider text-[#8ea0bd]/80 group-hover:text-white transition-colors">
+                    <span className="font-mono text-sm font-semibold tracking-wider text-[var(--muted)]/80 group-hover:text-white transition-colors">
                         {exp.period}
                     </span>
                     <span className="rounded-sm border border-(--accent)/10 bg-(--accent)/5 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-(--accent) shadow-sm">
@@ -33,12 +33,12 @@ export default function Experience({
                             {exp.title}
                         </h3>
                         <div className="hidden lg:block h-3 w-px bg-white/10" />
-                        <span className="text-sm font-medium text-[#8ea0bd]">
+                        <span className="text-sm font-medium text-[var(--muted)]">
                             {exp.organization}
                         </span>
                     </div>
 
-                    <p className="mt-2 text-[14px] leading-relaxed text-[#afbdd5] break-keep font-medium opacity-90 w-full sm:w-[90%]">
+                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--muted-strong)] break-keep font-medium opacity-90 w-full sm:w-[90%]">
                         {exp.description}
                     </p>
                 </div>
@@ -49,7 +49,7 @@ export default function Experience({
                                 href={exp.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8ea0bd] hover:text-(--accent) transition-colors"
+                                className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--muted)] hover:text-(--accent) transition-colors"
                             >
                                 <ExternalLink size={14} />
                                 <span>Link</span>

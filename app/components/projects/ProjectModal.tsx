@@ -172,11 +172,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             <div className="flex items-start justify-between gap-4">
                                 <div>
                                     <div className="mb-2 flex flex-wrap items-center gap-2">
-                                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#8ea0bd]">
+                                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--muted)]">
                                             {project.period}
                                         </span>
                                         <span className="h-1 w-1 rounded-full bg-white/20" />
-                                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#7ffbf8]">
+                                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--accent-mint)]">
                                             {project.category}
                                         </span>
                                     </div>
@@ -190,7 +190,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 <button
                                     onClick={onClose}
-                                    className="group rounded-full border border-white/10 bg-white/5 p-2.5 text-[#8ea0bd] transition-all hover:bg-white/10 hover:text-white"
+                                    className="group rounded-full border border-white/10 bg-white/5 p-2.5 text-[var(--muted)] transition-all hover:bg-white/10 hover:text-white"
                                     aria-label="모달 닫기"
                                 >
                                     <X size={20} />
@@ -262,7 +262,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                 }
                                                 className={`h-16 w-24 shrink-0 overflow-hidden rounded-xl border transition-all ${
                                                     idx === currentIndex
-                                                        ? 'border-[#7ffbf8] ring-2 ring-[#7ffbf8]/20'
+                                                        ? 'border-[var(--accent-mint)] ring-2 ring-[var(--accent-mint)]/20'
                                                         : 'border-white/10 hover:border-white/30'
                                                 }`}
                                                 aria-label={`${idx + 1}번 미디어 보기`}
@@ -302,7 +302,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         <div className="px-6 py-8 md:px-10 md:py-10">
                             <p
                                 id={descriptionId}
-                                className="mb-10 text-[17px] leading-[1.8] text-[#afbdd5] font-medium"
+                                className="mb-10 text-[17px] leading-[1.8] text-[var(--muted-strong)] font-medium"
                             >
                                 {project.description}
                             </p>
@@ -319,9 +319,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                     <div className="flex items-center gap-2 mb-5">
                                         <Trophy
                                             size={16}
-                                            className="text-[#7ffbf8]"
+                                            className="text-[var(--accent-mint)]"
                                         />
-                                        <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#7ffbf8]">
+                                        <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--accent-mint)]">
                                             Key Achievements
                                         </h4>
                                     </div>
@@ -332,7 +332,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                                     key={i}
                                                     className="text-[14px] leading-relaxed text-[#d1d9e2] font-medium flex gap-3"
                                                 >
-                                                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#7ffbf8]/40" />
+                                                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-mint)]/40" />
                                                     {result ===
                                                         'NPM 다운로드 수' &&
                                                     project.npmPackageName ? (
@@ -357,9 +357,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                     <div className="flex items-center gap-2 mb-5">
                                         <Cpu
                                             size={16}
-                                            className="text-[#64d4ff]"
+                                            className="text-[var(--accent-alt)]"
                                         />
-                                        <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#64d4ff]">
+                                        <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--accent-alt)]">
                                             Tech Stack
                                         </h4>
                                     </div>
@@ -382,7 +382,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                 {project.troubleshooting?.url && (
                                     <a
                                         href={project.troubleshooting.url}
-                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-[#7ffbf8]/30 bg-[#7ffbf8]/10 px-8 py-4 text-sm font-bold text-[#cffffd] transition-all hover:border-[#7ffbf8]/60 hover:bg-[#7ffbf8]/18"
+                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--accent-mint)]/30 bg-[var(--accent-mint)]/10 px-8 py-4 text-sm font-bold text-[#cffffd] transition-all hover:border-[var(--accent-mint)]/60 hover:bg-[var(--accent-mint)]/18"
                                     >
                                         <NotebookText size={18} />
                                         <span>Read Blog Post</span>
@@ -393,7 +393,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         href={project.links.demo}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold text-[#040610] transition-all hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(255,255,255,0.15)]"
+                                        className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold text-[var(--ink)] transition-all hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(255,255,255,0.15)]"
                                     >
                                         <ExternalLink size={18} />
                                         <span>View Live Demo</span>
@@ -404,7 +404,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                         href={project.links.github}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-bold text-white transition-all hover:bg-white/10 hover:border-[#7ffbf8]/40"
+                                        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-bold text-white transition-all hover:bg-white/10 hover:border-[var(--accent-mint)]/40"
                                     >
                                         <Github size={18} />
                                         <span>Source Code</span>

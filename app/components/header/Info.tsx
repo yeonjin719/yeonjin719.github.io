@@ -13,7 +13,7 @@ const focusCards = [
     {
         label: 'Priority',
         value: 'Accessible UI systems',
-        icon: <Command size={14} className="text-[#64d4ff]" />,
+        icon: <Command size={14} className="text-[var(--accent-alt)]" />,
     },
     {
         label: 'Mode',

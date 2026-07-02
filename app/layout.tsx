@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+import { ThemeScript } from 'colbrush/client';
 import { Noto_Sans_KR, JetBrains_Mono, Outfit } from 'next/font/google';
+import ColbrushProvider from './components/common/ColbrushProvider';
 import GoogleAnalytics from './components/common/GoogleAnalytics';
 import './globals.css';
 
@@ -89,11 +91,16 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko" className="scroll-smooth" suppressHydrationWarning>
+            <head>
+                <ThemeScript />
+            </head>
             <body
                 className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${outfit.variable} antialiased font-sans`}
             >
-                <GoogleAnalytics />
-                {children}
+                <ColbrushProvider>
+                    <GoogleAnalytics />
+                    {children}
+                </ColbrushProvider>
             </body>
         </html>
     );

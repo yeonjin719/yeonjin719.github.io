@@ -125,7 +125,7 @@ export default async function BlogPostPage({
                     <h1 className="mb-2 font-display text-4xl font-bold text-white">
                         404
                     </h1>
-                    <p className="font-mono tracking-widest uppercase text-[#5e7592]">
+                    <p className="font-mono tracking-widest uppercase text-[var(--muted-dim)]">
                         Post not found
                     </p>
                 </div>
@@ -138,7 +138,7 @@ export default async function BlogPostPage({
                 <nav className="mb-8">
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-[#8ea0bd] hover:text-(--accent) transition-colors group"
+                        className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--muted)] hover:text-(--accent) transition-colors group"
                     >
                         <ArrowLeft
                             size={16}
@@ -168,7 +168,7 @@ export default async function BlogPostPage({
                         {post.title}
                     </h1>
 
-                    <div className="mt-8 flex flex-wrap items-center gap-6 text-sm font-medium text-[#8ea0bd] animate-fade-in-up delay-200">
+                    <div className="mt-8 flex flex-wrap items-center gap-6 text-sm font-medium text-[var(--muted)] animate-fade-in-up delay-200">
                         <div className="flex items-center gap-2">
                             <User size={16} className="text-(--accent)" />
                             <span>Kim Yeon Jin</span>
@@ -202,13 +202,13 @@ export default async function BlogPostPage({
 
                         <div className="mt-16 border-t border-(--line) pt-10">
                             <div className="rounded-2xl border border-(--line) bg-(--surface-hover) p-8 text-left">
-                                <p className="mb-4 text-[15px] font-medium leading-relaxed text-[#afbdd5]">
+                                <p className="mb-4 text-[15px] font-medium leading-relaxed text-[var(--muted-strong)]">
                                     Enjoyed this article? Check out more
                                     projects and posts on my portfolio.
                                 </p>
                                 <Link
                                     href={exploreHref}
-                                    className="inline-flex items-center gap-2 rounded-lg border border-(--accent)/20 bg-(--accent)/10 px-5 py-3 text-sm font-semibold text-(--accent) hover:bg-(--accent) hover:text-[#0a1128] transition-colors group"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-(--accent)/20 bg-(--accent)/10 px-5 py-3 text-sm font-semibold text-(--accent) hover:bg-(--accent) hover:text-[var(--ink-soft)] transition-colors group"
                                 >
                                     Explore this project
                                     <ChevronRight
@@ -221,31 +221,33 @@ export default async function BlogPostPage({
                     </div>
 
                     {headings.length > 0 && (
-                        <aside className="blog-shell px-6 py-6 xl:sticky xl:top-24 hidden xl:block">
-                            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#5e7592] mb-4">
-                                On This Page
-                            </p>
-                            <ul className="space-y-3 text-sm font-medium">
-                                {headings.map((h) => (
-                                    <li
-                                        key={h.id}
-                                        className={
-                                            h.level === 1
-                                                ? ''
-                                                : h.level === 2
-                                                  ? 'pl-2'
-                                                  : 'pl-4'
-                                        }
-                                    >
-                                        <a
-                                            href={`#${h.id}`}
-                                            className="block text-[#8ea0bd] hover:text-(--accent) transition-colors break-keep"
+                        <aside className="hidden self-start xl:sticky xl:top-24 xl:block">
+                            <div className="blog-shell max-h-[calc(100vh-8rem)] overflow-y-auto px-6 py-6">
+                                <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--muted-dim)] mb-4">
+                                    On This Page
+                                </p>
+                                <ul className="space-y-3 text-sm font-medium">
+                                    {headings.map((h) => (
+                                        <li
+                                            key={h.id}
+                                            className={
+                                                h.level === 1
+                                                    ? ''
+                                                    : h.level === 2
+                                                      ? 'pl-2'
+                                                      : 'pl-4'
+                                            }
                                         >
-                                            {h.text}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+                                            <a
+                                                href={`#${h.id}`}
+                                                className="block text-[var(--muted)] hover:text-(--accent) transition-colors break-keep"
+                                            >
+                                                {h.text}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </aside>
                     )}
                 </div>

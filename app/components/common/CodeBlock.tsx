@@ -15,7 +15,7 @@ export function CodeBlock({ code, lang }: { code: string; lang?: string }) {
     return (
         <div className="relative group my-6">
             {lang && (
-                <div className="absolute top-0 left-4 -translate-y-1/2 flex h-6 items-center px-2 bg-(--surface-strong) border border-(--line) rounded-sm text-[10px] font-mono font-bold uppercase tracking-wider text-[#8ea0bd]">
+                <div className="absolute top-0 left-4 -translate-y-1/2 flex h-6 items-center px-2 bg-(--surface-strong) border border-(--line) rounded-sm text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--muted)]">
                     {lang}
                 </div>
             )}
@@ -28,15 +28,28 @@ export function CodeBlock({ code, lang }: { code: string; lang?: string }) {
                     bg-(--surface-strong) backdrop-blur px-2 py-1.5 rounded-md
                     border border-(--line) shadow-sm
                     text-[10px] uppercase font-bold tracking-wider flex items-center gap-1.5
-                    text-[#8ea0bd] hover:text-(--accent) hover:border-(--accent)/50
+                    text-[var(--muted)] hover:text-(--accent) hover:border-(--accent)/50
                 "
             >
                 <Copy size={13} />
                 {copied ? 'COPIED' : 'COPY'}
             </button>
 
-            <pre className="overflow-x-auto p-5 pt-8 rounded-xl bg-[#0a0f18] border border-(--line) text-[#afbdd5] font-mono text-[13px] leading-relaxed shadow-lg">
-                <code lang={lang}>{code}</code>
+            <pre className="overflow-x-auto p-5 pt-8 rounded-xl bg-[var(--code-bg)] border border-(--line) text-[var(--muted-strong)] font-mono text-[13px] leading-relaxed shadow-lg">
+                <code
+                    lang={lang}
+                    style={{
+                        display: 'block',
+                        minWidth: 'max-content',
+                        background: 'transparent',
+                        border: 0,
+                        padding: 0,
+                        color: 'inherit',
+                        fontSize: 'inherit',
+                    }}
+                >
+                    {code}
+                </code>
             </pre>
         </div>
     );

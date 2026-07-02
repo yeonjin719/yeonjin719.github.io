@@ -8,10 +8,10 @@ export default function Footer() {
             <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 px-6">
                 {/* Left Side: Copyright & Info */}
                 <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1 md:gap-2">
-                    <p className="font-outfit text-[#8ea0bd] text-sm md:text-base font-semibold tracking-wide">
+                    <p className="font-outfit text-[var(--muted)] text-sm md:text-base font-semibold tracking-wide">
                         © {new Date().getFullYear()} {profile.name}
                     </p>
-                    <p className="font-mono text-[10px] md:text-xs text-[#5e7592] uppercase tracking-[0.15em]">
+                    <p className="font-mono text-[10px] md:text-xs text-[var(--muted-dim)] uppercase tracking-[0.15em]">
                         Built with Next.js & Tailwind CSS
                     </p>
                 </div>

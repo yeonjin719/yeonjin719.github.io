@@ -35,7 +35,7 @@ export default function ScrollProgress() {
             className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[3px] bg-[rgba(255,255,255,0.38)] backdrop-blur"
         >
             <div
-                className="h-full origin-left bg-[linear-gradient(90deg,#102030_0%,#2f63d6_55%,#81b3ff_100%)] shadow-[0_0_24px_rgba(47,99,214,0.35)] transition-transform duration-150 ease-out"
+                className="h-full origin-left bg-[linear-gradient(90deg,var(--brand-navy)_0%,var(--brand-blue)_55%,var(--brand-blue-soft)_100%)] shadow-[0_0_24px_rgba(47,99,214,0.35)] transition-transform duration-150 ease-out"
                 style={{ transform: `scaleX(${progress})` }}
             />
         </div>

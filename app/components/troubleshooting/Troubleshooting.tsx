@@ -20,7 +20,7 @@ export default function Troubleshooting({
             <div className="mx-auto max-w-5xl">
                 <div className="relative flex flex-col w-full">
                     {!blogPostsData || blogPostsData.length === 0 ? (
-                        <div className="py-12 text-center text-[#5e7592] border-t border-dashed border-(--line)">
+                        <div className="py-12 text-center text-[var(--muted-dim)] border-t border-dashed border-(--line)">
                             <p className="text-base leading-relaxed font-medium">
                                 아직 작성된 글이 없습니다.
                             </p>
@@ -37,7 +37,7 @@ export default function Troubleshooting({
                                     >
                                         {/* Left Side: Date and Tag */}
                                         <div className="w-full md:w-36 shrink-0 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 mt-1 md:mt-0">
-                                            <span className="font-mono text-sm font-semibold tracking-wider text-[#8ea0bd]/80 group-hover:text-white transition-colors">
+                                            <span className="font-mono text-sm font-semibold tracking-wider text-[var(--muted)]/80 group-hover:text-white transition-colors">
                                                 {post.date}
                                             </span>
                                             <span className="rounded-sm border border-(--accent)/10 bg-(--accent)/5 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-(--accent) shadow-sm">
@@ -57,7 +57,7 @@ export default function Troubleshooting({
                                                 />
                                             </h3>
 
-                                            <p className="mt-1 text-[14px] leading-relaxed text-[#afbdd5] break-keep font-medium w-full sm:w-[90%]">
+                                            <p className="mt-1 text-[14px] leading-relaxed text-[var(--muted-strong)] break-keep font-medium w-full sm:w-[90%]">
                                                 {post.desc}
                                             </p>
                                         </div>

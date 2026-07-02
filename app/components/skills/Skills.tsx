@@ -32,7 +32,7 @@ export default function Skills({
                                 >
                                     {/* Left side: Category Icon & Title */}
                                     <div className="w-full md:w-80 lg:w-80 shrink-0 flex items-center md:items-start gap-4 mb-4 md:mb-0">
-                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-(--surface) border border-(--line-strong) text-[#8ea0bd] group-hover:text-(--accent) group-hover:border-(--accent)/30 group-hover:bg-(--accent)/5 transition-all duration-300">
+                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-(--surface) border border-(--line-strong) text-[var(--muted)] group-hover:text-(--accent) group-hover:border-(--accent)/30 group-hover:bg-(--accent)/5 transition-all duration-300">
                                             {categoryIcons[category] || (
                                                 <Code2 size={24} />
                                             )}
@@ -51,7 +51,7 @@ export default function Skills({
                                         {items.map((skill) => (
                                             <span
                                                 key={skill}
-                                                className="inline-flex items-center rounded-md border border-white/10 bg-white/5 px-3 py-1.5 text-[14px] font-medium text-[#afbdd5] transition-all duration-300 group-hover:border-(--accent)/20 group-hover:bg-(--accent)/10 group-hover:text-white hover:border-(--accent)/50! hover:bg-(--accent)/20! hover:text-(--accent)!"
+                                                className="inline-flex items-center rounded-md border border-white/10 bg-white/5 px-3 py-1.5 text-[14px] font-medium text-[var(--muted-strong)] transition-all duration-300 group-hover:border-(--accent)/20 group-hover:bg-(--accent)/10 group-hover:text-white hover:border-(--accent)/50! hover:bg-(--accent)/20! hover:text-(--accent)!"
                                             >
                                                 {skill}
                                             </span>
