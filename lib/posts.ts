@@ -70,7 +70,9 @@ export function getSortedPostsData(): IPostMeta[] {
 }
 
 export async function getPostData(slug: string): Promise<IPostData> {
-    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    const mdxPath = path.join(postsDirectory, `${slug}.mdx`);
+    const mdPath = path.join(postsDirectory, `${slug}.md`);
+    const fullPath = fs.existsSync(mdxPath) ? mdxPath : mdPath;
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     const matterResult = matter(fileContents);
