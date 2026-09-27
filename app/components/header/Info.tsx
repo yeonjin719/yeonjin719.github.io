@@ -41,13 +41,13 @@ export function Info() {
 
             <div className="relative z-10 flex w-full min-w-0 flex-col items-center justify-center">
                 {/* Minimalist Top Badge */}
-                <div className="mb-8 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-(--line-strong) bg-white/5 px-4 py-1.5 text-xs font-semibold text-(--muted) backdrop-blur-sm">
+                {/* <div className="mb-8 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-(--line-strong) bg-white/5 px-4 py-1.5 text-xs font-semibold text-(--muted) backdrop-blur-sm">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-(--accent) opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-(--accent)"></span>
                     </span>
                     Available for New Opportunities
-                </div>
+                </div> */}
 
                 {/* Striking Big Title */}
                 <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tighter cursor-default">
