@@ -3,7 +3,7 @@ export type TExperience = {
     period: string;
     title: string;
     organization: string;
-    category: 'Award' | 'Certificate' | 'Education' | 'Activity';
+    category: 'Award' | 'Certificate' | 'Education' | 'Activity' | 'Work';
     description: string;
     download?: string;
     link?: string;

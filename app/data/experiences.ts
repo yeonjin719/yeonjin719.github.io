@@ -2,6 +2,16 @@ import { TExperience } from '@/app/type/type';
 
 export const experiences: TExperience[] = [
     {
+        id: 10,
+        period: '2026.07',
+        title: '넛지헬스케어 프론트엔드 인턴',
+        organization: '넛지헬스케어',
+        category: 'Work',
+        description:
+            '넛지헬스케어 인턴으로 "팀워크" 서비스를 개발하며, 웹과 모바일웹뷰 환경에서의 사용자 경험을 최적화 및 새로운 기능을 구현',
+        link: 'cashwalk.com/teamwalk',
+    },
+    {
         id: 9,
         period: '2026',
         title: 'eHelper Chrome Extension 출시',

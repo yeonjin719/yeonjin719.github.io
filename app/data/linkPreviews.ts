@@ -6,9 +6,18 @@ export type LinkPreview = {
 };
 
 export const linkPreviews: Record<string, LinkPreview> = {
-    "https://chromium.googlesource.com/chromium/src/+/09514b7fbd4fb14ce12a43bc7f4807179612fa94": {},
-    "https://chromium.googlesource.com/chromium/src/+/lkgr/third_party/blink/renderer/core/html/canvas/canvas_async_blob_creator.cc": {},
-    "https://ehelper.vercel.app/": {},
+    "https://chromium.googlesource.com/chromium/src/+/09514b7fbd4fb14ce12a43bc7f4807179612fa94": {
+        "title": "09514b7fbd4fb14ce12a43bc7f4807179612fa94 - chromium/src - Git at Google",
+        "siteName": "chromium.googlesource.com"
+    },
+    "https://chromium.googlesource.com/chromium/src/+/lkgr/third_party/blink/renderer/core/html/canvas/canvas_async_blob_creator.cc": {
+        "title": "third_party/blink/renderer/core/html/canvas/canvas_async_blob_creator.cc - chromium/src - Git at Google",
+        "siteName": "chromium.googlesource.com"
+    },
+    "https://ehelper.vercel.app/": {
+        "title": "eHelper",
+        "siteName": "ehelper.vercel.app"
+    },
     "https://github.com/2025-OSDC/colbrush": {
         "title": "GitHub - 2025-OSDC/colbrush: Colorblind theme library for colorblind people",
         "description": "Colorblind theme library for colorblind people. Contribute to 2025-OSDC/colbrush development by creating an account on GitHub.",
