@@ -9,7 +9,7 @@ export const experiences: TExperience[] = [
         category: 'Work',
         description:
             '넛지헬스케어 인턴으로 "팀워크" 서비스를 개발하며, 웹과 모바일웹뷰 환경에서의 사용자 경험을 최적화 및 새로운 기능을 구현',
-        link: 'cashwalk.com/teamwalk',
+        link: 'https://cashwalk.com/teamwalk',
     },
     {
         id: 9,
